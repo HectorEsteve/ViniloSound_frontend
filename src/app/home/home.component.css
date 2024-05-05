@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+main {
+  background-image: linear-gradient(to bottom, black, #444, black);
+}
+
+.card{
+  background-color:#f4f4f4;
+  color: #333;
+  border:var(--primary-color) solid 3px;
+  border-radius: 20px;
+}
+
+.card:hover{
+  animation: HeardNeonsEffectBlue 1s ease-in-out infinite alternate;
+}
+
+.card h2{
+  color:var(--primary-color);
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right,  white, var(--primary-color), white) 1;
+}
+
+.commercial{
+  background-image: url('./../../assets/img/publicidad1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.card-size{
+  height: 300px;
+  width: 425px;
+}
+
+

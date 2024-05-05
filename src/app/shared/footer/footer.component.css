@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+footer {
+
+  min-height: 100px;
+  background-color: black;
+  border-top: 2px solid;
+  border-image: linear-gradient(to right,  #000, var(--primary-color), #000) 1;
+  color: var(--primary-color-light)
+}
+.container{
+  max-width: 900px;
+}
+
+img{
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  border: rgb(4, 68, 4) 2px solid;
+}
+p, a{
+  font-size: 12px;
+}
+
+a{
+  color: var(--primary-color-light);
+}
+
+a:hover {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right,  #000, var(--primary-color), #000) 1;
+}
+i{
+  color: var(--primary-color-light);
+}
+i:hover{
+  animation: neonsEffectBlue 2s ease-in-out infinite alternate;
+}
+

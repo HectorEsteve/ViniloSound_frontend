@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  line-height:normal;
+  background-color: black;
+}
+
+:root {
+  --primary-color: #1336d1;
+  --primary-color-light:#c3e0ff;
+}
+
+@keyframes neonsEffectBlue {
+  0% {
+      color:var(--primary-color);
+      text-shadow: 0 0 20px rgba(106, 134, 185, 0.8);
+      border-image: linear-gradient(to right,  white, var(--primary-color), white) 1;
+  }
+  100% {
+      color: var(--primary-color-light);
+      text-shadow: 0 0 20px rgba(0, 60, 121, 0.8);
+      border-image: linear-gradient(to right,  white, var(--primary-color-light), white) 1;
+  }
+}
+
+@keyframes buttonNeonsEffect {
+  0% {
+      color:var(--primary-color);
+      background-color: var(--primary-color-light);
+      border:var(--primary-color) solid 1px;
+  }
+  100% {
+      color: var(--primary-color-light);
+      background-color:var(--primary-color);
+      border:var(--primary-color-light) solid 1px;
+  }
+}
+
+@keyframes HeardNeonsEffectBlue {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05); /* Hace que el elemento sea un 25% más grande */
+    box-shadow: 0 0 25px var(--primary-color); /* Crea una sombra en todas las direcciones */
+  }
+}
+
+@keyframes neonsEffectRed {
+  0% {
+      color: #da2727; /* Azul oscuro */
+      text-shadow: 0 0 20px rgba(240, 6, 6, 0.8); /* Sombra azul claro */
+  }
+  100% {
+      color: #d69898; /* Azul claro */
+      text-shadow: 0 0 5px rgba(190, 5, 5, 0.5); /* Sombra más ligera */
+  }
+}
+
+.neon-blue{
+  animation: neonsEffectBlue 2s ease-in-out infinite alternate;
+}
+.neon-red{
+  animation: neonsEffectRed 2s ease-in-out infinite alternate;
+}
+
+.neon-font{
+  font-family: "Pacifico";
+}
+.menu-font{
+  font-family: "Roboto", sans-serif;
+}
+
+a{
+  text-decoration: none;
+}

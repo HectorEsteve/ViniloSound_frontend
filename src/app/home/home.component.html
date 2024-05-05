@@ -1,0 +1,85 @@
+
+<main>
+  <div class="container py-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 d-flex justify-content-center align-items-center">
+      <!-- Cuadrado 1 - Imagen -->
+      <div class="col card-size">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body d-flex justify-content-center align-items-center commercial">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cuadrado 2 -->
+      <div class="col card-size" (mouseenter)="isHoveredInfo = true" (mouseleave)="isHoveredInfo = false">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body">
+              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredInfo}">Información</h2>
+              <h5 class="text-center menu-font py-3">Estate al día de todo lo sucedido en el mundo de los vinilos.</h5>
+              <p class="text-center">¿Necesitas saber algo en especial?</p>
+              <p class="text-center">¿Buscas curiosidades?</p>
+              <p class="text-center">¿Quieres encontrar plan para este fin de semana?</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cuadrado 3 -->
+      <div class="col card-size" (mouseenter)="isHoveredProd = true" (mouseleave)="isHoveredProd = false">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body">
+              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredProd}">Productos</h2>
+              <h5 class="text-center menu-font py-3">No sabemos si tendremos lo buscas, pero por mirar no pierdas nada.</h5>
+              <p class="text-center">¿Pensando en ampliar tu colección?</p>
+              <p class="text-center">¿Tienes que hacer algún regalo?</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cuadrado 4 -->
+      <div class="col card-size" (mouseenter)="isHoveredSear = true" (mouseleave)="isHoveredSear = false">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body">
+              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredSear}">Buscador</h2>
+              <h5 class="text-center menu-font py-3">Explora en nuestra base de datos todo lo que quieras.</h5>
+              <p class="text-center">¿Quieres saber mas de un grupo?</p>
+              <p class="text-center">¿No te acuerdas de las canciones que tenia un vinilo?</p>
+              <p class="text-center">¿Interesado en algún estilo musical?</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cuadrado 5 -->
+      <div class="col card-size" (mouseenter)="isHoveredJoin = true" (mouseleave)="isHoveredJoin = false">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body">
+              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredJoin}">Unete ya !!!</h2>
+              <h5 class="text-center menu-font py-3">Pasa y ponte comodo, sientete como en casa.</h5>
+              <p class="text-center">Podreis disfrutar de ventajas en la tienda, participar en los foros,
+                chatear con otros usuarios, compartir vuestra colección y seguro que muchas mas cosas que no recuerdo en estos momentos.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cuadrado 6 - Imagen -->
+      <div class="col  card-size">
+        <a href="">
+          <div class="card d-flex flex-column h-100">
+            <div class="card-body d-flex justify-content-center align-items-center commercial">
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>

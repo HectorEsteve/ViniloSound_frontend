@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+li{
+  margin-right: 3%;
+  padding-bottom: 5px;
+  font-size: 1.4em;
+  font-weight: bolder;
+}
+li:hover {
+  border-bottom: 2px solid;
+  animation: neonsEffectBlue 2s ease-in-out infinite alternate;
+  cursor: pointer;
+}
+.active {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, var(--primary-color-light), var(--primary-color), var(--primary-color-light)) 1;
+}

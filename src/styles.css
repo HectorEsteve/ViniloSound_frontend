@@ -5,10 +5,19 @@ body {
   line-height:normal;
   background-color: black;
 }
+main {
+  background-image: linear-gradient(to bottom, black, #444,#dadada,#444, black);
+  min-height: 76vh;
+}
+
+a{
+  text-decoration: none;
+}
 
 :root {
   --primary-color: #1336d1;
   --primary-color-light:#c3e0ff;
+  --light-color:#f4f4f4;
 }
 
 @keyframes neonsEffectBlue {
@@ -21,6 +30,16 @@ body {
       color: var(--primary-color-light);
       text-shadow: 0 0 20px rgba(0, 60, 121, 0.8);
       border-image: linear-gradient(to right,  white, var(--primary-color-light), white) 1;
+  }
+}
+@keyframes neonsEffectRed {
+  0% {
+      color: #da2727;
+      text-shadow: 0 0 20px rgba(240, 6, 6, 0.8);
+  }
+  100% {
+      color: #d69898;
+      text-shadow: 0 0 5px rgba(190, 5, 5, 0.5);
   }
 }
 
@@ -37,26 +56,16 @@ body {
   }
 }
 
-@keyframes HeardNeonsEffectBlue {
+@keyframes ShadowNeonsEffectBlue {
   0% {
-    transform: scale(1);
+
   }
   100% {
-    transform: scale(1.05); /* Hace que el elemento sea un 25% más grande */
-    box-shadow: 0 0 25px var(--primary-color); /* Crea una sombra en todas las direcciones */
+    box-shadow: 0 0 25px var(--primary-color);
   }
 }
 
-@keyframes neonsEffectRed {
-  0% {
-      color: #da2727; /* Azul oscuro */
-      text-shadow: 0 0 20px rgba(240, 6, 6, 0.8); /* Sombra azul claro */
-  }
-  100% {
-      color: #d69898; /* Azul claro */
-      text-shadow: 0 0 5px rgba(190, 5, 5, 0.5); /* Sombra más ligera */
-  }
-}
+
 
 .neon-blue{
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
@@ -72,6 +81,16 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-a{
-  text-decoration: none;
+.light-color{
+  color: var(--light-color);
 }
+.primary-color{
+  color: var(--primary-color);
+}
+.primary-color-light{
+  color: var(--primary-color-light);
+}
+
+
+
+

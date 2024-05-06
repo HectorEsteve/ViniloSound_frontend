@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+form{
+  height: 40vh;
+  width: 40vw;
+  max-width: 500px;
+  min-width: 350px;
+  border-radius: 30px;
+  border:var(--primary-color) solid 3px;
+  animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
+  background-color: var(--light-color);
+}
+input{
+  background-color: var(--primary-color-light);
+  border:var(--primary-color) solid 1px;
+}

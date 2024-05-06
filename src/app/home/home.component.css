@@ -3,7 +3,7 @@
 }
 
 main {
-  background-image: linear-gradient(to bottom, black, #444, black);
+  background-image: linear-gradient(to bottom, black, #444,#dadada,#444, black);
 }
 
 .card{
@@ -14,7 +14,8 @@ main {
 }
 
 .card:hover{
-  animation: HeardNeonsEffectBlue 1s ease-in-out infinite alternate;
+  animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
+  transform: scale(1.05);
 }
 
 .card h2{

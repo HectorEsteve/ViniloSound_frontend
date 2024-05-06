@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+
+div{
+  background-image: url('./../../../../assets/img/comingson.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40vh;
+  width: 40vh;
+  border-radius: 30px;
+  border:var(--primary-color) solid 3px;
+  animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
+}

@@ -3,13 +3,12 @@
 }
 
 footer {
-
   min-height: 100px;
   background-color: black;
   border-top: 2px solid;
   border-image: linear-gradient(to right,  #000, var(--primary-color), #000) 1;
-  color: var(--primary-color-light)
 }
+
 .container{
   max-width: 900px;
 }
@@ -20,21 +19,16 @@ img{
   border-radius: 20px;
   border: rgb(4, 68, 4) 2px solid;
 }
+
 p, a{
   font-size: 12px;
 }
 
-a{
-  color: var(--primary-color-light);
-}
-
 a:hover {
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right,  #000, var(--primary-color), #000) 1;
+  border-image: linear-gradient(to right,  black, var(--primary-color), black) 1;
 }
-i{
-  color: var(--primary-color-light);
-}
+
 i:hover{
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
 }

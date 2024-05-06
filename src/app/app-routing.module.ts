@@ -8,6 +8,22 @@ const routes: Routes = [
     loadComponent: () => import('./home/home.component').then(c => c.HomeComponent)
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'news',
+    loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
+  },
+  {
+    path: 'store',
+    loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
+  },
+  {
+    path: 'search',
+    loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

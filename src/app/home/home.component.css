@@ -35,6 +35,7 @@ main {
 .card-size{
   height: 300px;
   width: 425px;
+  cursor: pointer;
 }
 
 

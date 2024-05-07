@@ -18,22 +18,12 @@ header {
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  #000, var(--primary-color), #000) 1;
 
-
 }
 header>div{
   max-width: 1240px;
 }
 
-button {
-  display: block;
-  width: 100px;
-  height: 40px;
-  background-color:var(--primary-color-light);
-  color: var(--primary-color);
-  border:var(--primary-color) solid 1px;
-}
-
-button:hover {
+.primary-button:hover {
   background-color: var(--primary-color-light);
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }

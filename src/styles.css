@@ -24,12 +24,10 @@ a{
   0% {
       color:var(--primary-color);
       text-shadow: 0 0 20px rgba(106, 134, 185, 0.8);
-      border-image: linear-gradient(to right,  white, var(--primary-color), white) 1;
   }
   100% {
       color: var(--primary-color-light);
       text-shadow: 0 0 20px rgba(0, 60, 121, 0.8);
-      border-image: linear-gradient(to right,  white, var(--primary-color-light), white) 1;
   }
 }
 @keyframes neonsEffectRed {
@@ -89,6 +87,15 @@ a{
 }
 .primary-color-light{
   color: var(--primary-color-light);
+}
+
+.primary-button{
+  display: block;
+  width: 100px;
+  height: 40px;
+  background-color:var(--primary-color-light);
+  color: var(--primary-color);
+  border:var(--primary-color) solid 1px;
 }
 
 

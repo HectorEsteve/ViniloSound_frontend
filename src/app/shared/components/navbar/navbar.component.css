@@ -7,13 +7,14 @@ li{
   padding-bottom: 5px;
   font-size: 1.4em;
   font-weight: bolder;
+  border-bottom: 3px solid transparent;
 }
 li:hover {
-  border-bottom: 2px solid;
+  border-bottom: 3px solid;
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
+  border-image: linear-gradient(to right,  black, var(--primary-color),var(--primary-color), black) 1;
   cursor: pointer;
 }
 .active {
-  border-bottom: 2px solid;
-  border-image: linear-gradient(to right, var(--primary-color-light), var(--primary-color), var(--primary-color-light)) 1;
-}
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to right,  black, var(--primary-color),var(--primary-color), black) 1;}

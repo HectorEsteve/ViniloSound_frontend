@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
+    loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
   },
   {
     path: '',

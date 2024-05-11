@@ -17,10 +17,11 @@
             (mouseleave)="isHoveredInfo = false"
             [routerLink]="'/news'"
       >
-          <div class="card d-flex flex-column h-100" >
+          <div class="card d-flex flex-column h-100 noticias" >
+            <div class="card-overlay"></div>
             <div class="card-body">
-              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredInfo}">Información</h2>
-              <h5 class="text-center menu-font py-3">Estate al día de todo lo sucedido en el mundo de los vinilos.</h5>
+              <h2 class="text-center neon-font primary-color" [ngClass]="{ 'neon-blue': isHoveredInfo}">Actually</h2>
+              <h5 class="text-center  py-3">Estate al día de todo lo sucedido en el mundo de los vinilos.</h5>
               <p class="text-center">¿Necesitas saber algo en especial?</p>
               <p class="text-center">¿Buscas curiosidades?</p>
               <p class="text-center">¿Quieres encontrar plan para este fin de semana?</p>
@@ -34,10 +35,11 @@
             (mouseleave)="isHoveredProd = false"
             [routerLink]="'/store'"
       >
-          <div class="card d-flex flex-column h-100">
+          <div class="card d-flex flex-column h-100 material">
+            <div class="card-overlay"></div>
             <div class="card-body">
-              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredProd}">Productos</h2>
-              <h5 class="text-center menu-font py-3">No sabemos si tendremos lo buscas, pero por mirar no pierdas nada.</h5>
+              <h2 class="text-center neon-font primary-color" [ngClass]="{ 'neon-blue': isHoveredProd}">Material</h2>
+              <h5 class="text-center py-3">No sabemos si tendremos lo buscas, pero por mirar no pierdas nada.</h5>
               <p class="text-center">¿Pensando en ampliar tu colección?</p>
               <p class="text-center">¿Tienes que hacer algún regalo?</p>
             </div>
@@ -50,10 +52,11 @@
             (mouseleave)="isHoveredSear = false"
             [routerLink]="'/search'"
       >
-          <div class="card d-flex flex-column h-100">
+          <div class="card d-flex flex-column h-100 buscador">
+            <div class="card-overlay"></div>
             <div class="card-body">
-              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredSear}">Buscador</h2>
-              <h5 class="text-center menu-font py-3">Explora en nuestra base de datos todo lo que quieras.</h5>
+              <h2 class="text-center neon-font primary-color" [ngClass]="{ 'neon-blue': isHoveredSear}">Searchin</h2>
+              <h5 class="text-center py-3">Explora en nuestra base de datos todo lo que quieras.</h5>
               <p class="text-center">¿Quieres saber mas de un grupo?</p>
               <p class="text-center">¿No te acuerdas de las canciones que tenia un vinilo?</p>
               <p class="text-center">¿Interesado en algún estilo musical?</p>
@@ -67,10 +70,11 @@
             (mouseleave)="isHoveredJoin = false"
             [routerLink]="'/auth/login'"
       >
-          <div class="card d-flex flex-column h-100">
+          <div class="card d-flex flex-column h-100 unete">
+            <div class="card-overlay"></div>
             <div class="card-body">
-              <h2 class="text-center neon-font" [ngClass]="{ 'neon-blue': isHoveredJoin}">Unete ya !!!</h2>
-              <h5 class="text-center menu-font py-3">Pasa y ponte comodo, sientete como en casa.</h5>
+              <h2 class="text-center neon-font primary-color" [ngClass]="{ 'neon-blue': isHoveredJoin}">Play wih us!!!</h2>
+              <h5 class="text-center py-3">Pasa y ponte comodo, sientete como en casa.</h5>
               <p class="text-center">Podreis disfrutar de ventajas en la tienda, participar en los foros,
                 chatear con otros usuarios, compartir vuestra colección y seguro que muchas mas cosas que no recuerdo en estos momentos.</p>
             </div>

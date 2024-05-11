@@ -1,1 +1,39 @@
-<p>song-by-name-page works!</p>,
+<div>
+  <div class="search-head p-2">
+    <h5 class="primary-color text-center">Busqueda: Canciones por nombre</h5>
+    <div class="d-flex justify-content-center align-items-center">
+      <search-box
+        placeholder="Buscar por nombre"
+        [initialValue]="initialValue"
+        (onValue)="searchByName($event)"
+      />
+      <button
+        class="btn primary-button mx-2"
+        (click)="clearCache();"
+      >
+        Limpiar
+      </button>
+    </div>
+</div>
+
+<shared-loading-spinner *ngIf="isLoading"/>
+
+<div class="row my-3">
+  <div class="col">
+
+    <div
+      *ngIf="songs.length === 0 && isLoading == false && initialValue !==''; else songCard"
+      class="alert alert-warning text-center mx-2 custom-alert"
+    >
+      No hay canciones que mostrar
+    </div>
+
+    <ng-template #songCard>
+      <app-song-cards [songs]="songs"/>
+    </ng-template>
+
+
+
+  </div>
+</div>
+

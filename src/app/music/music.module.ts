@@ -5,11 +5,13 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MusicSidebarComponent } from './components/sidebar/sidebar.component';
+import { SearchBoxComponent } from '../shared/components/searchBox/searchBox.component';
+import { LoadingSpinnerComponent } from '../shared/components/loading-spinner/loading-spinner.component';
+import { SongCardsComponent } from './components/song-card/song-cards.component';
 
 import { MusicLayoutPageComponent } from './pages/layout/layout-page.component';
 import { SongByNamePageComponent } from './pages/songs/song-by-name/song-by-name-page.component';
 import { SongByBandPageComponent } from './pages/songs/song-by-band/song-by-band-page.component';
-import { SongByGenrePageComponent } from './pages/songs/song-by-genre/song-by-genre-page.component';
 import { BandByNamePageComponent } from './pages/bands/band-by-name-page/band-by-name-page.component';
 import { BandByGenrePageComponent } from './pages/bands/band-by-genre-page/band-by-genre-page.component';
 import { VinylByNamePageComponent } from './pages/vinyls/vinyl-by-name/vinyl-by-name-page.component';
@@ -21,12 +23,13 @@ import { CollectionByVinylPageComponent } from './pages/collections/collection-b
 import { CollectionByBandPageComponent } from './pages/collections/collection-by-band/collection-by-band-page.component';
 
 
+
+
 @NgModule({
   declarations: [
     MusicLayoutPageComponent,
     SongByNamePageComponent,
     SongByBandPageComponent,
-    SongByGenrePageComponent,
     BandByNamePageComponent,
     BandByGenrePageComponent,
     VinylByNamePageComponent,
@@ -42,8 +45,10 @@ import { CollectionByBandPageComponent } from './pages/collections/collection-by
     MusicRoutingModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MusicSidebarComponent
-
+    MusicSidebarComponent,
+    SearchBoxComponent,
+    LoadingSpinnerComponent,
+    SongCardsComponent
   ]
 })
 export class MusicModule { }

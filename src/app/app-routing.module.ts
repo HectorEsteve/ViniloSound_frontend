@@ -3,33 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  {
-    path: 'home',
+  { path: 'home',
     loadComponent: () => import('./home/home.component').then(c => c.HomeComponent)
   },
-  {
-    path: 'auth',
+  { path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
-  {
-    path: 'news',
+  { path: 'news',
     loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
   },
-  {
-    path: 'store',
+  { path: 'store',
     loadComponent: () => import('./shared/pages/coming-soon-page/coming-soon-page.component').then(c => c.ComingSoonPageComponent)
   },
-  {
-    path: 'search',
+  { path: 'search',
     loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
   },
-  {
-    path: '',
+  { path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  {
-    path: '**',
+  { path: '**',
     redirectTo: 'home',
   },
 ];

@@ -16,6 +16,7 @@ a{
 
 :root {
   --primary-color: #1336d1;
+  --primary-color-medium:#4365ff;
   --primary-color-light:#c3e0ff;
   --light-color:#f4f4f4;
 }
@@ -56,10 +57,16 @@ a{
 
 @keyframes ShadowNeonsEffectBlue {
   0% {
-
   }
   100% {
     box-shadow: 0 0 25px var(--primary-color);
+  }
+}
+@keyframes ShadowNeonsEffectYellow {
+  0% {
+  }
+  100% {
+    box-shadow: 0 0 15px rgb(136, 136, 1);
   }
 }
 
@@ -75,9 +82,13 @@ a{
 .neon-font{
   font-family: "Pacifico";
 }
-.menu-font{
-  font-family: "Roboto", sans-serif;
+.basic-font{
+   font-family: "Satisfy", cursive;
 }
+.menu-font{
+  font-family: "Satisfy", cursive;
+}
+
 
 .light-color{
   color: var(--light-color);

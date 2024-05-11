@@ -24,8 +24,13 @@ header>div{
 }
 
 .primary-button:hover {
-  background-color: var(--primary-color-light);
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button{
+  width: 110px;
+}
+.primary-button:active {
+  transform: scale(0.9);
 }
 
 

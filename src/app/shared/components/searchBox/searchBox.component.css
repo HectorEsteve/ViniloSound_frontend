@@ -1,0 +1,5 @@
+input{
+  border:var(--primary-color) solid 1px;
+  max-width: 600px;
+}
+

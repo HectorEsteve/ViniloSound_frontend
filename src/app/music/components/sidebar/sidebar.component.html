@@ -2,7 +2,7 @@
 <aside class="sidebar">
 
   <ul class="nav flex-column text-center">
-    <li class="nav-item li-border" *ngFor="let item of menu">
+    <li class="nav-item li-border" *ngFor="let item of menu()">
       <a  class="nav-link primary-color"
           (click)="toggleCollapse(item)"
       >

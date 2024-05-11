@@ -2,7 +2,7 @@
   display: block;
 }
 
-h2{
+h3{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  rgba(106, 134, 185, 0.8), var(--primary-color), rgba(106, 134, 185, 0.8)) 1;
 }
@@ -36,7 +36,9 @@ p:hover{
 }
 
 .primary-button:hover {
-  background-color: var(--primary-color-light);
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
 }
 

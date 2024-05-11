@@ -5,16 +5,16 @@
 li{
   margin-right: 3%;
   padding-bottom: 5px;
-  font-size: 1.4em;
-  font-weight: bolder;
+  font-size: 1.8em;
   border-bottom: 3px solid transparent;
+  color: var(--light-color);
+  font-weight: bolder;
 }
 li:hover {
-  border-bottom: 3px solid;
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
-  border-image: linear-gradient(to right,  black, var(--primary-color),var(--primary-color), black) 1;
   cursor: pointer;
 }
 .active {
-  border-bottom: 3px solid;
-  border-image: linear-gradient(to right,  black, var(--primary-color),var(--primary-color), black) 1;}
+  color: var(--primary-color-medium);
+  text-shadow: 0 0 3px var(--light-color);
+}

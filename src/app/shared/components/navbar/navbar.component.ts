@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 interface MenuItem {
@@ -8,22 +8,22 @@ interface MenuItem {
 }
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
+  selector:    'app-navbar',
+  standalone:   true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+  templateUrl:  './navbar.component.html',
+  styleUrl:     './navbar.component.css',
 })
 export class NavbarComponent {
 
-  public menu: MenuItem[] = [
-    { title: 'Inicio', route: './home' },
-    { title: 'Informacion', route: './news' },
-    { title: 'Productos', route: './store' },
-    { title: 'Buscador', route: './search' },
-  ];
+  public menu:MenuItem[]=([
+    { title: 'Sweet Home',      route: './home' },
+    { title: 'Actually', route: './news' },
+    { title: 'Material',   route: './store' },
+    { title: 'Searchin',    route: './search' },
+  ])
 
 }

@@ -8,6 +8,11 @@ import { MusicSidebarComponent } from './components/sidebar/sidebar.component';
 import { SearchBoxComponent } from '../shared/components/searchBox/searchBox.component';
 import { LoadingSpinnerComponent } from '../shared/components/loading-spinner/loading-spinner.component';
 import { SongCardsComponent } from './components/song-card/song-cards.component';
+import { SelectBoxComponent } from '../shared/components/selectBox/selectBox.component';
+import { SongInfoComponent } from './components/song-info/song-info.component';
+import { GenreInfoComponent } from './components/genre-info/genre-info.component';
+import { BandCardComponent } from './components/band-card/band-card.component';
+import { BandInfoComponent } from './components/band-info/band-info.component';
 
 import { MusicLayoutPageComponent } from './pages/layout/layout-page.component';
 import { SongByNamePageComponent } from './pages/songs/song-by-name/song-by-name-page.component';
@@ -21,6 +26,14 @@ import { CollectionByUserPageComponent } from './pages/collections/collection-by
 import { CollectionByNamePageComponent } from './pages/collections/collection-by-name/collection-by-name-page.component';
 import { CollectionByVinylPageComponent } from './pages/collections/collection-by-vinyl/collection-by-vinyl-page.component';
 import { CollectionByBandPageComponent } from './pages/collections/collection-by-band/collection-by-band-page.component';
+import { SongByGenrePageComponent } from './pages/songs/song-by-genre-page/song-by-genre-page.component';
+import { SongPageComponent } from './pages/songs/song-page/song-page.component';
+import { GenrePageComponent } from './pages/genre/genre-page/genre-page.component';
+import { BandPageComponent } from './pages/bands/band-page/band-page.component';
+
+import { MinuteFormatPipe } from './pipe/minute-format.pipe';
+import { StringToArrayPipe } from './pipe/string-to-array.pipe';
+
 
 
 
@@ -30,6 +43,8 @@ import { CollectionByBandPageComponent } from './pages/collections/collection-by
     MusicLayoutPageComponent,
     SongByNamePageComponent,
     SongByBandPageComponent,
+    SongByGenrePageComponent,
+    SongPageComponent,
     BandByNamePageComponent,
     BandByGenrePageComponent,
     VinylByNamePageComponent,
@@ -38,7 +53,9 @@ import { CollectionByBandPageComponent } from './pages/collections/collection-by
     CollectionByUserPageComponent,
     CollectionByNamePageComponent,
     CollectionByVinylPageComponent,
-    CollectionByBandPageComponent
+    CollectionByBandPageComponent,
+    GenrePageComponent,
+    BandPageComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +65,14 @@ import { CollectionByBandPageComponent } from './pages/collections/collection-by
     MusicSidebarComponent,
     SearchBoxComponent,
     LoadingSpinnerComponent,
-    SongCardsComponent
+    SongCardsComponent,
+    SelectBoxComponent,
+    SongInfoComponent,
+    GenreInfoComponent,
+    MinuteFormatPipe,
+    BandCardComponent,
+    BandInfoComponent,
+    StringToArrayPipe
   ]
 })
 export class MusicModule { }

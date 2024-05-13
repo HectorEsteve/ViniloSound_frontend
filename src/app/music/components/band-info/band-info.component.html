@@ -1,0 +1,56 @@
+<div class="info p-3">
+  <div class="row title text-center">
+    <div class="overlay"></div>
+    <div class="col-12 m-1">
+      <h2 class="p-0 m-0 menu-font primary-color"> {{band.name}}</h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="text-center row">
+      <div class="col-xl-4">
+        <h5 class="primary-color">Año de formación</h5>
+        <p>{{band.formation_year}}</p>
+      </div>
+      <div class="col-xl-4">
+        <h5 class="primary-color">País</h5>
+        <p>{{band.country}}</p>
+      </div>
+      <div class="col-xl-4">
+        <h5 class="primary-color">Nº de miembros</h5>
+        <p>{{band.members_count}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="text-center col-xl-4" *ngIf="band.members;else membersDefault">
+        <h5 class="primary-color">Miembros</h5>
+        <p class="px-4" *ngFor="let member of band.members | StringToArray">{{member}}</p>
+      </div>
+      <ng-template #membersDefault>
+        <div class="text-center col-xl-4">
+          <h5 class="primary-color text-center">Miembros</h5>
+          <p>Datos no encontrados</p>
+        </div>
+      </ng-template>
+
+
+      <div class="text-center col-xl-6">
+        <h5 class="primary-color">Generos</h5>
+        <p  class="px-4"
+            *ngFor="let genre of GenresFromBand(band)">
+            <span class="rout" [routerLink]="['/search/genre/by/',genre.id]">
+            {{genre.name}}
+            </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h5 class="primary-color">Canciones</h5>
+      <p  class="px-4">
+          <app-song-cards [songs]="SongsFromBand(band)"/>
+        </p>
+    </div>
+  </div>
+</div>

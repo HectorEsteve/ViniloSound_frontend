@@ -1,1 +1,39 @@
-<p>band-by-genre-page works!</p>,
+<div>
+  <div class="search-head p-2">
+    <h5 class="primary-color text-center">Busqueda: Grupos por genro</h5>
+    <div class="d-flex justify-content-center align-items-center">
+      <select-box
+        class="select"
+        placeholder=">>> Seleccione Genero <<<"
+        [initialValue]="initialValue"
+        [options]="genres"
+        (onValue)="searchByGenre($event)"
+      />
+      <button
+        class="btn primary-button mx-2"
+        (click)="clearCache();"
+      >
+        Limpiar
+      </button>
+    </div>
+</div>
+
+
+<shared-loading-spinner *ngIf="isLoading"/>
+
+<div class="row my-3">
+  <div class="col">
+
+    <div
+      *ngIf="bands.length === 0 && isLoading == false && initialValue !==''; else songCard"
+      class="alert alert-warning text-center mx-2 custom-alert"
+    >
+      No hay canciones que mostrar
+    </div>
+
+    <ng-template #songCard>
+      <app-band-card [bands]="bands"/>
+    </ng-template>
+
+  </div>
+</div>

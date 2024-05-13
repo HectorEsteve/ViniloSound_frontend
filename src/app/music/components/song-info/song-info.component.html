@@ -1,0 +1,68 @@
+<div class="info p-3">
+  <div class="row title text-center">
+    <div class="overlay"></div>
+    <div class="col-12 m-1">
+      <h2 class="p-0 m-0 menu-font primary-color"> {{song.name}}</h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="text-center row">
+      <div class="col-xl-4">
+        <h5 class="primary-color">Grupo</h5>
+        <p [routerLink]="['/search/band/by/',song.band.id]"
+        class="rout"
+        >{{song.band.name}}</p>
+      </div>
+      <div class="col-xl-4">
+        <h5 class="primary-color">Genero</h5>
+        <p  [routerLink]="['/search/genre/by/',song.genre.id]"
+            class="rout"
+        >
+          {{song.genre.name}}
+        </p>
+      </div>
+      <div class="col-xl-4">
+        <h5 class="primary-color">Duración</h5>
+        <p>{{song.duration | MinuteFormat}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="text-center">
+        <h5 class="primary-color">Letra</h5>
+        <p class="lyric px-4">"{{song.lyrics}}"</p>
+      </div>
+
+      <div class="text-center" *ngIf="song.audio_url;else songDefault">
+        <h5 class="primary-color">Canción</h5>
+        <p>{{song.audio_url}}</p>
+      </div>
+      <ng-template #songDefault>
+        <div class="text-center">
+          <h5 class="primary-color text-center">Canción</h5>
+          <p>Enlace no encontrado</p>
+        </div>
+      </ng-template>
+
+
+      <div class="text-center" *ngIf="song.audio_url;else videoDefault">
+        <h5 class="primary-color">Videoclip</h5>
+        <p>{{song.audio_url}}</p>
+      </div>
+      <ng-template #videoDefault>
+        <div class="text-center">
+          <h5 class="primary-color">Videoclip</h5>
+          <p>Enlace no encontrado</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div>
+    <span [routerLink]=[tempRout]
+          class="rout primary-color"
+    >
+      <<< Volver
+    </span>
+  </div>
+</div>

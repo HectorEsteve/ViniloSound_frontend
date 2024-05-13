@@ -1,8 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { GenreService } from '../../../services/genre.service';
+import { BandService } from '../../../services/band.service';
+import { Band } from '../../../interfaces/band.interface';
 
 @Component({
-  selector: 'app-band-by-genre-page',
-  templateUrl: './band-by-genre-page.component.html',
-  styleUrl: './band-by-genre-page.component.css',
+  selector:     'app-band-by-genre-page',
+  templateUrl:  './band-by-genre-page.component.html',
+  styleUrl:     './band-by-genre-page.component.css',
 })
-export class BandByGenrePageComponent { }
+export class BandByGenrePageComponent implements OnInit{
+
+  ngOnInit(): void {
+    this.loadGenres();
+    this.bands = this.bandService.cacheStoreBand.byGenre.bands;
+    this.initialValue = this.bandService.cacheStoreBand.byGenre.term;
+  }
+
+  private bandService = inject( BandService );
+  private genreService = inject( GenreService );
+
+  public genres: string[] = [];
+  public bands: Band[] = [];
+  public initialValue='';
+  public isLoading:boolean = false;
+
+  loadGenres(): void {
+    this.isLoading = true;
+    this.genreService.getGenres()
+    .subscribe(
+      genres => {
+
+        this.genres = genres.map(genre => genre.name);
+        this.isLoading = false;
+      });
+  }
+
+  public clearCache(): void {
+    this.bands=[];
+    this.initialValue='';
+    this.bandService.resetFromLocalStorageByName();
+  }
+
+  public searchByGenre(term:string):void{
+    this.isLoading = true;
+    this.initialValue = term;
+
+    this.bandService.searchBandsByGenre(term)
+      .subscribe(bands => {
+        this.bands = bands;
+        this.isLoading = false;
+      });
+  }
+
+
+}

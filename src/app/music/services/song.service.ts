@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Song } from '../interfaces/song.interface';
-import { SongCacheStore, Termsongs } from '../interfaces/song-cache-store.interface';
+import { SongCacheStore} from '../interfaces/song-cache-store.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class SongService {
   public cacheStoreSongs: SongCacheStore = {
     byName:   {term: '', songs:[]},
     byBand:   {term: '', songs:[]},
+    byGenre:   {term: '', songs:[]},
   }
 
   constructor() {
@@ -46,12 +47,26 @@ export class SongService {
       localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
   };
 
+  public resetFromLocalStorageByGenre(): void {
+    this.cacheStoreSongs = JSON.parse(localStorage.getItem('cacheStoreSongs')!);
+      this.cacheStoreSongs.byGenre.songs = [];
+      this.cacheStoreSongs.byGenre.term = '';
+      localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
+  };
+
   getSongs():Observable<Song[]> {
     return this.http.get<{ message: string, songs: Song[] }>(`${this.baseUrl}/songs`)
     .pipe(
       map((response: { message: string, songs: Song[] })  => response.songs),
       catchError(() => of ([])),
     );
+  }
+
+  getSongById(id: number): Observable<Song> {
+    return this.http.get<{ message: string, song: Song }>(`${this.baseUrl}/songs/${id}`)
+      .pipe(
+        map((response: { message: string, song: Song }) => response.song)
+      );
   }
 
   searchSongsByName(term:string):Observable<Song[]>{
@@ -72,6 +87,17 @@ export class SongService {
         return songs.filter(song => song.band.name.toLowerCase().includes(term.toLowerCase()));
       }),
       tap( songs => this.cacheStoreSongs.byBand = { term: term, songs: songs}),
+      tap (() => this.saveToLocalStorage()),
+    )
+  }
+
+  searchSongsByGenre(term:string):Observable<Song[]>{
+    return this.getSongs()
+    .pipe(
+      map((songs: Song[]) => {
+        return songs.filter(song => song.genre.name.toLowerCase().includes(term.toLowerCase()));
+      }),
+      tap( songs => this.cacheStoreSongs.byGenre = { term: term, songs: songs}),
       tap (() => this.saveToLocalStorage()),
     )
   }

@@ -1,0 +1,8 @@
+<ng-template #loading>
+  <shared-loading-spinner *ngIf="isLoadin"/>
+</ng-template>
+
+<div *ngIf="genre;else loading">
+  <genre-info [genre]="genre"/>
+</div>
+

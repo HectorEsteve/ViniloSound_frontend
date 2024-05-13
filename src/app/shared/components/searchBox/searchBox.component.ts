@@ -24,10 +24,6 @@ export class SearchBoxComponent{
   public onValue = new EventEmitter <string> ();
 
 
-  ngOnInit(): void {
-
-  }
-
   public emitValue (value:string):void{
     this.onValue.emit(value);
   }

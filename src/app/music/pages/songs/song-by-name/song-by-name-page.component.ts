@@ -22,6 +22,7 @@ export class SongByNamePageComponent implements OnInit {
   public isLoading:boolean = false;
 
 
+
   public clearCache(): void {
     this.songs=[];
     this.initialValue='';

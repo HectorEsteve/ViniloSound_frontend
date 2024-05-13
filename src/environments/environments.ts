@@ -1,4 +1,9 @@
 export const environments ={
   baseUrl: 'http://localhost:8000/api',
-  tempRout: ''
+  tempRoutSong: '',
+  tempRoutGenre: '',
+  tempRoutBand: '',
+  tempRoutVinyl: '',
+  tempRoutFormat: '',
+  tempRoutCompany: ''
 }

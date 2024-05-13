@@ -1,0 +1,7 @@
+<ng-template #loading>
+  <shared-loading-spinner *ngIf="isLoadin"/>
+</ng-template>
+
+<div *ngIf="vinyl;else loading">
+  <vinyl-info [vinyl]="vinyl"/>
+</div>

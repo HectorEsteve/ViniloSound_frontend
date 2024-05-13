@@ -1,0 +1,41 @@
+<div  class="row resoult mx-1">
+  <div class="col-xl-6 p-0" *ngFor="let vinyl of vinyls">
+    <div  class="card mb-2 card-border mx-1 animate__animated animate__fadeIn"
+          [routerLink]="['/search/vinyl/by/',vinyl.id]"
+    >
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="d-flex flex-column">
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-4 card-subtitle">Nombre:</h6>
+            <p class="col card-text mx-3">{{vinyl.name | titlecase }}</p>
+          </div>
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-4 card-subtitle">Formato:</h6>
+            <p class="col card-text mx-3">{{vinyl.format.name}}</p>
+          </div>
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-4 card-subtitle">Año publicación:</h6>
+            <p class="col card-text mx-3">{{vinyl.publication_year}}</p>
+          </div>
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-4 card-subtitle">Año edición:</h6>
+            <p class="col card-text mx-3">{{vinyl.edition_year}}</p>
+          </div>
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-4 card-subtitle">Discografía:</h6>
+            <p class="col card-text mx-3">{{vinyl.record_company.name| titlecase}}</p>
+          </div>
+          <div class="row d-flex">
+            <h6 class="col-md-4 card-subtitle">Grupo/s:</h6>
+            <div class="col card-text mx-3">
+              <p *ngFor="let band of vinyl.bands" class="group">
+                · {{band.name |titlecase }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

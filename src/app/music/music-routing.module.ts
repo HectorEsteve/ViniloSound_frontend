@@ -17,6 +17,9 @@ import { SongByGenrePageComponent } from './pages/songs/song-by-genre-page/song-
 import { SongPageComponent } from './pages/songs/song-page/song-page.component';
 import { GenrePageComponent } from './pages/genre/genre-page/genre-page.component';
 import { BandPageComponent } from './pages/bands/band-page/band-page.component';
+import { VinylPageComponent } from './pages/vinyls/vinyl-page/vinyl-page.component';
+import { FormatPageComponent } from './pages/format/format-page/format-page.component';
+import { RecordCompanyPageComponent } from './pages/record-company/record-company-page/record-company-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,8 @@ const routes: Routes = [
     component: MusicLayoutPageComponent,
     children: [
       { path: 'genre/by/:id', component:GenrePageComponent},
+      { path: 'format/by/:id', component:FormatPageComponent},
+      { path: 'record-company/by/:id', component:RecordCompanyPageComponent},
 
       { path: 'songs/by-name', component:SongByNamePageComponent},
       { path: 'songs/by-band', component:SongByBandPageComponent},
@@ -37,14 +42,15 @@ const routes: Routes = [
       { path: 'vinyls/by-name', component:VinylByNamePageComponent},
       { path: 'vinyls/by-band', component:VinylByBandPageComponent},
       { path: 'vinyls/by-genre', component:VinylByGenrePageComponent},
+      { path: 'vinyl/by/:id', component:VinylPageComponent},
 
       { path: 'collections/by-user', component:CollectionByUserPageComponent},
       { path: 'collections/by-name', component:CollectionByNamePageComponent},
       { path: 'collections/by-vinyl', component:CollectionByVinylPageComponent},
       { path: 'collections/by-band', component:CollectionByBandPageComponent},
 
-      //{ path: '', redirectTo: 'vinyls/by-name', pathMatch: 'full' },
-      //{ path: '**', redirectTo: 'vinyls/by-name', },
+      { path: '', redirectTo: 'vinyls/by-name', pathMatch: 'full' },
+      { path: '**', redirectTo: 'vinyls/by-name', },
     ]
   },
 ];

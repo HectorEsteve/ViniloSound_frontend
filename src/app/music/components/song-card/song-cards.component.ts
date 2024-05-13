@@ -17,14 +17,13 @@ import { environments } from '../../../../environments/environments';
 })
 export class SongCardsComponent implements OnInit {
   ngOnInit(): void {
-    environments.tempRout=this.router.url;
+    environments.tempRoutSong=this.router.url;
   }
 
   private router = inject( Router );
 
   @Input()
   public songs: Song[] = [];
-
 
  }
 

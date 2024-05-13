@@ -7,50 +7,56 @@
   </div>
 
   <div class="row mt-3">
-    <div class="text-center row">
+    <div class="row">
       <div class="col-xl-4">
         <h5 class="primary-color">Año de formación</h5>
-        <p>{{band.formation_year}}</p>
+        <p class="px-4">{{band.formation_year}}</p>
       </div>
       <div class="col-xl-4">
         <h5 class="primary-color">País</h5>
-        <p>{{band.country}}</p>
+        <p class="px-4">{{band.country}}</p>
       </div>
       <div class="col-xl-4">
         <h5 class="primary-color">Nº de miembros</h5>
-        <p>{{band.members_count}}</p>
+        <p class="px-4">{{band.members_count}}</p>
       </div>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="text-center col-xl-4" *ngIf="band.members;else membersDefault">
-        <h5 class="primary-color">Miembros</h5>
-        <p class="px-4" *ngFor="let member of band.members | StringToArray">{{member}}</p>
-      </div>
-      <ng-template #membersDefault>
-        <div class="text-center col-xl-4">
-          <h5 class="primary-color text-center">Miembros</h5>
-          <p>Datos no encontrados</p>
+  <div class="row">
+    <div class="col" *ngIf="band.members;else membersDefault">
+      <h5 class="primary-color">Miembros</h5>
+        <div class="px-4 member-container" *ngFor="let member of band.members | StringToArray">
+          <span class="member">{{member}}</span>
         </div>
-      </ng-template>
-
-
-      <div class="text-center col-xl-6">
-        <h5 class="primary-color">Generos</h5>
-        <p  class="px-4"
-            *ngFor="let genre of GenresFromBand(band)">
-            <span class="rout" [routerLink]="['/search/genre/by/',genre.id]">
-            {{genre.name}}
-            </span>
-        </p>
       </div>
-    </div>
+    <ng-template #membersDefault>
+      <div class="col">
+        <h5 class="primary-color text-center">Miembros</h5>
+        <p>Datos no encontrados</p>
+      </div>
+    </ng-template>
+  </div>
 
-    <div class="row">
-      <h5 class="primary-color">Canciones</h5>
-      <p  class="px-4">
-          <app-song-cards [songs]="SongsFromBand(band)"/>
-        </p>
-    </div>
+  <div class="col mt-3">
+    <h5 class="primary-color">Generos</h5>
+    <p>
+      <app-genre-card [genres]="genres"/>
+    </p>
+  </div>
+
+  <div>
+    <h5 class="primary-color">Canciones</h5>
+    <p>
+        <app-song-cards [songs]="songs"/>
+      </p>
+  </div>
+
+  <div>
+    <span [routerLink]=[tempRout]
+          class="rout primary-color"
+    >
+      <<< Volver
+    </span>
   </div>
 </div>

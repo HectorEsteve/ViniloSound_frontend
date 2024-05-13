@@ -1,0 +1,93 @@
+<div class="info p-3">
+  <div class="row title text-center">
+    <div class="overlay"></div>
+    <div class="col-12 m-1">
+      <h2 class="p-0 m-0 menu-font primary-color"> {{vinyl.name}}</h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="row">
+      <div class="col-xl-4 text-center" *ngIf="vinyl.cover_url;else coverDefault">
+        <img [src]="vinyl.cover_url" alt="Portada">
+      </div>
+      <ng-template #coverDefault>
+        <div class="col-xl-4 text-center">
+          <img src="../../../../assets/img/noImg.jpg" alt="Portada">
+        </div>
+      </ng-template>
+      <div class="col-xl-8 row">
+        <div class="col-12">
+          <h5 class="primary-color">Año de lanzamiento</h5>
+          <p class="px-4">{{vinyl.publication_year}}</p>
+        </div>
+        <div class="col-12" *ngIf="vinyl.cover_url;else yearDefault">
+          <h5 class="primary-color">Año de edición</h5>
+          <p class="px-4">{{vinyl.edition_year}}</p>
+        </div>
+        <ng-template #yearDefault>
+          <div class="col-12">
+            <h5 class="primary-color">Año de edición</h5>
+            <p class="px-4">No se tienen datos.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="col mt-3">
+    <h5 class="primary-color">Discográfica</h5>
+    <p>
+      <app-record-company-card [recordCompanies]="recordCompanies"/>
+    </p>
+  </div>
+
+  <div class="col mt-3">
+    <h5 class="primary-color">Formato</h5>
+    <p>
+      <app-format-card [formats]="formats"/>
+    </p>
+  </div>
+
+  <div class="col mt-3">
+    <h5 class="primary-color">Generos</h5>
+    <p>
+      <app-genre-card [genres]="genres"/>
+    </p>
+  </div>
+
+  <div>
+    <h5 class="primary-color">Grupo/s</h5>
+    <p>
+        <app-band-card [bands]="bands"/>
+      </p>
+  </div>
+
+  <div>
+    <h5 class="primary-color">Canciones</h5>
+    <p>
+        <app-song-cards [songs]="songs"/>
+      </p>
+  </div>
+
+
+      <!--<div class="text-center" *ngIf="song.audio_url;else songDefault">
+        <h5 class="primary-color">Canción</h5>
+        <p>{{song.audio_url}}</p>
+      </div>
+      <ng-template #songDefault>
+        <div class="text-center">
+          <h5 class="primary-color text-center">Canción</h5>
+          <p>Enlace no encontrado</p>
+        </div>
+      </ng-template>-->
+
+      <div>
+        <span [routerLink]=[tempRout]
+              class="rout primary-color"
+        >
+          <<< Volver
+        </span>
+      </div>
+</div>
+

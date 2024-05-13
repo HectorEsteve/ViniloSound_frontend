@@ -36,3 +36,9 @@ h5{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  var(--primary-color), var(--primary-color-light), var(--light-color)) 1;
 }
+
+.rout{
+  cursor: pointer;
+  font-weight: bolder;
+}
+

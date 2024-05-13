@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Band, Genre } from '../../interfaces/band.interface';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { environments } from '../../../../environments/environments';
 
 
 @Component({
@@ -14,7 +15,12 @@ import { RouterModule } from '@angular/router';
   templateUrl:  './band-card.component.html',
   styleUrl:     './band-card.component.css',
 })
-export class BandCardComponent {
+export class BandCardComponent implements OnInit {
+  ngOnInit(): void {
+    environments.tempRoutBand=this.router.url;
+  }
+
+  private router = inject( Router );
 
   @Input()
   public bands: Band[] = [];

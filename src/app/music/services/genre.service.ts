@@ -21,7 +21,7 @@ export class GenreService {
     );
   }
 
-  getGenregById(id: number): Observable<Genre> {
+  getGenreById(id: number): Observable<Genre> {
     return this.http.get<{ message: string, genre: Genre }>(`${this.baseUrl}/genres/${id}`)
       .pipe(
         map((response: { message: string, genre: Genre }) => response.genre)

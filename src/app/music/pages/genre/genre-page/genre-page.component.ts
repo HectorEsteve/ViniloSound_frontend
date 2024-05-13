@@ -24,7 +24,7 @@ export class GenrePageComponent implements OnInit {
     this.isLoadin = true;
     this.activatedRoute.params
     .pipe(
-      switchMap( ({id}) => this.genreService.getGenregById(id))
+      switchMap( ({id}) => this.genreService.getGenreById(id))
     )
     .subscribe((genre) =>{
       if(!genre){
@@ -33,8 +33,6 @@ export class GenrePageComponent implements OnInit {
       this.isLoadin = false;
       return this.genre = genre;
     });
-
-
   }
 
  }

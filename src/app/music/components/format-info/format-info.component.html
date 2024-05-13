@@ -1,0 +1,30 @@
+<div class="info p-3">
+  <div class="row title text-center">
+    <div class="overlay"></div>
+    <div class="col-12 m-1">
+      <h2 class="p-0 m-0 menu-font primary-color"> {{format.name}}</h2>
+    </div>
+  </div>
+
+  <div class="mt-3 row">
+      <div class="col-md-4">
+        <h5 class="primary-color">Diametro</h5>
+        <p>{{format.diameter}} pulgadas</p>
+      </div>
+      <div class="col-md-4">
+        <h5 class="primary-color">R.P.M.</h5>
+        <p>{{format.rpm}}</p>
+      </div>
+      <div class="col-md-4">
+        <h5 class="primary-color">Duración por cara</h5>
+        <p>{{format.duration_side}} min.</p>
+      </div>
+  </div>
+  <div>
+    <span [routerLink]=[tempRout]
+          class="rout primary-color"
+    >
+      <<< Volver
+    </span>
+  </div>
+</div>

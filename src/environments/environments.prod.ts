@@ -1,4 +1,9 @@
 export const environments = {
   baseUrl: '',
-  tempRout: ''
+  tempRoutSong: '',
+  tempRoutGenre: '',
+  tempRoutBand: '',
+  tempRoutVinyl: '',
+  tempRoutFormat: '',
+  tempRoutCompany: ''
 }

@@ -18,13 +18,13 @@ const routes: Routes = [
   { path: 'search',
     loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
   },
-  /*{ path: '',
+  { path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
   { path: '**',
     redirectTo: 'home',
-  },*/
+  },
 ];
 
 @NgModule({

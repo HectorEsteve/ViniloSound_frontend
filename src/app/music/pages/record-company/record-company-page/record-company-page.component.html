@@ -1,0 +1,7 @@
+<ng-template #loading>
+  <shared-loading-spinner *ngIf="isLoadin"/>
+</ng-template>
+
+<div *ngIf="recordCompany;else loading">
+  <redord-company-info [recordCompany]="recordCompany"/>
+</div>

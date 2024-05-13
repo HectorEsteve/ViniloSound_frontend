@@ -1,1 +1,38 @@
-<p>vinyl-by-genre-page works!</p>,
+<div>
+  <div class="search-head p-2">
+    <h5 class="primary-color text-center">Busqueda: Vinilos por nombre</h5>
+    <div class="d-flex justify-content-center align-items-center">
+      <select-box
+        class="select"
+        placeholder=">>> Seleccione Genero <<<"
+        [initialValue]="initialValue"
+        [options]="genres"
+        (onValue)="searchByGenre($event)"
+      />
+      <button
+        class="btn primary-button mx-2"
+        (click)="clearCache();"
+      >
+        Limpiar
+      </button>
+    </div>
+</div>
+
+<shared-loading-spinner *ngIf="isLoading"/>
+
+<div class="row my-3">
+  <div class="col">
+
+    <div
+      *ngIf="vinyls.length === 0 && isLoading == false && initialValue !==''; else vinylCard"
+      class="alert alert-warning text-center mx-2 custom-alert"
+    >
+      No hay vinilos que mostrar
+    </div>
+
+    <ng-template #vinylCard>
+      <app-vinyl-card [vinyls]="vinyls"/>
+    </ng-template>
+
+  </div>
+</div>

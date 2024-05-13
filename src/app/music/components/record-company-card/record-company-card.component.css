@@ -5,7 +5,7 @@
 .card-border{
   border-radius: 20px;
   border:var(--primary-color) solid 3px;
-  background-image: url('./../../../../../src/assets/img/genre.jpg');
+  background-image: url('./../../../../../src/assets/img/record.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

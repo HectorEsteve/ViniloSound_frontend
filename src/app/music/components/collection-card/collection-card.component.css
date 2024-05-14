@@ -18,7 +18,6 @@
   transform: scale(0.95);
 }
 
-
 .card-overlay {
   position: absolute;
   z-index: 0;
@@ -40,3 +39,4 @@
 .card-border:hover .card-body {
   color:black;
 }
+

@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input,  OnInit,  inject } from '@angular/core';
 import { Song } from '../../interfaces/song.interface';
 import { Router, RouterModule } from '@angular/router';
 import { environments } from '../../../../environments/environments';
 
 @Component({
-  selector: 'app-song-cards',
+  selector:       'app-song-cards',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule
-
   ],
-  templateUrl: './song-cards.component.html',
-  styleUrl: './song-cards.component.css',
+  templateUrl:  './song-cards.component.html',
+  styleUrl:     './song-cards.component.css',
 })
-export class SongCardsComponent implements OnInit {
+
+export class SongCardsComponent implements OnInit{
   ngOnInit(): void {
     environments.tempRoutSong=this.router.url;
   }
@@ -26,6 +26,5 @@ export class SongCardsComponent implements OnInit {
   public songs: Song[] = [];
 
 
-
- }
+}
 

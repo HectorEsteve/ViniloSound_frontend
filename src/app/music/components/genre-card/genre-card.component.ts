@@ -5,14 +5,14 @@ import { Genre } from '../../interfaces/genre.interface';
 import { environments } from '../../../../environments/environments';
 
 @Component({
-  selector: 'app-genre-card',
+  selector:     'app-genre-card',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule
   ],
-  templateUrl: './genre-card.component.html',
-  styleUrl: './genre-card.component.css',
+  templateUrl:  './genre-card.component.html',
+  styleUrl:     './genre-card.component.css',
 })
 export class GenreCardComponent implements OnInit {
   ngOnInit(): void {

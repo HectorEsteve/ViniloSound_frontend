@@ -25,4 +25,4 @@ export class VinylCardComponent implements OnInit {
   public vinyls: Vinyl[] = [];
 
 
- }{ }
+ }

@@ -30,7 +30,7 @@ export class CollectionService {
   }
 
   private loadFromLocalStorage(): void{
-    if(!localStorage.getItem('cacheStoreBands')) return;
+    if(!localStorage.getItem('cacheStoreCollections')) return;
     this.cacheStoreCollection = JSON.parse(localStorage.getItem('cacheStoreCollections')!);
   }
 

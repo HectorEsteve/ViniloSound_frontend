@@ -61,5 +61,8 @@ a{
   font-weight: bold;
 
 }
+nav .container, .navbar{
+  background-color: transparent;
+}
 
 

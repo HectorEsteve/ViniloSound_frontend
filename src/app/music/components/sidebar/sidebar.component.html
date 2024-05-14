@@ -1,10 +1,37 @@
-<button class="btn btn-outline-light d-md-none" type="button" data-toggle="collapse" data-target="#sidebarMenu"
-aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-<i class="fas fa-bars"></i>
-</button>
+<nav class="navbar navbar-expand-lg d-block d-sm-none m-3">
+  <div class="container justify-content-center">
+    <button class="navbar-toggler primary-color primary-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      Filtros
+    </button>
 
+    <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+      <ul class="nav flex-column text-center">
+        <li class="nav-item li-border" *ngFor="let item of menu">
+          <a  class="nav-link primary-color menu-font title"
+              (click)="toggleCollapse(item)"
+          >
+            {{ item.title }}
+          </a>
+          <ul class="options" *ngIf="item.expanded">
+            <li *ngFor="let option of item.options">
+              <a class="nav-link primary-color menu-font option"
+              [routerLink]="[option.route]"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show"
+              >
+                {{ option.title }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<aside class="sidebar d-none d-md-block">
+<aside class="sidebar d-none d-sm-block">
 
   <ul class="nav flex-column text-center">
     <li class="nav-item li-border" *ngFor="let item of menu">

@@ -39,7 +39,7 @@ export class VinylByGenrePageComponent implements OnInit {
   public clearCache(): void {
     this.vinyls=[];
     this.initialValue='';
-    this.vinylService.resetFromLocalStorageByBand();
+    this.vinylService.resetFromLocalStorageByGenre();
   }
 
   public searchByGenre(term:string):void{

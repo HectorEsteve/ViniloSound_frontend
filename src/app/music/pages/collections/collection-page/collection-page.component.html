@@ -1,0 +1,7 @@
+<ng-template #loading>
+  <shared-loading-spinner *ngIf="isLoadin"/>
+</ng-template>
+
+<div *ngIf="collection else loading">
+  <collection-info [collection]="collection"/>
+</div>

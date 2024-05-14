@@ -1,0 +1,47 @@
+<div class="info p-3">
+  <div class="row title text-center">
+    <div class="overlay"></div>
+    <div class="col-12 m-1">
+      <h2 class="p-0 m-0 menu-font primary-color"> {{collection.name}}</h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="row">
+      <div class="col-xl-4">
+        <h5 class="primary-color">Usuarior</h5>
+          <p class="px-4 fw-bold">{{collection.user.name}}</p>
+      </div>
+
+      <div class="col-xl-4 row">
+        <div class="col-12">
+          <h5 class="primary-color">Nº de vinilos</h5>
+          <p class="px-4">{{collection.number_vinyls}}</p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 row">
+        <div class="col-12">
+          <h5 class="primary-color">Puntación</h5>
+          <p class="px-4">{{collection.rating}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col mt-3">
+    <h5 class="primary-color">Discográfica</h5>
+    <p>
+      <app-vinyl-card [vinyls]="vinyls"/>
+    </p>
+  </div>
+
+
+  <div>
+    <span [routerLink]=[tempRout]
+          class="rout primary-color"
+    >
+      <<< Volver
+    </span>
+  </div>
+</div>

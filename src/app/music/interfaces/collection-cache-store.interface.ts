@@ -9,5 +9,5 @@ export interface CollectionCacheStore{
 
 export interface Termcollection{
   term:string;
-  bands:Collection[]
+  collections:Collection[]
 }

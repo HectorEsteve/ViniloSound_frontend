@@ -1,0 +1,29 @@
+<div  class="row resoult mx-1">
+  <div class="col-xl-6 p-0" *ngFor="let collection of collections">
+    <div  class="card mb-2 card-border mx-1 animate__animated animate__fadeIn"
+    [routerLink]="['/search/collection/by/',collection.id]"
+    >
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="d-flex flex-column">
+          <div class="row d-flex align-items-center mb-2">
+            <h6 class="col-md-5 card-subtitle">Nombre:</h6>
+            <p class="col card-text mx-3">{{collection.name | titlecase }}</p>
+          </div>
+          <div class="row d-flex align-items-center mb-2">
+            <h6 class="col-md-5 card-subtitle">Usuario:</h6>
+            <p class="col card-text mx-3">{{collection.user.name}}</p>
+          </div>
+          <div class="row d-flex align-items-center mb-2">
+            <h6 class="col-md-5 card-subtitle">Número de vinilos:</h6>
+            <p class="col card-text mx-3">{{collection.number_vinyls}}</p>
+          </div>
+          <div class="row d-flex align-items-center">
+            <h6 class="col-md-5 card-subtitle">Puntuación:</h6>
+            <p class="col card-text mx-3">{{collection.rating}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

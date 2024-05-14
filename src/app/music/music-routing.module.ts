@@ -20,6 +20,7 @@ import { BandPageComponent } from './pages/bands/band-page/band-page.component';
 import { VinylPageComponent } from './pages/vinyls/vinyl-page/vinyl-page.component';
 import { FormatPageComponent } from './pages/format/format-page/format-page.component';
 import { RecordCompanyPageComponent } from './pages/record-company/record-company-page/record-company-page.component';
+import { CollectionPageComponent } from './pages/collections/collection-page/collection-page.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'genre/by/:id', component:GenrePageComponent},
       { path: 'format/by/:id', component:FormatPageComponent},
       { path: 'record-company/by/:id', component:RecordCompanyPageComponent},
+      { path: 'collection/by/:id', component:CollectionPageComponent},
 
       { path: 'songs/by-name', component:SongByNamePageComponent},
       { path: 'songs/by-band', component:SongByBandPageComponent},

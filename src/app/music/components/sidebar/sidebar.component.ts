@@ -24,7 +24,7 @@ interface Options{
 })
 export class MusicSidebarComponent {
 
-  public menu=signal<MenuItem[]>([
+  public menu:MenuItem[]=([
     { title:    'Vinilos',
       expanded: true,
       options: [

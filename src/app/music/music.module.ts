@@ -20,7 +20,8 @@ import { FormatCardComponent } from './components/format-card/format-card.compon
 import { FormatInfoComponent } from './components/format-info/format-info.component';
 import { RecordCompanyCardComponent } from './components/record-company-card/record-company-card.component';
 import { RedordCompanyInfoComponent } from './components/redord-company-info/redord-company-info.component';
-
+import { CollectionCardComponent } from './components/collection-card/collection-card.component';
+import { CollectionInfoComponent } from './components/collection-info/collection-info.component';
 
 import { MusicLayoutPageComponent } from './pages/layout/layout-page.component';
 import { SongByNamePageComponent } from './pages/songs/song-by-name/song-by-name-page.component';
@@ -41,6 +42,7 @@ import { BandPageComponent } from './pages/bands/band-page/band-page.component';
 import { VinylPageComponent } from './pages/vinyls/vinyl-page/vinyl-page.component';
 import { FormatPageComponent } from './pages/format/format-page/format-page.component';
 import { RecordCompanyPageComponent } from './pages/record-company/record-company-page/record-company-page.component';
+import { CollectionPageComponent } from './pages/collections/collection-page/collection-page.component';
 
 import { MinuteFormatPipe } from './pipe/minute-format.pipe';
 import { StringToArrayPipe } from './pipe/string-to-array.pipe';
@@ -66,7 +68,8 @@ import { ArrayToStringPipe } from './pipe/array-to-string.pipe';
     BandPageComponent,
     VinylPageComponent,
     FormatPageComponent,
-    RecordCompanyPageComponent
+    RecordCompanyPageComponent,
+    CollectionPageComponent
 
   ],
   imports: [
@@ -92,7 +95,9 @@ import { ArrayToStringPipe } from './pipe/array-to-string.pipe';
     FormatInfoComponent,
     FormatCardComponent,
     RedordCompanyInfoComponent,
-    RecordCompanyCardComponent
+    RecordCompanyCardComponent,
+    CollectionCardComponent,
+    CollectionInfoComponent
   ]
 })
 export class MusicModule { }

@@ -2,19 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Vinyl } from '../../interfaces/vinyl.interface';
-import { SongService } from '../../services/song.service';
-import { GenreService } from '../../services/genre.service';
 import { BandService } from '../../services/band.service';
 import { Genre } from '../../interfaces/genre.interface';
 import { Song } from '../../interfaces/song.interface';
 import { Band } from '../../interfaces/band.interface';
 import { environments } from '../../../../environments/environments';
-import { VinylService } from '../../services/vinyl.service';
 import { SongCardsComponent } from '../song-card/song-cards.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { BandCardComponent } from '../band-card/band-card.component';
 import { Format } from '../../interfaces/format.interface';
-import { FormatService } from '../../services/format.service';
 import { FormatCardComponent } from '../format-card/format-card.component';
 import { RecordCompany } from '../../interfaces/record-companies.interface';
 import { RecordCompanyCardComponent } from '../record-company-card/record-company-card.component';
@@ -61,11 +57,7 @@ export class VinylInfoComponent implements OnInit{
 
   public tempRout:string='';
 
-  private songService = inject( SongService );
-  private genreService = inject( GenreService );
   private bandService = inject( BandService );
-  private vinylService  = inject( VinylService)
-  private formatService  = inject( FormatService)
 
   @Input()
   public vinyl!: Vinyl;

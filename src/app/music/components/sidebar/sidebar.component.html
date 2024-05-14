@@ -7,15 +7,15 @@ aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
 <aside class="sidebar d-none d-md-block">
 
   <ul class="nav flex-column text-center">
-    <li class="nav-item li-border" *ngFor="let item of menu()">
-      <a  class="nav-link primary-color"
+    <li class="nav-item li-border" *ngFor="let item of menu">
+      <a  class="nav-link primary-color menu-font title"
           (click)="toggleCollapse(item)"
       >
         {{ item.title }}
       </a>
       <ul class="options" *ngIf="item.expanded">
         <li *ngFor="let option of item.options">
-          <a class="nav-link primary-color"
+          <a class="nav-link primary-color menu-font option"
           [routerLink]="[option.route]"
           routerLinkActive="active"
           >

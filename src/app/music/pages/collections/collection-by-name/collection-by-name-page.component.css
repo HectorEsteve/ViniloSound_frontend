@@ -1,3 +1,40 @@
 :host {
   display: block;
 }
+
+.search-head{
+  border-radius: 20px;
+  border:var(--primary-color) solid 3px;
+  animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
+  background-color: var(--light-color);
+  width: 100%;
+}
+search-box{
+  width: 60%;
+  min-width: 200px;
+}
+.resoult{
+  margin: 0 -4px;
+}
+
+h5{
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color))1;
+}
+
+.primary-button:hover {
+  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
+}
+.primary-button{
+  height: 38px;
+}
+
+.alert{
+  background-color: var(--light-color);
+  animation: ShadowNeonsEffectYellow 2s ease-in-out infinite alternate;
+  border-radius: 20px;
+  border:rgb(136, 136, 1) solid 3px;
+}

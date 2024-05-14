@@ -5,5 +5,6 @@ export const environments ={
   tempRoutBand: '',
   tempRoutVinyl: '',
   tempRoutFormat: '',
-  tempRoutCompany: ''
+  tempRoutCompany: '',
+  tempRoutCollection: ''
 }

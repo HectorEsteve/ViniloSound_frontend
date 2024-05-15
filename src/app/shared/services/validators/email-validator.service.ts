@@ -1,23 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { delay, Observable, of } from 'rxjs';
+import { delay, map, Observable, of } from 'rxjs';
+import { UserService } from '../../../auth/service/user.service';
+import { User } from '../../../auth/interfaces/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class EmailValidatorService implements AsyncValidator {
 
+  private userService = inject( UserService );
 
-  validate(control: AbstractControl ): Observable<ValidationErrors | null> {
+  public emailValidation: boolean = false;
 
-     const email = control.value;
-     console.log({ email })
+  validate(control: AbstractControl): Observable<ValidationErrors | null> {
+    const email = control.value;
+    this.emailValidation = false;
 
-     return of({
-       emailTaken: true
-     }).pipe(
-       delay( 2000 )
-     );
-    //! aqui ira la comprobacion de si ya existe un mail igual en la BBDD
-   }
+    return this.userService.getUsers().pipe(
+      map((response: { message: string, users: User[] }) => {
+        const users = response.users;
+        const emailTaken = users.some(user => user.email === email);
+        this.emailValidation = true;
+        return emailTaken ? { emailTaken: true } : null;
+      })
+    );
+
+  }
 
 
 }

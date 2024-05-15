@@ -71,6 +71,29 @@ a{
 }
 
 
+@keyframes bgMessageEffect {
+  0% {
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.5), rgba(0, 60, 121, 0.4),rgba(0, 60, 121, 0.3),rgba(0, 60, 121, 0.2), rgba(0, 60, 121, 0.1));
+  }
+  20%{
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.6),rgba(0, 60, 121, 0.4),rgba(0, 60, 121, 0.2), rgba(0, 60, 121, 0.0));
+  }
+  40%{
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.8),rgba(0, 60, 121, 0.8),rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.8));
+  }
+  60%{
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.8),rgba(0, 60, 121, 0.8),rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.8));
+  }
+  80%{
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.8), rgba(0, 60, 121, 0.6),rgba(0, 60, 121, 0.4),rgba(0, 60, 121, 0.2), rgba(0, 60, 121, 0.0));
+  }
+  100% {
+    background-image: radial-gradient(circle, rgba(0, 60, 121, 0.5), rgba(0, 60, 121, 0.4),rgba(0, 60, 121, 0.3),rgba(0, 60, 121, 0.2), rgba(0, 60, 121, 0.1));
+  }
+}
+
+
+
 
 .neon-blue{
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;

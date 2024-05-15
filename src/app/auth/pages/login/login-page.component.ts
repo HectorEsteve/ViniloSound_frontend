@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/services/validators.service';
+import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector:     'app-login',
@@ -11,6 +13,12 @@ export class LoginPageComponent {
 
   private validatorsService = inject(ValidatorsService);
   private fb                = inject(FormBuilder);
+  private userService       = inject(UserService);
+  private router            = inject( Router );
+
+  loginError: boolean = false;
+  errorMessage: string = '';
+  showSuccessMessage: boolean = false;
 
   public myForm: FormGroup = this.fb.group({
     email:    ['', [ Validators.required,Validators.pattern( this.validatorsService.emailPattern )] ],
@@ -25,7 +33,6 @@ export class LoginPageComponent {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
-      console.log(key);
       switch( key ) {
         case 'required':
           return 'Este campo es requerido';
@@ -38,13 +45,28 @@ export class LoginPageComponent {
     return null;
   }
 
-  onSubmit():void {
-    if ( this.myForm.invalid ) {
+  onSubmit(): void {
+    if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       return;
     }
-    console.log(this.myForm.value);
-    this.myForm.reset();
+    const { email, password } = this.myForm.value;
+    this.userService.login(email, password)
+      .subscribe(
+        response => {
+          if (!response.user) {
+            this.loginError = true;
+            this.errorMessage = 'Email o contraseña incorrectos';
+          } else {
+            this.loginError = false;
+            this.showSuccessMessage = true;
+            setTimeout(() => {
+              this.showSuccessMessage = false;
+              this.router.navigate(['/']);
+              }, 3000);
+          }
+        },
+      );
   }
 
 

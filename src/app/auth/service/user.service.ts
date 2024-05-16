@@ -68,9 +68,11 @@ export class UserService {
       this.cacheStoreUser.user = null;
       this.cacheStoreUser.token = '';
       localStorage.setItem('cacheStoreUser', JSON.stringify(this.cacheStoreUser));
+      localStorage.removeItem('cacheStoreUser');
   };
 
   public get currentUser(): User | null {
+    if (!this.cacheStoreUser) return null;
     return this.cacheStoreUser.user;
   }
 

@@ -21,13 +21,13 @@
       </div>
 
       <!-- Tercer bloque: perfil de usuarios -->
-      <div class="col-xl-3 col-12 row mt-xl-4 pt-3 mb-2">
-        <div *ngIf="userService.currentUser; else loginButtons" class="d-flex justify-content-center">
+      <div class="col-xl-3 col-12 row pt-3 mb-2">
+        <div *ngIf="userService.currentUser; else loginButtons" class="d-flex justify-content-center mt-xl-3">
           <app-user-menu/>
         </div>
 
         <ng-template #loginButtons>
-          <div class="buttons d-flex justify-content-center">
+          <div class="buttons d-flex justify-content-center mt-xl-4 ">
             <button class="btn mx-2 primary-button" [routerLink]="'./auth/login'">Acceder</button>
             <button class="btn primary-button" [routerLink]="'./auth/register'">Registrarse</button>
           </div>

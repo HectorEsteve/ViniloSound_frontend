@@ -6,6 +6,7 @@ import { UserService } from '../../service/user.service';
 interface Options{
   title: string;
   route: string;
+  icon:string;
 }
 
 @Component({
@@ -21,14 +22,19 @@ interface Options{
 
 export class UserMenuComponent {
 
-  private userService = inject(UserService);
+  public userService = inject(UserService);
 
   public menu : Options[]=[
-    { title: 'Cerrar sesión',  route: '' }
+    { title: 'Mi colección',    route: '',            icon:'fas fa-folder' },
+    { title: 'Mis favoritos',   route: '',            icon:'fas fa-star' },
+    { title: 'Sugerencias',     route: '',            icon:'fas fa-question' },
+    { title: 'Compras',         route: '',            icon:'fas fa-shopping-cart' },
+    { title: 'Editar perfil',   route: '',            icon:'fas fa-user-edit' },
   ]
 
   public logOut () : void {
     this.userService.logout();
+
   }
 
 

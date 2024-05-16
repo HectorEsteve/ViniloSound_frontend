@@ -2,65 +2,52 @@
   display: block;
 }
 
-aside{
+button{
   border-radius: 20px;
   border:var(--primary-color) solid 3px;
   animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
-  background-color: var(--light-color);
-  width: 170px;
+  background-color: rgba(255, 255, 255, 0.6);
+  min-width: 170px;
   padding: 10px;
 }
+button:hover{
+  background-color: rgb(255, 255, 255);
+  transform: scale(1.05);
+}
 
-.commercial{
+ul{
   border-radius: 20px;
-  border:var(--primary-color) solid 2px;
-  background-image: url('./../../../../assets/img/publicidad2.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 130px;
-  height: 320px;
-  cursor: pointer;
+  background-color:  rgba(106, 134, 185, 0.8);
 }
 
 li{
   list-style: none;
   cursor: pointer;
-  border-radius: 10px;
-}
-.li-border{
+  border-radius: 20px;
   background-color:var(--primary-color-light);
-  color: var(--primary-color);
   border:var(--primary-color) solid 1px;
   margin: 5px;
+  padding: 5px;
   font-weight: bolder;
-  font-size: 18px;
+  font-size: 20px;
 }
-.options{
-  padding-left: 0px ;
-  font-weight: normal;
-  font-size: 16px;
+li:hover{
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+  border:white solid 1px;
 }
-
 a{
   transition: .5s;
-  border-radius: 20px;
-  margin: 5px 2px;
+  color: var(--primary-color)
 }
-.active {
-  background-color: var(--primary-color);
-  color: var(--primary-color-light);
-  border-radius: 20px;
-}
-.title{
-  font-size: 24px;
-  text-decoration: underline;
-}
-.option{
-  font-size: 20px;
-  font-weight: bold;
+a:hover{
+  color: var(--light-color)
 
 }
+.icon{
+  width: 25px;
+}
+
 nav .container, .navbar{
   background-color: transparent;
 }
@@ -68,8 +55,8 @@ nav .container, .navbar{
 .navbar-collapse {
   position: absolute;
   top: 100%;
-  left: 0;
   z-index: 1000;
+  width: 200px;
 }
 
 .navbar-nav {

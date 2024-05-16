@@ -43,13 +43,6 @@ h5{
   font-weight: bolder;
 }
 
-.member{
-  background-color: var(--primary-color-light);
-  padding: 5px;
-  border-radius: 10px;
-  border:var(--primary-color) solid 1px;
-}
 .member-container{
-  display: inline-block;
   margin-top: 10px;
 }

@@ -27,7 +27,7 @@
     <div class="col" *ngIf="band.members;else membersDefault">
       <h5 class="primary-color">Miembros</h5>
         <div class="px-4 member-container" *ngFor="let member of band.members | StringToArray">
-          <span class="member">{{member}}</span>
+          <span>· {{member}}</span>
         </div>
       </div>
     <ng-template #membersDefault>

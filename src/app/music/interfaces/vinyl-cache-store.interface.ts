@@ -1,5 +1,3 @@
-import { Vinyl } from "./vinyl.interface";
-
 
 export interface VinylCacheStore{
   byName:Termvinyl;
@@ -9,5 +7,4 @@ export interface VinylCacheStore{
 
 export interface Termvinyl{
   term:string;
-  vinyls:Vinyl[]
 }

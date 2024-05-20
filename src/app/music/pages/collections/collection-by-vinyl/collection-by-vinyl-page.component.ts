@@ -10,8 +10,22 @@ import { CollectionService } from '../../../services/collection.service';
 })
 export class CollectionByVinylPageComponent implements OnInit {
   ngOnInit(): void {
-    this.collections = this.collectionService.cacheStoreCollection.byVinyl.collections;
+    this.isLoading = true;
     this.initialValue = this.collectionService.cacheStoreCollection.byVinyl.term;
+
+    if(this.initialValue ===''){
+      this.collectionService.getRandomCollections(20)
+      .subscribe(collections => {
+        this.collections = collections;
+        this.isLoading = false;
+      });
+    }else{
+    this.collectionService.searchCollectionByVinyl(this.initialValue )
+      .subscribe(collections => {
+        this.collections = collections;
+        this.isLoading = false;
+      });
+    }
   }
 
   private collectionService = inject( CollectionService );

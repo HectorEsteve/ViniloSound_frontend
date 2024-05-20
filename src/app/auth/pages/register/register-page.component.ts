@@ -29,7 +29,6 @@ export class RegisterPageComponent {
     email:      ['', {
       validators: [Validators.required, Validators.pattern(this.validatorsService.emailPattern)],
       asyncValidators: [this.emailValidator.validate.bind(this.emailValidator)],
-      //updateOn: 'blur'
     }],
     password:   ['', [ Validators.required, Validators.minLength(4) ]],
     password2:  ['', [ Validators.required ]],

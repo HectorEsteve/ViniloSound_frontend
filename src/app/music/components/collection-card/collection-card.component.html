@@ -6,20 +6,20 @@
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="d-flex flex-column">
-          <div class="row d-flex align-items-center mb-2">
-            <h6 class="col-md-5 card-subtitle">Nombre:</h6>
-            <p class="col card-text mx-3">{{collection.name | titlecase }}</p>
+          <div class="row d-flex align-items-center ">
+            <h6 class="col-md-4 card-subtitle">Nombre:</h6>
+            <p class="col card-text mx-3">{{collection.name | titlecase | MaxLengthString}}</p>
           </div>
-          <div class="row d-flex align-items-center mb-2">
-            <h6 class="col-md-5 card-subtitle">Usuario:</h6>
-            <p class="col card-text mx-3">{{collection.user.name}}</p>
+          <div class="row d-flex align-items-center ">
+            <h6 class="col-md-4 card-subtitle">Usuario:</h6>
+            <p class="col card-text mx-3">{{collection.user.name | MaxLengthString}}</p>
           </div>
-          <div class="row d-flex align-items-center mb-2">
-            <h6 class="col-md-5 card-subtitle">Número de vinilos:</h6>
+          <div class="row d-flex align-items-center ">
+            <h6 class="col-md-4 card-subtitle">Nº de vinilos:</h6>
             <p class="col card-text mx-3">{{collection.number_vinyls}}</p>
           </div>
           <div class="row d-flex align-items-center">
-            <h6 class="col-md-5 card-subtitle">Puntuación:</h6>
+            <h6 class="col-md-4 card-subtitle">Puntuación:</h6>
             <p class="col card-text mx-3">{{collection.rating}}</p>
           </div>
         </div>

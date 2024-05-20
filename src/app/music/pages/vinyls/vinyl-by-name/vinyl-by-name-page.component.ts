@@ -10,8 +10,22 @@ import { Vinyl } from '../../../interfaces/vinyl.interface';
 })
 export class VinylByNamePageComponent implements OnInit {
   ngOnInit(): void {
-    this.vinyls = this.vinylService.cacheStoreVinyl.byName.vinyls;
+    this.isLoading = true;
     this.initialValue = this.vinylService.cacheStoreVinyl.byName.term;
+
+    if(this.initialValue ===''){
+      this.vinylService.getRandomVinyls(20)
+      .subscribe(vinyls => {
+        this.vinyls = vinyls;
+        this.isLoading = false;
+      });
+    }else{
+    this.vinylService.searchVinylsByName(this.initialValue)
+    .subscribe(vinyls => {
+      this.vinyls = vinyls;
+      this.isLoading = false;
+    });
+  }
   }
 
   private vinylService = inject( VinylService );

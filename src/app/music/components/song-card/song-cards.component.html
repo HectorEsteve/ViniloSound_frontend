@@ -8,11 +8,11 @@
         <div class="d-flex flex-column">
           <div class="row d-flex align-items-center">
             <h6 class="col-md-3 card-subtitle">Nombre:</h6>
-            <p class="col card-text mx-3">{{song.name | titlecase }}</p>
+            <p class="col card-text mx-3">{{song.name | titlecase | MaxLengthString }}</p>
           </div>
           <div class="row d-flex align-items-center">
             <h6 class="col-md-3 card-subtitle">Grupo:</h6>
-            <p class="col card-text mx-3">{{song.band.name | titlecase }}</p>
+            <p class="col card-text mx-3">{{song.band.name | titlecase | MaxLengthString }}</p>
           </div>
           <div class="row d-flex align-items-center">
             <h6 class="col-md-3 card-subtitle">Género:</h6>

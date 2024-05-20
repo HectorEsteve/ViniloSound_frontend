@@ -1,5 +1,5 @@
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { VinylCacheStore } from '../interfaces/vinyl-cache-store.interface';
@@ -16,9 +16,9 @@ export class VinylService {
   private baseUrl= environments.baseUrl;
 
   public cacheStoreVinyl: VinylCacheStore = {
-    byName:   {term: '', vinyls:[]},
-    byBand:   {term: '', vinyls:[]},
-    byGenre:   {term: '', vinyls:[]},
+    byName:   {term: ''},
+    byBand:   {term: ''},
+    byGenre:   {term: ''},
   }
 
   constructor() {
@@ -36,21 +36,18 @@ export class VinylService {
 
   public resetFromLocalStorageByName(): void {
     this.cacheStoreVinyl = JSON.parse(localStorage.getItem('cacheStoreVinyl')!);
-      this.cacheStoreVinyl.byName.vinyls = [];
       this.cacheStoreVinyl.byName.term = '';
       localStorage.setItem('cacheStoreVinyl', JSON.stringify(this.cacheStoreVinyl));
   };
 
   public resetFromLocalStorageByBand(): void {
     this.cacheStoreVinyl = JSON.parse(localStorage.getItem('cacheStoreVinyl')!);
-      this.cacheStoreVinyl.byBand.vinyls = [];
       this.cacheStoreVinyl.byBand.term = '';
       localStorage.setItem('cacheStoreVinyl', JSON.stringify(this.cacheStoreVinyl));
   };
 
   public resetFromLocalStorageByGenre(): void {
     this.cacheStoreVinyl = JSON.parse(localStorage.getItem('cacheStoreVinyl')!);
-      this.cacheStoreVinyl.byGenre.vinyls = [];
       this.cacheStoreVinyl.byGenre.term = '';
       localStorage.setItem('cacheStoreVinyl', JSON.stringify(this.cacheStoreVinyl));
   };
@@ -61,6 +58,15 @@ export class VinylService {
       map((response: { message: string, vinyls: Vinyl[] })  => response.vinyls),
       catchError(() => of ([])),
     );
+  }
+
+  getRandomVinyls(limit: number): Observable<Vinyl[]> {
+    let params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<{ message: string, vinyls: Vinyl[] }>(`${this.baseUrl}/vinyls/random`, { params })
+      .pipe(
+        map(response => response.vinyls),
+        catchError(() => of([]))
+      );
   }
 
   getVinylById(id: number): Observable<Vinyl> {
@@ -76,7 +82,7 @@ export class VinylService {
       map((vinyls: Vinyl[]) => {
         return vinyls.filter(vinyl => vinyl.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( vinyls => this.cacheStoreVinyl.byName = { term: term, vinyls: vinyls}),
+      tap( vinyls => this.cacheStoreVinyl.byName = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
@@ -91,7 +97,7 @@ export class VinylService {
         );
       }),
       tap(vinyls => {
-        this.cacheStoreVinyl.byBand = { term: term, vinyls: vinyls };
+        this.cacheStoreVinyl.byBand = { term: term};
         this.saveToLocalStorage();
       })
     );
@@ -107,7 +113,7 @@ export class VinylService {
         );
       }),
       tap(vinyls => {
-        this.cacheStoreVinyl.byGenre = { term: term, vinyls: vinyls };
+        this.cacheStoreVinyl.byGenre = { term: term};
         this.saveToLocalStorage();
       })
     );

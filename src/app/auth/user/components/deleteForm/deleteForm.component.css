@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+input{
+  background-color: white;
+  border:var(--primary-color) solid 1px;
+}
+input:focus{
+  transform: scale(1.05);
+}
+
+.primary-button:hover {
+  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
+}
+.danger-button:hover {
+  animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
+}
+.danger-button:active {
+  transform: scale(0.9);
+}

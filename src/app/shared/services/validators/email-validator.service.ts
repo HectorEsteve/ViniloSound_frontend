@@ -15,17 +15,13 @@ export class EmailValidatorService implements AsyncValidator {
     const email = control.value;
     this.emailValidation = false;
 
-    return this.userService.getUsers().pipe(
-      map((response: { message: string, users: User[] }) => {
-        const users = response.users;
-        const emailTaken = users.some(user => user.email === email);
+    return this.userService.checkEmail(email).pipe(
+      map((response) => {
         this.emailValidation = true;
-        return emailTaken ? { emailTaken: true } : null;
+        return response ? { emailTaken: true } : null;
       })
     );
-
   }
-
 
 }
 

@@ -12,8 +12,21 @@ export class BandByGenrePageComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadGenres();
-    this.bands = this.bandService.cacheStoreBand.byGenre.bands;
-    this.initialValue = this.bandService.cacheStoreBand.byGenre.term;
+    this.isLoading = true;    this.initialValue = this.bandService.cacheStoreBand.byGenre.term;
+
+    if(this.initialValue ===''){
+      this.bandService.getRandomBands(20)
+      .subscribe(bands => {
+        this.bands = bands;
+        this.isLoading = false;
+      });
+    }else{
+    this.bandService.searchBandsByGenre(this.initialValue)
+      .subscribe(bands => {
+        this.bands = bands;
+        this.isLoading = false;
+      });
+    }
   }
 
   private bandService = inject( BandService );
@@ -25,13 +38,10 @@ export class BandByGenrePageComponent implements OnInit{
   public isLoading:boolean = false;
 
   loadGenres(): void {
-    this.isLoading = true;
     this.genreService.getGenres()
     .subscribe(
       genres => {
-
         this.genres = genres.map(genre => genre.name);
-        this.isLoading = false;
       });
   }
 

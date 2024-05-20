@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { CollectionCacheStore } from '../interfaces/collection-cache-store.interface';
@@ -15,10 +15,10 @@ export class CollectionService {
   private baseUrl= environments.baseUrl;
 
   public cacheStoreCollection: CollectionCacheStore = {
-    byName:     {term: '', collections:[]},
-    byUser:     {term: '', collections:[]},
-    byVinyl:    {term: '', collections:[]},
-    byBand:     {term: '', collections:[]},
+    byName:     {term: ''},
+    byUser:     {term: ''},
+    byVinyl:    {term: ''},
+    byBand:     {term: ''},
   }
 
   constructor() {
@@ -36,28 +36,24 @@ export class CollectionService {
 
   public resetFromLocalStorageByName(): void {
     this.cacheStoreCollection = JSON.parse(localStorage.getItem('cacheStoreCollections')!);
-      this.cacheStoreCollection.byName.collections = [];
       this.cacheStoreCollection.byName.term = '';
       localStorage.setItem('cacheStoreCollections', JSON.stringify(this.cacheStoreCollection));
   };
 
   public resetFromLocalStorageByUser(): void {
     this.cacheStoreCollection = JSON.parse(localStorage.getItem('cacheStoreCollections')!);
-      this.cacheStoreCollection.byUser.collections = [];
       this.cacheStoreCollection.byUser.term = '';
       localStorage.setItem('cacheStoreCollections', JSON.stringify(this.cacheStoreCollection));
   };
 
   public resetFromLocalStorageByVinyl(): void {
     this.cacheStoreCollection = JSON.parse(localStorage.getItem('cacheStoreCollections')!);
-      this.cacheStoreCollection.byVinyl.collections = [];
       this.cacheStoreCollection.byVinyl.term = '';
       localStorage.setItem('cacheStoreCollections', JSON.stringify(this.cacheStoreCollection));
   };
 
   public resetFromLocalStorageByBand(): void {
     this.cacheStoreCollection = JSON.parse(localStorage.getItem('cacheStoreCollections')!);
-      this.cacheStoreCollection.byBand.collections = [];
       this.cacheStoreCollection.byBand.term = '';
       localStorage.setItem('cacheStoreCollections', JSON.stringify(this.cacheStoreCollection));
   };
@@ -68,6 +64,15 @@ export class CollectionService {
       map((response: { message: string, collections: Collection[] })  => response.collections),
       catchError(() => of ([])),
     );
+  }
+
+  getRandomCollections(limit: number): Observable<Collection[]> {
+    let params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<{ message: string, collections: Collection[] }>(`${this.baseUrl}/collections/random`, { params })
+      .pipe(
+        map(response => response.collections),
+        catchError(() => of([]))
+      );
   }
 
   getCollectionById(id: number): Observable<Collection> {
@@ -83,7 +88,7 @@ export class CollectionService {
       map((collections: Collection[]) => {
         return collections.filter(collections => collections.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( collections => this.cacheStoreCollection.byName = { term: term, collections: collections}),
+      tap( collections => this.cacheStoreCollection.byName = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
@@ -96,7 +101,7 @@ export class CollectionService {
             collection.user.name.toLowerCase().includes(term.toLowerCase())
           );
         }),
-        tap( collections => this.cacheStoreCollection.byUser = { term: term, collections: collections}),
+        tap( collections => this.cacheStoreCollection.byUser = { term: term}),
         tap (() => this.saveToLocalStorage()),
       );
   }
@@ -112,7 +117,7 @@ export class CollectionService {
           );
         }),
         tap(collections => {
-          this.cacheStoreCollection.byVinyl = { term: term, collections: collections };
+          this.cacheStoreCollection.byVinyl = { term: term};
           this.saveToLocalStorage();
         })
     );
@@ -130,7 +135,7 @@ export class CollectionService {
         );
       }),
         tap(collections => {
-          this.cacheStoreCollection.byBand = { term: term, collections: collections };
+          this.cacheStoreCollection.byBand = { term: term};
           this.saveToLocalStorage();
         })
     );

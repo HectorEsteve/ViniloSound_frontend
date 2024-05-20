@@ -11,8 +11,22 @@ import { Band } from '../../../interfaces/band.interface';
 })
 export class BandByNamePageComponent implements OnInit {
   ngOnInit(): void {
-    this.bands = this.bandService.cacheStoreBand.byName.bands;
+    this.isLoading = true;
     this.initialValue = this.bandService.cacheStoreBand.byName.term;
+
+    if(this.initialValue ===''){
+      this.bandService.getRandomBands(20)
+      .subscribe(bands => {
+        this.bands = bands;
+        this.isLoading = false;
+      });
+    }else{
+      this.bandService.searchBandsByName(this.initialValue)
+      .subscribe(bands => {
+        this.bands = bands;
+        this.isLoading = false;
+      });
+    }
   }
 
   private bandService = inject( BandService );

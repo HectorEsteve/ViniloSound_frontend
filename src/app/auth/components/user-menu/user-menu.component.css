@@ -62,3 +62,14 @@ nav .container, .navbar{
 .navbar-nav {
   position: relative;
 }
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--primary-color-light);
+  border-radius: 20px;
+  border:white solid 1px;
+}
+
+.active a{
+  color: white;
+}

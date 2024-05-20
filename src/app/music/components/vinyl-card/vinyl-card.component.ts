@@ -3,13 +3,15 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Vinyl } from '../../interfaces/vinyl.interface';
 import { environments } from '../../../../environments/environments';
+import { MaxLengthStringPipe } from '../../pipe/max-length-string.pipe';
 
 @Component({
   selector:     'app-vinyl-card',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaxLengthStringPipe
   ],
   templateUrl:  './vinyl-card.component.html',
   styleUrl:     './vinyl-card.component.css',

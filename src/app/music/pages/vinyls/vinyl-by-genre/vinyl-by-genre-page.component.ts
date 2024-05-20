@@ -13,8 +13,22 @@ export class VinylByGenrePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGenres();
-    this.vinyls = this.vinylService.cacheStoreVinyl.byGenre.vinyls;
+    this.isLoading = true;
     this.initialValue = this.vinylService.cacheStoreVinyl.byGenre.term;
+
+    if(this.initialValue ===''){
+      this.vinylService.getRandomVinyls(20)
+      .subscribe(vinyls => {
+        this.vinyls = vinyls;
+        this.isLoading = false;
+      });
+    }else{
+    this.vinylService.searchVinylsByGenre(this.initialValue)
+      .subscribe(vinyls => {
+        this.vinyls = vinyls;
+        this.isLoading = false;
+      });
+    }
   }
 
   private vinylService = inject( VinylService );
@@ -26,13 +40,10 @@ export class VinylByGenrePageComponent implements OnInit {
   public isLoading:boolean = false;
 
   loadGenres(): void {
-    this.isLoading = true;
     this.genreService.getGenres()
     .subscribe(
       genres => {
-
         this.genres = genres.map(genre => genre.name);
-        this.isLoading = false;
       });
   }
 
@@ -45,7 +56,6 @@ export class VinylByGenrePageComponent implements OnInit {
   public searchByGenre(term:string):void{
     this.isLoading = true;
     this.initialValue = term;
-
     this.vinylService.searchVinylsByGenre(term)
       .subscribe(vinyls => {
         this.vinyls = vinyls;

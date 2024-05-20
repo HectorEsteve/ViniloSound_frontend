@@ -11,8 +11,22 @@ import { Song } from '../../../interfaces/song.interface';
 })
 export class SongByNamePageComponent implements OnInit {
   ngOnInit(): void {
-    this.songs = this.songService.cacheStoreSongs.byName.songs;
     this.initialValue = this.songService.cacheStoreSongs.byName.term;
+    this.isLoading = true;
+
+    if(this.initialValue ===''){
+      this.songService.getRandomSongs(20)
+      .subscribe(songs => {
+        this.songs = songs;
+        this.isLoading = false;
+      });
+    }else{
+    this.songService.searchSongsByName(this.initialValue)
+      .subscribe(songs => {
+        this.songs = songs;
+        this.isLoading = false;
+      });
+    }
   }
 
   private songService = inject( SongService );

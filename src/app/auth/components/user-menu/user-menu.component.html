@@ -8,10 +8,9 @@
     <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
       <ul class="p-1">
 
-        <li *ngFor="let option of menu" class="nav-link option">
+        <li *ngFor="let option of menu" class="nav-link option" routerLinkActive="active">
           <a class="row"
           [routerLink]="[option.route]"
-          routerLinkActive="active"
           data-bs-toggle="collapse"
           data-bs-target=".navbar-collapse.show"
           >
@@ -22,8 +21,36 @@
           </a>
         </li>
 
+        <li class="nav-link option" *ngIf="isAdmin">
+          <a class="row"
+            routerLink="/admin"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+          >
+            <div class="icon col-2 mx-1 justify-content-cente">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <span class="menu-font col-9">Administrador</span>
+          </a>
+        </li>
+
+        <li class="nav-link option" *ngIf="isRoot">
+          <a class="row"
+            routerLink="/admin"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+          >
+            <div class="icon col-2 mx-1 justify-content-cente">
+              <i class="fas fa-user-cog"></i>
+            </div>
+            <span class="menu-font col-9">Root</span>
+          </a>
+        </li>
+
         <li class="nav-link option">
-          <a (click)="logOut()" class="row">
+          <a (click)="logOut()" class="row"
+            routerLink="/"
+          >
             <div class="icon col-2 mx-1 justify-content-cente">
               <i class="fas fa-sign-out-alt"></i>
             </div>

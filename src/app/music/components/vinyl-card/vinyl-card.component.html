@@ -4,34 +4,55 @@
           [routerLink]="['/search/vinyl/by/',vinyl.id]"
     >
       <div class="card-overlay"></div>
-      <div class="card-body">
-        <div class="d-flex flex-column">
-          <div class="row d-flex align-items-center">
-            <h6 class="col-md-4 card-subtitle">Nombre:</h6>
-            <p class="col card-text mx-3">{{vinyl.name | titlecase }}</p>
+      <div class="card-body py-3 px-0">
+        <div class="container">
+          <div class="row top-card">
+
+            <!-- Image Section -->
+            <div class="col-3">
+              <div *ngIf="vinyl.cover_url; else coverDefault">
+                <img [src]="vinyl.cover_url" alt="Portada" class="img-fluid">
+              </div>
+              <ng-template #coverDefault>
+                <img src="../../../../assets/img/noImg.jpg" alt="Portada" class="img-fluid">
+              </ng-template>
+            </div>
+
+            <!-- Year Section -->
+            <div class="col-9 mt-2">
+              <div class="row">
+                <h6 class="col-12 card-subtitle">Año edición:</h6>
+                <p class="col-12 card-text mx-3 mb-1">{{vinyl.edition_year}}</p>
+              </div>
+              <div class="row">
+                <h6 class="col-12 card-subtitle">Formato:</h6>
+                <p class="col-12 card-text mx-3 mb-1">{{vinyl.format.name | MaxLengthString }}</p>
+              </div>
+            </div>
+
+
+
           </div>
-          <div class="row d-flex align-items-center">
-            <h6 class="col-md-4 card-subtitle">Formato:</h6>
-            <p class="col card-text mx-3">{{vinyl.format.name}}</p>
-          </div>
-          <div class="row d-flex align-items-center">
-            <h6 class="col-md-4 card-subtitle">Año publicación:</h6>
-            <p class="col card-text mx-3">{{vinyl.publication_year}}</p>
-          </div>
-          <div class="row d-flex align-items-center">
-            <h6 class="col-md-4 card-subtitle">Año edición:</h6>
-            <p class="col card-text mx-3">{{vinyl.edition_year}}</p>
-          </div>
-          <div class="row d-flex align-items-center">
-            <h6 class="col-md-4 card-subtitle">Discografía:</h6>
-            <p class="col card-text mx-3">{{vinyl.record_company.name| titlecase}}</p>
-          </div>
-          <div class="row d-flex">
-            <h6 class="col-md-4 card-subtitle">Grupo/s:</h6>
-            <div class="col card-text mx-3">
-              <p *ngFor="let band of vinyl.bands" class="group">
-                · {{band.name |titlecase }}
-              </p>
+
+          <!-- Details Section -->
+          <div class="row mt-1">
+            <div class="col-md-12">
+              <div class="row">
+                <h6 class="col-md-3 card-text mb-1">Nombre:</h6>
+                <p class="col card-text mb-1 mx-3">{{vinyl.name | titlecase | MaxLengthString}}</p>
+              </div>
+
+                <div *ngIf="vinyl.bands.length === 1; else bandDefault" class="row">
+                  <h6 class="col-md-3 card-text mb-1">Grupo:</h6>
+                  <p class="col card-text mx-3">{{vinyl.bands[0].name}}</p>
+                </div>
+                <ng-template #bandDefault >
+                  <div class="row">
+                    <h6 class="col-md-3 card-text mb-1">Nº grupos:</h6>
+                    <p class="col card-text mx-3">{{vinyl.bands.length}}</p>
+                  </div>
+                </ng-template>
+
             </div>
           </div>
         </div>

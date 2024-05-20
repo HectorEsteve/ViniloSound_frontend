@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { Observable, catchError, map, of, tap } from 'rxjs';
@@ -15,9 +15,9 @@ export class SongService {
   private baseUrl= environments.baseUrl;
 
   public cacheStoreSongs: SongCacheStore = {
-    byName:   {term: '', songs:[]},
-    byBand:   {term: '', songs:[]},
-    byGenre:   {term: '', songs:[]},
+    byName:   {term: ''},
+    byBand:   {term: ''},
+    byGenre:   {term: ''},
   }
 
   constructor() {
@@ -35,21 +35,18 @@ export class SongService {
 
   public resetFromLocalStorageByName(): void {
     this.cacheStoreSongs = JSON.parse(localStorage.getItem('cacheStoreSongs')!);
-      this.cacheStoreSongs.byName.songs = [];
       this.cacheStoreSongs.byName.term = '';
       localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
   };
 
   public resetFromLocalStorageByBand(): void {
     this.cacheStoreSongs = JSON.parse(localStorage.getItem('cacheStoreSongs')!);
-      this.cacheStoreSongs.byBand.songs = [];
       this.cacheStoreSongs.byBand.term = '';
       localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
   };
 
   public resetFromLocalStorageByGenre(): void {
     this.cacheStoreSongs = JSON.parse(localStorage.getItem('cacheStoreSongs')!);
-      this.cacheStoreSongs.byGenre.songs = [];
       this.cacheStoreSongs.byGenre.term = '';
       localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
   };
@@ -60,6 +57,15 @@ export class SongService {
       map((response: { message: string, songs: Song[] })  => response.songs),
       catchError(() => of ([])),
     );
+  }
+
+  getRandomSongs(limit: number): Observable<Song[]> {
+    let params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<{ message: string, songs: Song[] }>(`${this.baseUrl}/songs/random`, { params })
+      .pipe(
+        map(response => response.songs),
+        catchError(() => of([]))
+      );
   }
 
   getSongById(id: number): Observable<Song> {
@@ -75,7 +81,7 @@ export class SongService {
       map((songs: Song[]) => {
         return songs.filter(song => song.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( songs => this.cacheStoreSongs.byName = { term: term, songs: songs}),
+      tap( songs => this.cacheStoreSongs.byName = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
@@ -86,7 +92,7 @@ export class SongService {
       map((songs: Song[]) => {
         return songs.filter(song => song.band.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( songs => this.cacheStoreSongs.byBand = { term: term, songs: songs}),
+      tap( songs => this.cacheStoreSongs.byBand = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
@@ -97,8 +103,10 @@ export class SongService {
       map((songs: Song[]) => {
         return songs.filter(song => song.genre.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( songs => this.cacheStoreSongs.byGenre = { term: term, songs: songs}),
+      tap( songs => this.cacheStoreSongs.byGenre = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
+
+
 }

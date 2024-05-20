@@ -1,5 +1,3 @@
-import { Collection } from "./collection-interface";
-
 export interface CollectionCacheStore{
   byUser:Termcollection;
   byName:Termcollection;
@@ -9,5 +7,4 @@ export interface CollectionCacheStore{
 
 export interface Termcollection{
   term:string;
-  collections:Collection[]
 }

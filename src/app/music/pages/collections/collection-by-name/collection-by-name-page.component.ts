@@ -10,8 +10,22 @@ import { Collection } from '../../../interfaces/collection-interface';
 })
 export class CollectionByNamePageComponent implements OnInit {
   ngOnInit(): void {
-    this.collections = this.collectionService.cacheStoreCollection.byName.collections;
+    this.isLoading = true;
     this.initialValue = this.collectionService.cacheStoreCollection.byName.term;
+
+    if(this.initialValue ===''){
+      this.collectionService.getRandomCollections(20)
+      .subscribe(collections => {
+        this.collections = collections;
+        this.isLoading = false;
+      });
+    }else{
+    this.collectionService.searchCollectionsByName(this.initialValue)
+      .subscribe(collections => {
+        this.collections = collections;
+        this.isLoading = false;
+      });
+    }
   }
 
   private collectionService = inject( CollectionService );

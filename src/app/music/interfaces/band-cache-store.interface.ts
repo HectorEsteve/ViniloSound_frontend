@@ -1,4 +1,4 @@
-import { Band } from "./band.interface";
+
 
 export interface BandCacheStore{
   byName:Termbands;
@@ -7,5 +7,4 @@ export interface BandCacheStore{
 
 export interface Termbands{
   term:string;
-  bands:Band[]
 }

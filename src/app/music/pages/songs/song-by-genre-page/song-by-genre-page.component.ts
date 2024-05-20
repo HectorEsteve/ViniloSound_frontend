@@ -11,9 +11,24 @@ import { Song } from '../../../interfaces/song.interface';
 })
 export class SongByGenrePageComponent implements OnInit{
   ngOnInit(): void {
+    this.isLoading = true;
     this.loadGenres();
-    this.songs = this.songService.cacheStoreSongs.byGenre.songs;
     this.initialValue = this.songService.cacheStoreSongs.byGenre.term;
+
+    if(this.initialValue ===''){
+      this.songService.getRandomSongs(20)
+      .subscribe(songs => {
+        this.songs = songs;
+        this.isLoading = false;
+      });
+    }else{
+      this.songService.searchSongsByGenre(this.initialValue)
+        .subscribe(songs => {
+          this.songs = songs;
+          this.isLoading = false;
+        });
+    }
+
   }
 
   private songService = inject( SongService );
@@ -25,13 +40,10 @@ export class SongByGenrePageComponent implements OnInit{
   public isLoading:boolean = false;
 
   loadGenres(): void {
-    this.isLoading = true;
     this.genreService.getGenres()
     .subscribe(
       genres => {
-
         this.genres = genres.map(genre => genre.name);
-        this.isLoading = false;
       });
   }
 

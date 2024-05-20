@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+input{
+  background-color: white;
+  border:var(--primary-color) solid 1px;
+}
+input:focus{
+  transform: scale(1.05);
+}
+
+.primary-button:hover {
+  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
+}
+.alert-button:hover {
+  animation: buttonNeonsEffectYellow 0.5s ease-in-out forwards alternate;
+}
+.alert-button:active {
+  transform: scale(0.9);
+}
+
+.alert{
+  background-color: var(--light-color);
+  animation: ShadowNeonsEffectYellow 2s ease-in-out infinite alternate;
+  border-radius: 20px;
+  border:rgb(136, 136, 1) solid 3px;
+}

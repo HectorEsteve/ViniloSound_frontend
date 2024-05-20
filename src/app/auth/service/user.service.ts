@@ -37,6 +37,26 @@ export class UserService {
       );
   }
 
+  updateUser(user: DataUser, id:number): Observable<{ message: string, user: User | null}> {
+    return this.http.put<{ message: string, user: User }>(`${this.baseUrl}/users/${id}`,user)
+      .pipe(
+        tap((response: { message: string, user: User | null }) => {
+          this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
+          this.saveToLocalStorage();
+        }),
+        catchError(() => of ({ message: '', user: null })),
+      );
+  }
+
+  deleteUser(id: number): Observable<{ message: string, user: User | null }> {
+    return this.http.delete<{ message: string, user: User | null }>(`${this.baseUrl}/users/${id}`)
+      .pipe(
+        catchError(() => of({ message: '', user: null })),
+      );
+  }
+
+
+
   public login(email: string, password: string): Observable<{ message: string, user: User | null }> {
     return this.http.post<{ message: string, user: User | null }>(`${this.baseUrl}/login`, { email, password })
       .pipe(
@@ -50,6 +70,15 @@ export class UserService {
 
   public logout() {
     this.resetFromLocalStorage();
+  }
+
+  public checkAuth(email: string, password: string): Observable<boolean> {
+    const body = { email, password };
+    return this.http.post<boolean>(`${this.baseUrl}/check-auth`, body);
+  }
+  public checkEmail(email: string): Observable<boolean> {
+    const body = { email };
+    return this.http.post<boolean>(`${this.baseUrl}/check-email`, body);
   }
 
   constructor() {this.loadFromLocalStorage()}
@@ -74,6 +103,14 @@ export class UserService {
   public get currentUser(): User | null {
     if (!this.cacheStoreUser) return null;
     return this.cacheStoreUser.user;
+  }
+
+  checkIfAdmin(userId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}/check-admin/${userId}`)
+  }
+
+  checkIfRoot(userId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}/check-root/${userId}`)
   }
 
 }

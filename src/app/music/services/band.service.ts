@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { BandCacheStore } from '../interfaces/band-cache-store.interface';
@@ -16,8 +16,8 @@ export class BandService {
   private baseUrl= environments.baseUrl;
 
   public cacheStoreBand: BandCacheStore = {
-    byName:   {term: '', bands:[]},
-    byGenre:   {term: '', bands:[]},
+    byName:   {term: ''},
+    byGenre:   {term: ''},
   }
 
   constructor() {
@@ -35,14 +35,12 @@ export class BandService {
 
   public resetFromLocalStorageByName(): void {
     this.cacheStoreBand = JSON.parse(localStorage.getItem('cacheStoreBands')!);
-      this.cacheStoreBand.byName.bands = [];
       this.cacheStoreBand.byName.term = '';
       localStorage.setItem('cacheStoreBands', JSON.stringify(this.cacheStoreBand));
   };
 
   public resetFromLocalStorageByGenre(): void {
     this.cacheStoreBand = JSON.parse(localStorage.getItem('cacheStoreBands')!);
-      this.cacheStoreBand.byGenre.bands = [];
       this.cacheStoreBand.byGenre.term = '';
       localStorage.setItem('cacheStoreBands', JSON.stringify(this.cacheStoreBand));
   };
@@ -53,6 +51,15 @@ export class BandService {
       map((response: { message: string, bands: Band[] })  => response.bands),
       catchError(() => of ([])),
     );
+  }
+
+  getRandomBands(limit: number): Observable<Band[]> {
+    let params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<{ message: string, bands: Band[] }>(`${this.baseUrl}/bands/random`, { params })
+      .pipe(
+        map(response => response.bands),
+        catchError(() => of([]))
+      );
   }
 
   getBandById(id: number): Observable<Band> {
@@ -68,7 +75,7 @@ export class BandService {
       map((bands: Band[]) => {
         return bands.filter(bands => bands.name.toLowerCase().includes(term.toLowerCase()));
       }),
-      tap( bands => this.cacheStoreBand.byName = { term: term, bands: bands}),
+      tap( bands => this.cacheStoreBand.byName = { term: term}),
       tap (() => this.saveToLocalStorage()),
     )
   }
@@ -81,7 +88,7 @@ export class BandService {
         });
       }),
       tap(bands => {
-        this.cacheStoreBand.byGenre = { term: term, bands: bands };
+        this.cacheStoreBand.byGenre = { term: term };
         this.saveToLocalStorage();
       })
     );

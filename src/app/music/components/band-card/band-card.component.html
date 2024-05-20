@@ -6,17 +6,17 @@
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="d-flex flex-column">
-          <div class="row d-flex align-items-center mb-2">
-            <h6 class="col-md-5 card-subtitle">Nombre:</h6>
-            <p class="col card-text mx-3">{{band.name | titlecase }}</p>
+          <div class="row d-flex align-items-center ">
+            <h6 class="col-md-3 card-subtitle">Nombre:</h6>
+            <p class="col card-text mx-3">{{band.name | titlecase | MaxLengthString }}</p>
           </div>
-          <div class="row d-flex align-items-center mb-2">
-            <h6 class="col-md-5 card-subtitle">Año de formacion:</h6>
+          <div class="row d-flex align-items-center ">
+            <h6 class="col-md-3 card-subtitle">Formación:</h6>
             <p class="col card-text mx-3">{{band.formation_year}}</p>
           </div>
           <div class="row d-flex align-items-center">
-            <h6 class="col-md-5 card-subtitle">País</h6>
-            <p class="col card-text mx-3">{{band.country| titlecase }}</p>
+            <h6 class="col-md-3 card-subtitle">País</h6>
+            <p class="col card-text mx-3">{{band.country| titlecase | MaxLengthString }}</p>
           </div>
         </div>
       </div>

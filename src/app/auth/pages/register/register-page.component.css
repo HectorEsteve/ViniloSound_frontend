@@ -4,7 +4,7 @@
 
 h3{
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right,  rgba(106, 134, 185, 0.8), var(--primary-color), rgba(106, 134, 185, 0.8)) 1;
+  border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color)) 1;
 }
 
 .form-container{

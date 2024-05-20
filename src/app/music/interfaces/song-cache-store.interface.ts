@@ -1,4 +1,4 @@
-import { Song } from "./song.interface";
+
 
 export interface SongCacheStore{
   byName:Termsongs;
@@ -8,6 +8,5 @@ export interface SongCacheStore{
 
 export interface Termsongs{
   term:string;
-  songs:Song[]
 }
 

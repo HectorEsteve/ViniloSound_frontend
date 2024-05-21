@@ -4,6 +4,7 @@ import { environments } from '../../../environments/environments';
 import { CollectionCacheStore } from '../interfaces/collection-cache-store.interface';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Collection } from '../interfaces/collection-interface';
+import { DataCollection } from '../../auth/interfaces/dataCollection.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,14 @@ export class CollectionService {
     return this.http.get<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${id}`)
       .pipe(
         map((response: { message: string, collection: Collection }) => response.collection)
+      );
+  }
+
+  createCollection(collection: DataCollection): Observable<Collection | null> {
+    return this.http.post<{ message: string, collection: Collection }>(`${this.baseUrl}/collections`, collection)
+      .pipe(
+        map(response => response.collection),
+        catchError(() => of(null))
       );
   }
 

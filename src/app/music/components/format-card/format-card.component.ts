@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { environments } from '../../../../environments/environments';
 import { Router, RouterModule } from '@angular/router';
-import { Format } from '../../interfaces/vinyl.interface';
+import { Format } from '../../interfaces/format.interface';
+
 
 @Component({
   selector:     'app-format-card',

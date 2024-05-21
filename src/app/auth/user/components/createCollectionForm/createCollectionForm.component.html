@@ -1,0 +1,44 @@
+<div class="form-container p-3">
+  <h3 class="primary-color text-center mb-3">¿Todavía no tienes colección?</h3>
+  <div class="row">
+    <div class="col">
+
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+        <div class="row mb-3">
+            <label class="col-12 col-form-label primary-color fw-bold">1º Elige un nombre para tu colección</label>
+            <div class="col-12">
+                <input type="text"
+                      class="form-control"
+                      placeholder="Nombre de la colección" placeholderValue
+                      formControlName="name">
+
+                <span *ngIf="isValidField('name')" class="form-text text-danger">
+                  {{ getFieldError('name') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-12 col-form-label primary-color fw-bold">2º Si quieres, añadele una descripción</label>
+          <div class="col-12">
+            <textarea
+              class="form-control"
+              placeholder="Descripción del usuario"
+              formControlName="description"
+              rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col d-flex justify-content-center">
+              <button class="btn primary-button w-100"
+                      type="submit">
+                  Crear
+              </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

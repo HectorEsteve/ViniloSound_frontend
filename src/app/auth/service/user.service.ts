@@ -6,6 +6,9 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { UserCacheStore } from '../interfaces/user-cache-store.interface';
 import { DataUser } from '../interfaces/dataUser.interface';
+import { DataCollection } from '../interfaces/dataCollection.interface';
+import { CollectionService } from '../../music/services/collection.service';
+import { Collection } from '../../music/interfaces/collection-interface';
 
 
 @Injectable({
@@ -16,6 +19,7 @@ export class UserService {
   private baseUrl = environments.baseUrl;
 
   private http = inject( HttpClient );
+  private collectionService= inject ( CollectionService );
 
   public cacheStoreUser: UserCacheStore = {
     user: null,
@@ -30,6 +34,14 @@ export class UserService {
     );
   }
 
+  getUser(id: number): Observable<{ message: string, user: User | null}> {
+  return this.http.get<{ message: string, user: User }>(`${this.baseUrl}/users/${id}?include=collection`)
+   .pipe(
+      catchError(() => of ({ message: '', user: null })),
+    );
+}
+
+
   createUser(user: DataUser): Observable<{ message: string, users: User[] }> {
     return this.http.post<{ message: string, users: User[] }>(`${this.baseUrl}/users`, user)
       .pipe(
@@ -37,14 +49,16 @@ export class UserService {
       );
   }
 
-  updateUser(user: DataUser, id:number): Observable<{ message: string, user: User | null}> {
-    return this.http.put<{ message: string, user: User }>(`${this.baseUrl}/users/${id}`,user)
+  public updateUser(user: DataUser, id: number): Observable<{ message: string, user: User | null }> {
+    return this.http.put<{ message: string, user: User }>(`${this.baseUrl}/users/${id}`, user)
       .pipe(
         tap((response: { message: string, user: User | null }) => {
-          this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
-          this.saveToLocalStorage();
+          if (response.user) {
+            this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
+            this.saveToLocalStorage();
+          }
         }),
-        catchError(() => of ({ message: '', user: null })),
+        catchError(() => of({ message: '', user: null })),
       );
   }
 
@@ -55,14 +69,32 @@ export class UserService {
       );
   }
 
-
+  public addCollection(collection: DataCollection, user: User): void {
+    this.collectionService.createCollection(collection)
+    .pipe(
+      tap((response: Collection | null) => {
+        if (response) {
+          user.collection = response;
+          this.cacheStoreUser = { user: user, token: 'DefaultToken' };
+          this.saveToLocalStorage();
+        }
+      }),
+      catchError(error => {
+        return of(null);
+      })
+    )
+    .subscribe();
+  }
 
   public login(email: string, password: string): Observable<{ message: string, user: User | null }> {
     return this.http.post<{ message: string, user: User | null }>(`${this.baseUrl}/login`, { email, password })
       .pipe(
         tap((response: { message: string, user: User | null }) => {
-          this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
-          this.saveToLocalStorage();
+          if (response.user) {
+            console.log(response.user.collection)
+            this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
+            this.saveToLocalStorage();
+          }
         }),
         catchError(() => of({ message: '', user: null })),
       );
@@ -83,7 +115,7 @@ export class UserService {
 
   constructor() {this.loadFromLocalStorage()}
 
-  private saveToLocalStorage(): void{
+  public saveToLocalStorage(): void{
     localStorage.setItem('cacheStoreUser',JSON.stringify(this.cacheStoreUser));
   }
 

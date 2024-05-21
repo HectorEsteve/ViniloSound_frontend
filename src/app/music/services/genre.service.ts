@@ -2,7 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-import { Genre } from '../interfaces/song.interface';
+import { Genre } from '../interfaces/genre.interface';
+
 
 @Injectable({
   providedIn: 'root'

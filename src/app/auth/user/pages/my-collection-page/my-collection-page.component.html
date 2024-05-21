@@ -1,1 +1,48 @@
-<p>my-collection-page works!</p>,
+<div class="d-flex flex-column justify-content-center align-items-center py-3">
+
+  <div class="p-3" *ngIf="!existsCollection">
+
+
+    <app-create-collection-form (exit)="onCancelUpdateForm()"/>
+
+  </div>
+ <div class="info p-3" *ngIf="existsCollection">
+    <div class="row title text-center">
+      <div class="overlay"></div>
+      <div class="col-12 m-1">
+        <h2 class="p-0 m-0 menu-font primary-color"> {{user!.collection!.name}}</h2>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="row">
+        <div class="col-xl-4">
+          <h5 class="primary-color">Usuarior</h5>
+            <p class="px-4 fw-bold">{{user!.name}}</p>
+        </div>
+
+        <div class="col-xl-4 row">
+          <div class="col-12">
+            <h5 class="primary-color">Nº de vinilos</h5>
+            <p class="px-4">{{user!.collection?.number_vinyls}}</p>
+          </div>
+        </div>
+
+        <div class="col-xl-4 row">
+          <div class="col-12">
+            <h5 class="primary-color">Puntación</h5>
+            <p class="px-4">{{user!.collection?.rating}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col mt-3">
+      <h5 class="primary-color">Vinilos</h5>
+      <p>
+
+      </p>
+    </div>
+  </div>
+</div>
+

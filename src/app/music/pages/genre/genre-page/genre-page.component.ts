@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Genre } from '../../../interfaces/song.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenreService } from '../../../services/genre.service';
 import { switchMap } from 'rxjs';
+import { Genre } from '../../../interfaces/genre.interface';
 
 @Component({
   selector:     'app-genre-page',

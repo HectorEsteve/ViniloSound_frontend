@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
 import { Observable, catchError, map, of } from 'rxjs';
-import { RecordCompany } from '../interfaces/vinyl.interface';
+import { RecordCompany } from '../interfaces/record-companies.interface';
+
 
 @Injectable({
   providedIn: 'root'

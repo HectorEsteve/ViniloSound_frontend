@@ -56,7 +56,7 @@
     <div class="row">
       <div class="col">
 
-        <app-update-form (cancel)="onCancelUpdateForm()"/>
+        <app-update-form (userUpdated)="onUserUpdated($event)" (cancel)="onCancelUpdateForm()"/>
 
       </div>
     </div>
@@ -78,35 +78,3 @@
 </div>
 
 
-
-<!--
-
-<div class="row mb-1">
-  <label class="col-form-label">Contraseña</label>
-  <div class="">
-      <input type="password"
-            class="form-control"
-            placeholder="Contraseña"
-            formControlName="password">
-
-      <span *ngIf="isValidField('password')" class="form-text text-danger">
-        {{ getFieldError('password') }}
-      </span>
-  </div>
-</div>
-
-
-<div class="row mb-3">
-  <label class=" col-form-label">Confirmar</label>
-  <div class="">
-      <input type="password"
-            class="form-control"
-            placeholder="Confirmar la contraseña"
-            formControlName="password2">
-
-      <span *ngIf="isValidField('password2')" class="form-text text-danger">
-          Las contraseñas deben de ser iguales
-      </span>
-  </div>
-</div>
--->

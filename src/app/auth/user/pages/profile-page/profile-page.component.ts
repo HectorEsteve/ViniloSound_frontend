@@ -1,4 +1,4 @@
-import { Component, OnInit, inject} from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, inject} from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { User } from '../../../interfaces/user.interface';
 
@@ -41,6 +41,12 @@ export class ProfilePageComponent implements OnInit {
   onCancelDeleteForm() {
     this.showForm = false;
     this.showDeleteForm = false;
+  }
+
+
+  onUserUpdated(user: User): void {
+
+    this.user = user;
   }
 
 

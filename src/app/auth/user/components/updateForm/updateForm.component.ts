@@ -117,7 +117,7 @@ export class UpdateFormComponent implements OnInit{
   }
 
   public updateUser(form : FormGroup){
-    this.userService.checkAuth(this.myForm.value.email, this.myForm.value.password)
+    this.userService.checkAuth(this.userService.currentUser!.email, this.myForm.value.password)
     .subscribe(
       isAuthenticated => {
         if (isAuthenticated) {
@@ -130,6 +130,7 @@ export class UpdateFormComponent implements OnInit{
               this.passwordForm.controls['password'].setValue('');
               this.passwordForm.controls['password'].setValue('');
               this.onCancelEdit();
+              this.userUpdated.emit(this.user!);
             });
         } else {
           this.formError = true;
@@ -160,6 +161,8 @@ export class UpdateFormComponent implements OnInit{
 
   @Output()
   public cancel = new EventEmitter <void> ();
+  @Output()
+  public userUpdated = new EventEmitter<User>();
 
   onCancelEdit() {
     this.cancel.emit();

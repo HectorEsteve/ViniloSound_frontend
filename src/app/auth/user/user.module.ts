@@ -9,6 +9,7 @@ import { ComingSoonPageComponent } from '../../shared/pages/coming-soon-page/com
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateFormComponent } from './components/updateForm/updateForm.component';
 import { DeleteFormComponent } from './components/deleteForm/deleteForm.component';
+import { CreateCollectionFormComponent } from './components/createCollectionForm/createCollectionForm.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DeleteFormComponent } from './components/deleteForm/deleteForm.componen
     ComingSoonPageComponent,
     ReactiveFormsModule,
     UpdateFormComponent,
-    DeleteFormComponent
+    DeleteFormComponent,
+    CreateCollectionFormComponent
 
   ]
 })

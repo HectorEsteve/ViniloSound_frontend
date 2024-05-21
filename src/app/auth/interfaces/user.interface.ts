@@ -1,3 +1,5 @@
+import { Collection } from "../../music/interfaces/collection-interface";
+
 export interface SearchUser {
   message: string;
   users:   User[];
@@ -16,16 +18,6 @@ export interface User {
   collection: Collection | null;
 }
 
-export interface Collection {
-  id:            number;
-  name:          string;
-  description:   null;
-  number_vinyls: number;
-  rating:        number;
-  public:        number;
-  created_at:    Date;
-  updated_at:    Date;
-}
 
 export interface Role {
   id:         number;

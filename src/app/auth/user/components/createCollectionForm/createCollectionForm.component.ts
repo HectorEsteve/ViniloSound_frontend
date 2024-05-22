@@ -66,7 +66,7 @@ export class CreateCollectionFormComponent implements OnInit {
   public buildCollectionFromForm(): DataCollection {
     return {
       name:             this.myForm.value.name,
-      description:      this.myForm.value.email,
+      description:      this.myForm.value.description,
       number_vinyls:    0,
       rating:           0,
       public:           true,
@@ -76,15 +76,22 @@ export class CreateCollectionFormComponent implements OnInit {
 
   onSubmit() {
     this.myForm.markAllAsTouched();
-    if ( this.myForm.invalid ) {
-      return;
+    if (this.myForm.invalid) {
+        return;
     }
-    this.userService.addCollection(this.buildCollectionFromForm(),this.user!)
-    this.onExitEdit();
-  }
+
+    this.userService.addCollection(this.buildCollectionFromForm(), this.user!)
+        .subscribe(updatedUser => {
+            this.user = updatedUser;
+            this.userUpdated.emit(this.user);
+            this.onExitEdit();
+        });
+}
 
   @Output()
   public exit = new EventEmitter <void> ();
+  @Output()
+  public userUpdated = new EventEmitter<User>();
 
   onExitEdit() {
     this.exit.emit();

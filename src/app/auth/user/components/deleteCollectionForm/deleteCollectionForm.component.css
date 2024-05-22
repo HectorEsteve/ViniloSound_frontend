@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+input{
+  background-color: white;
+  border:var(--primary-color) solid 1px;
+}
+input:focus{
+  transform: scale(1.05);
+}
+
+.primary-button:hover {
+  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
+}
+.danger-button:hover {
+  animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
+}
+.danger-button:active {
+  transform: scale(0.9);
+}
+
+.delete-container{
+  width: 40vw;
+  max-width: 500px;
+  min-width: 350px;
+  border-radius: 30px;
+  border:rgb(175, 0, 0) solid 3px;
+  animation: ShadowNeonsEffectRed  1s ease-in-out infinite alternate;
+  background-color: var(--light-color)
+}
+
+h3{
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color)) 1;
+}
+h6{
+  color:rgb(150, 0, 0)
+}

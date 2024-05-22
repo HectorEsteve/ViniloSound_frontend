@@ -17,8 +17,6 @@
 .card-border:active{
   transform: scale(0.95);
 }
-
-
 .card-overlay {
   position: absolute;
   z-index: 0;
@@ -40,20 +38,29 @@
 .card-border:hover .card-body {
   color:black;
 }
-
 .group{
   margin-right: 10px;
   display: inline-block;
   margin-bottom: 0;
 }
-
 img{
   width: 80px;
   height: 80px;
 }
-
 .top-card{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  black, var(--primary-color-light), black) 1;
 }
+
+.primary-button:hover {
+  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
+}
+.primary-button:active {
+  transform: scale(0.9);
+}
+
+.delete:hover {
+  animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
+}
+
 

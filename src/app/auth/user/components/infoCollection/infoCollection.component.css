@@ -1,18 +1,11 @@
 :host {
   display: block;
 }
-
-.info{
-  border-radius: 20px;
-  border:var(--primary-color) solid 3px;
-  animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
-  background-color: var(--light-color);
-}
 .title{
   position: relative;
   border-radius: 20px;
   border:var(--primary-color) solid 2px;
-  background-image: url('./../../../../../src/assets/img/vinyls.jpeg');
+  background-image: url('/assets/img/Collection.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -37,34 +30,24 @@ h5{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  var(--primary-color), var(--primary-color-light), var(--light-color)) 1;
 }
-.lyric{
-  font-style: italic;
+
+.alert{
+  background-color: var(--light-color);
+  animation: ShadowNeonsEffectYellow 2s ease-in-out infinite alternate;
+  border-radius: 20px;
+  border:rgb(136, 136, 1) solid 3px;
 }
 
-
-.rout{
-  cursor: pointer;
-  font-weight: bolder;
+.alert-button:hover {
+  animation: buttonNeonsEffectYellow 0.5s ease-in-out forwards alternate;
 }
-
-.rout:hover{
-  color: var(--primary-color);
-}
-
-img{
-  min-width: 150px;
-  min-height: 150px;
-  max-width: 85%;
-  max-height: 85%;
-}
-
-.primary-button:hover {
-  animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
-}
-.primary-button:active {
+.alert-button:active {
   transform: scale(0.9);
 }
 
-.delete:hover {
+.danger-button:hover {
   animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
+}
+.danger-button:active {
+  transform: scale(0.9);
 }

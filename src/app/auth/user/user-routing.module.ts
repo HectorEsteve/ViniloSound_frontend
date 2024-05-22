@@ -4,6 +4,8 @@ import { LayoutUserComponent } from './pages/layout/layout.component';
 import { MyCollectionPageComponent } from './pages/my-collection-page/my-collection-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ComingSoonPageComponent } from '../../shared/pages/coming-soon-page/coming-soon-page.component';
+import { UpdateCollectionFormComponent } from './components/updateCollectionForm/updateCollectionForm.component';
+import { DeleteCollectionFormComponent } from './components/deleteCollectionForm/deleteCollectionForm.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,8 @@ const routes: Routes = [
       { path: 'suggestions', component: ComingSoonPageComponent},
       { path: 'shopping', component: ComingSoonPageComponent},
       { path: 'profile', component: ProfilePageComponent },
+      { path: 'my-collection/update', component: UpdateCollectionFormComponent },
+      { path: 'my-collection/delete', component: DeleteCollectionFormComponent },
 
       { path: '', redirectTo: 'my-collection', pathMatch: 'full' },
       { path: '**', redirectTo: 'my-collection' },

@@ -49,7 +49,7 @@ export class UserService {
       );
   }
 
-  public updateUser(user: DataUser, id: number): Observable<{ message: string, user: User | null }> {
+  updateUser(user: DataUser, id: number): Observable<{ message: string, user: User | null }> {
     return this.http.put<{ message: string, user: User }>(`${this.baseUrl}/users/${id}`, user)
       .pipe(
         tap((response: { message: string, user: User | null }) => {
@@ -69,29 +69,51 @@ export class UserService {
       );
   }
 
-  public addCollection(collection: DataCollection, user: User): void {
-    this.collectionService.createCollection(collection)
-    .pipe(
+  public addCollection(collection: DataCollection, user: User): Observable<User> {
+    return this.collectionService.createCollection(collection)
+        .pipe(
+            map((response: Collection | null) => {
+                if (response) {
+                    user.collection = response;
+                    this.cacheStoreUser = { user: user, token: 'DefaultToken' };
+                    this.saveToLocalStorage();
+                }
+                return user;
+            }),
+            catchError(error => {
+                console.error('Error creating collection:', error);
+                return of(user);
+            })
+        );
+  }
+
+  public updateCollection(collection: DataCollection, collectionId: number): Observable<Collection | null> {
+    return this.collectionService.updateCollection(collection, collectionId).pipe(
       tap((response: Collection | null) => {
-        if (response) {
-          user.collection = response;
-          this.cacheStoreUser = { user: user, token: 'DefaultToken' };
+        if (response && this.cacheStoreUser.user) {
+          this.cacheStoreUser.user.collection = response;
           this.saveToLocalStorage();
         }
       }),
-      catchError(error => {
-        return of(null);
-      })
-    )
-    .subscribe();
+      catchError(() => of(null))
+    );
   }
+
+  public deleteCollection(id: number): Observable<{ message: string, collection: Collection | null }> {
+    return this.collectionService.deleteCollection(id).pipe(
+      tap(() => {
+          this.cacheStoreUser.user!.collection = null;
+          this.saveToLocalStorage();
+      })
+    );
+  }
+
 
   public login(email: string, password: string): Observable<{ message: string, user: User | null }> {
     return this.http.post<{ message: string, user: User | null }>(`${this.baseUrl}/login`, { email, password })
       .pipe(
         tap((response: { message: string, user: User | null }) => {
           if (response.user) {
-            console.log(response.user.collection)
             this.cacheStoreUser = { user: response.user, token: 'DefaultToken' };
             this.saveToLocalStorage();
           }
@@ -144,5 +166,35 @@ export class UserService {
   checkIfRoot(userId: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.baseUrl}/check-root/${userId}`)
   }
+
+  public addVinylToUserCollection(collectionId: number, vinylId: number): Observable<Collection | null> {
+    return this.collectionService.addVinylToCollection(collectionId, vinylId)
+      .pipe(
+        map(response => {
+          if (response) {
+            this.cacheStoreUser.user!.collection = response;
+            this.saveToLocalStorage();
+          }
+          return response;
+        }),
+        catchError(() => of(null))
+      );
+  }
+
+
+  public removeVinylFromUserCollection(collectionId: number, vinylId: number): Observable<Collection | null> {
+    return this.collectionService.removeVinylFromCollection(collectionId, vinylId)
+      .pipe(
+        map(response => {
+          if (response) {
+            this.cacheStoreUser.user!.collection = response;
+            this.saveToLocalStorage();
+          }
+          return response;
+        }),
+        catchError(() => of(null))
+      );
+  }
+
 
 }

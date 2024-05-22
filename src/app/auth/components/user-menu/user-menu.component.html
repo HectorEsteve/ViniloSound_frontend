@@ -1,11 +1,11 @@
 <nav class="navbar">
   <div class="container justify-content-center">
-    <button class="navbar-toggler primary-color menu-font fw-bold"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler primary-color menu-font fw-bold"  data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-user-circle px-1"></i>{{this.userService.currentUser?.name}}
     </button>
 
-    <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse mt-1" id="navbarContent">
       <ul class="p-1">
 
         <li *ngFor="let option of menu" class="nav-link option" routerLinkActive="active">

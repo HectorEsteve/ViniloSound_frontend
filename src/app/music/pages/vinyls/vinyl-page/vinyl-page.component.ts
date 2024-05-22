@@ -13,6 +13,7 @@ import { switchMap } from 'rxjs';
 export class VinylPageComponent implements OnInit {
   public vinyl?:Vinyl;
   public isLoadin:boolean = false;
+  public myCollection:boolean = false;
 
 
   private activatedRoute = inject( ActivatedRoute );
@@ -21,6 +22,9 @@ export class VinylPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoadin = true;
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.myCollection = params['myCollection'] === 'true';
+    });
     this.activatedRoute.params
     .pipe(
       switchMap( ({id}) => this.vinylService.getVinylById(id))
@@ -32,7 +36,7 @@ export class VinylPageComponent implements OnInit {
       this.isLoadin = false;
       return this.vinyl = vinyl;
     });
-
   }
 
 }
+

@@ -38,8 +38,6 @@ export class UpdateFormComponent implements OnInit{
   private userService       = inject(UserService);
 
 
-  //showSuccessMessage: boolean = false;
-
   public user! : User | null;
   public showPassword: Boolean = false;
   public formError: boolean = false;
@@ -128,7 +126,7 @@ export class UpdateFormComponent implements OnInit{
               this.formError = false;
               this.myForm.controls['password'].setValue('');
               this.passwordForm.controls['password'].setValue('');
-              this.passwordForm.controls['password'].setValue('');
+              this.passwordForm.controls['password2'].setValue('');
               this.onCancelEdit();
               this.userUpdated.emit(this.user!);
             });

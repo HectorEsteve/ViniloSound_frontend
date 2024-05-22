@@ -45,7 +45,6 @@ export class ProfilePageComponent implements OnInit {
 
 
   onUserUpdated(user: User): void {
-
     this.user = user;
   }
 

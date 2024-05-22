@@ -58,26 +58,26 @@ a{
 @keyframes buttonNeonsEffectYellow {
   0% {
       color:rgb(105, 105, 35);
-      background-color: rgb(255, 255, 180);
+      background-color: rgb(253, 253, 199);
       border:rgb(105, 105, 35) solid 1px;
   }
   100% {
       color: white;
       background-color:rgb(201, 187, 0);
-      border:rgb(255, 255, 180) solid 1px;
+      border:rgb(253, 253, 199) solid 1px;
   }
 }
 
 @keyframes buttonNeonsEffectRed {
   0% {
       color:rgb(165, 50, 50);
-      background-color: rgb(255, 200, 200);
+      background-color: rgb(255, 219, 219);
       border:rgb(80, 25, 25) solid 1px;
   }
   100% {
       color: white;
       background-color:rgb(165, 50, 50);
-      border:rgb(255, 200, 200) solid 1px;
+      border:rgb(255, 219, 219) solid 1px;
   }
 }
 
@@ -85,22 +85,53 @@ a{
   0% {
   }
   100% {
-    box-shadow: 0 0 25px var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
   }
 }
 @keyframes ShadowNeonsEffectYellow {
   0% {
   }
   100% {
-    box-shadow: 0 0 25px rgb(136, 136, 1);
+    box-shadow: 0 0 10px rgb(136, 136, 1);
   }
-}@keyframes ShadowNeonsEffectRed {
+}
+@keyframes ShadowNeonsEffectRed {
   0% {
   }
   100% {
-    box-shadow: 0 0 25px rgb(150, 0, 0);
+    box-shadow: 0 0 10px rgb(150, 0, 0);
   }
 }
+
+@keyframes pasiveButtonNeonsEffectBlue {
+  0% {
+    background-color:var(--primary-color-light);
+  }
+  100% {
+    background-color:rgb(195, 224, 255,0.5);
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+}
+@keyframes pasiveButtonNeonsEffectYellow {
+  0% {
+    background-color:rgb(253, 253, 199);
+  }
+  100% {
+    background-color:rgb(253, 253, 199,0.5);
+    box-shadow: 0 0 15px rgb(136, 136, 1);
+  }
+}
+@keyframes pasiveButtonNeonsEffectRed {
+  0% {
+    background-color:rgb(255, 219, 219);
+  }
+  100% {
+    background-color:rgba(255, 219, 219, 0.5);
+    box-shadow: 0 0 15px rgb(150, 0, 0);
+  }
+}
+
+
 
 .neon-blue{
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
@@ -132,27 +163,33 @@ a{
   display: block;
   width: 100px;
   height: 40px;
-  background-color:var(--primary-color-light);
+  background-color:var(--light-color);
   color: var(--primary-color);
   border:var(--primary-color) solid 1px;
+  animation: pasiveButtonNeonsEffectBlue 2s ease-in-out infinite alternate;
+  font-weight: bold;
 }
 
 .alert-button{
   display: block;
   width: 100px;
   height: 40px;
-  background-color:rgb(255, 255, 180);
+  background-color:var(--light-color);
   color: rgb(80, 80, 25);
   border:rgb(80, 80, 25) solid 1px;
+  animation: pasiveButtonNeonsEffectYellow 2s ease-in-out infinite alternate;
+  font-weight: bold;
 }
 
 .danger-button{
   display: block;
   width: 100px;
   height: 40px;
-  background-color:rgb(255, 200, 200);
+  background-color:var(--light-color);
   color: rgb(80, 25, 25);
   border:rgb(80, 25, 25) solid 1px;
+  animation: pasiveButtonNeonsEffectRed 2s ease-in-out infinite alternate;
+  font-weight: bold;
 }
 
 

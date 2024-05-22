@@ -1,14 +1,13 @@
 <div  class="row resoult mx-1">
   <div class="col-xl-6 p-0" *ngFor="let vinyl of vinyls">
     <div  class="card mb-2 card-border mx-1 animate__animated animate__fadeIn"
-          [routerLink]="['/search/vinyl/by/',vinyl.id]"
+    [routerLink]="['/search/vinyl/by/', vinyl.id]" [queryParams]="{myCollection: myCollection}"
     >
       <div class="card-overlay"></div>
       <div class="card-body py-3 px-0">
         <div class="container">
           <div class="row top-card">
 
-            <!-- Image Section -->
             <div class="col-3">
               <div *ngIf="vinyl.cover_url; else coverDefault">
                 <img [src]="vinyl.cover_url" alt="Portada" class="img-fluid">
@@ -18,7 +17,6 @@
               </ng-template>
             </div>
 
-            <!-- Year Section -->
             <div class="col-9 mt-2">
               <div class="row">
                 <h6 class="col-12 card-subtitle">Año edición:</h6>
@@ -30,11 +28,8 @@
               </div>
             </div>
 
-
-
           </div>
 
-          <!-- Details Section -->
           <div class="row mt-1">
             <div class="col-md-12">
               <div class="row">
@@ -42,19 +37,58 @@
                 <p class="col card-text mb-1 mx-3">{{vinyl.name | titlecase | MaxLengthString}}</p>
               </div>
 
-                <div *ngIf="vinyl.bands.length === 1; else bandDefault" class="row">
-                  <h6 class="col-md-3 card-text mb-1">Grupo:</h6>
-                  <p class="col card-text mx-3">{{vinyl.bands[0].name}}</p>
+              <div *ngIf="vinyl.bands.length === 1; else bandDefault" class="row">
+                <h6 class="col-md-3 card-text mb-1">Grupo:</h6>
+                <p class="col card-text mx-3">{{vinyl.bands[0].name}}</p>
+              </div>
+              <ng-template #bandDefault >
+                <div class="row">
+                  <h6 class="col-md-3 card-text mb-1">Nº grupos:</h6>
+                  <p class="col card-text mx-3">{{vinyl.bands.length}}</p>
                 </div>
-                <ng-template #bandDefault >
-                  <div class="row">
-                    <h6 class="col-md-3 card-text mb-1">Nº grupos:</h6>
-                    <p class="col card-text mx-3">{{vinyl.bands.length}}</p>
-                  </div>
-                </ng-template>
-
+              </ng-template>
             </div>
           </div>
+
+          <div *ngIf="existsUser ">
+            <div *ngIf="existsCollection && !myCollection">
+              <div *ngIf="!existsInCollection(vinyl.id); else included">
+                <div class="row mt-1">
+                  <div class="col-md-6 offset-md-6">
+                    <button class="btn primary-button w-100"
+                            (click)="addVinylToCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()"
+                    >
+                      Añadir a colección
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <ng-template #included>
+                <div class="row mt-1">
+                  <div class="col-md-6 offset-md-6">
+                    <span  class="btn danger-button w-100"
+                          (click)=" $event.stopPropagation()"
+                    >
+                      En tu colección
+                    </span>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+
+            <div *ngIf="myCollection">
+              <div class="row mt-1">
+                <div class="col-md-6 offset-md-6">
+                  <button class="btn danger-button w-100 delete"
+                          (click)="removeVinylFromCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()"
+                  >
+                    Quitar de la colección
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

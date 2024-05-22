@@ -1,0 +1,75 @@
+<div class="row title text-center">
+  <div class="overlay"></div>
+  <div class="col-12 m-1">
+    <h2 class="p-0 m-0 menu-font primary-color"> {{user!.collection!.name}}</h2>
+  </div>
+</div>
+
+
+<!-- Botones -->
+<div class="row col">
+  <div class="col-6 mt-3">
+      <div class=" d-flex justify-content-center ">
+          <button class="btn alert-button w-100 fw-bold"
+                  [routerLink]="[ '/user/my-collection/update',]"
+          >
+              Editar
+          </button>
+      </div>
+  </div>
+  <div class="col-6 mt-3">
+    <div class=" d-flex justify-content-center">
+        <button class="btn danger-button w-100 fw-bold"
+        [routerLink]="[ '/user/my-collection/delete',]"
+        >
+            Eliminar
+        </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="row">
+    <div class="col-12" *ngIf="user!.collection?.description; else descripion">
+      <h5 class="primary-color">Descripción</h5>
+        <p class="px-4 fw-bold">{{user!.collection?.description}}</p>
+    </div>
+    <ng-template #descripion>
+      <div class="col-12">
+        <h5 class="primary-color">Descripción</h5>
+          <p class="px-4 fw-bold">Aún no hay una descripción</p>
+      </div>
+    </ng-template>
+
+
+    <div class="col-md-5 row">
+      <div class="col-12" >
+        <h5 class="primary-color">Nº de vinilos</h5>
+        <p class="px-4">{{user!.collection?.number_vinyls}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-5 row">
+      <div class="col-12">
+        <h5 class="primary-color">Puntación</h5>
+        <p class="px-4">{{user!.collection!.rating}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <h5 class="primary-color">Vinilos</h5>
+
+  <div
+  *ngIf="user!.collection?.number_vinyls === 0 ; else vinylCard"
+  class="alert alert-warning text-center my-4 mx-2 custom-alert"
+>
+  No hay vinilos que mostrar
+</div>
+
+<ng-template #vinylCard>
+  <app-vinyl-card [vinyls]="vinyls"/>
+</ng-template>
+</div>

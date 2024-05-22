@@ -7,21 +7,47 @@
   </div>
 
   <div class="row mt-3">
-    <div class="row">
-      <div class="col-xl-4 text-center" *ngIf="vinyl.cover_url;else coverDefault">
-        <img [src]="vinyl.cover_url" alt="Portada">
+    <div class="col-xl-4 text-center" *ngIf="vinyl.cover_url; else coverDefault">
+      <img [src]="vinyl.cover_url" alt="Portada">
+    </div>
+    <ng-template #coverDefault>
+      <div class="col-xl-4 text-center">
+        <img src="../../../../assets/img/noImg.jpg" alt="Portada">
       </div>
-      <ng-template #coverDefault>
-        <div class="col-xl-4 text-center">
-          <img src="../../../../assets/img/noImg.jpg" alt="Portada">
+    </ng-template>
+
+    <div class="col-xl-8">
+      <div class="row">
+        <div class="col-12" *ngIf="existsUser">
+          <div *ngIf="existsCollection && !myCollection">
+            <div *ngIf="!existsInCollection(vinyl.id); else included">
+              <button class="btn primary-button w-100 mb-3"
+                      (click)="addVinylToCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()">
+                Añadir a colección
+              </button>
+            </div>
+            <ng-template #included>
+              <span class="btn danger-button w-100 mb-3"
+                    (click)=" $event.stopPropagation()">
+                Ya está en tu colección
+              </span>
+            </ng-template>
+          </div>
+            <div *ngIf="myCollection">
+                  <button class="btn danger-button w-100 delete mb-3"
+                          (click)="removeVinylFromCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()"
+                  >
+                    Quitar de la colección
+                  </button>
+            </div>
+
         </div>
-      </ng-template>
-      <div class="col-xl-8 row">
+
         <div class="col-12">
           <h5 class="primary-color">Año de lanzamiento</h5>
           <p class="px-4">{{vinyl.publication_year}}</p>
         </div>
-        <div class="col-12" *ngIf="vinyl.cover_url;else yearDefault">
+        <div class="col-12" *ngIf="vinyl.edition_year; else yearDefault">
           <h5 class="primary-color">Año de edición</h5>
           <p class="px-4">{{vinyl.edition_year}}</p>
         </div>

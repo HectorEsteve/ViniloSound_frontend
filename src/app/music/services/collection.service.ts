@@ -6,13 +6,13 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Collection } from '../interfaces/collection-interface';
 import { DataCollection } from '../../auth/interfaces/dataCollection.interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
 
   private http = inject( HttpClient );
-
   private baseUrl= environments.baseUrl;
 
   public cacheStoreCollection: CollectionCacheStore = {
@@ -91,6 +91,21 @@ export class CollectionService {
       );
   }
 
+  updateCollection(collection: DataCollection, id: number): Observable<Collection | null> {
+    return this.http.put<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${id}`, collection)
+      .pipe(
+        map(response => response.collection),
+        catchError(() => of(null))
+      );
+  }
+
+  deleteCollection(id: number): Observable<{ message: string, collection: Collection | null }> {
+    return this.http.delete<{ message: string, collection: Collection | null }>(`${this.baseUrl}/collections/${id}`)
+      .pipe(
+        catchError(() => of({ message: '', collection: null })),
+      );
+  }
+
   searchCollectionsByName(term:string):Observable<Collection[]>{
     return this.getCollections()
     .pipe(
@@ -148,6 +163,22 @@ export class CollectionService {
           this.saveToLocalStorage();
         })
     );
+  }
+
+  public addVinylToCollection(collectionId: number, vinylId: number): Observable<Collection | null> {
+    return this.http.post<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${collectionId}/add-vinyl`, { vinyl_id: vinylId })
+      .pipe(
+        map(response => response.collection),
+        catchError(() => of(null)),
+      );
+  }
+
+  public removeVinylFromCollection(collectionId: number, vinylId: number): Observable<Collection | null> {
+    return this.http.post<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${collectionId}/remove-vinyl`, { vinyl_id: vinylId })
+      .pipe(
+        map(response => response.collection),
+        catchError(() => of(null)),
+      );
   }
 
 }

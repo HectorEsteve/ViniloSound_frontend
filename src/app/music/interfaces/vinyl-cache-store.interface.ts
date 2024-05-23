@@ -1,4 +1,3 @@
-
 export interface VinylCacheStore{
   byName:Termvinyl;
   byBand:Termvinyl;

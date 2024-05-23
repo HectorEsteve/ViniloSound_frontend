@@ -1,26 +1,26 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule }               from '@angular/core';
+import { RouterModule, Routes }   from '@angular/router';
 
-import { MusicLayoutPageComponent } from './pages/layout/layout-page.component';
-import { SongByNamePageComponent } from './pages/songs/song-by-name/song-by-name-page.component';
-import { SongByBandPageComponent } from './pages/songs/song-by-band/song-by-band-page.component';
-import { BandByNamePageComponent } from './pages/bands/band-by-name-page/band-by-name-page.component';
-import { BandByGenrePageComponent } from './pages/bands/band-by-genre-page/band-by-genre-page.component';
-import { VinylByNamePageComponent } from './pages/vinyls/vinyl-by-name/vinyl-by-name-page.component';
-import { VinylByBandPageComponent } from './pages/vinyls/vinyl-by-band/vinyl-by-band-page.component';
-import { VinylByGenrePageComponent } from './pages/vinyls/vinyl-by-genre/vinyl-by-genre-page.component';
-import { CollectionByUserPageComponent } from './pages/collections/collection-by-user/collection-by-user-page.component';
-import { CollectionByNamePageComponent } from './pages/collections/collection-by-name/collection-by-name-page.component';
+import { BandByGenrePageComponent }       from './pages/bands/band-by-genre-page/band-by-genre-page.component';
+import { BandByNamePageComponent }        from './pages/bands/band-by-name-page/band-by-name-page.component';
+import { BandPageComponent }              from './pages/bands/band-page/band-page.component';
+import { CollectionByBandPageComponent }  from './pages/collections/collection-by-band/collection-by-band-page.component';
+import { CollectionByNamePageComponent }  from './pages/collections/collection-by-name/collection-by-name-page.component';
+import { CollectionByUserPageComponent }  from './pages/collections/collection-by-user/collection-by-user-page.component';
 import { CollectionByVinylPageComponent } from './pages/collections/collection-by-vinyl/collection-by-vinyl-page.component';
-import { CollectionByBandPageComponent } from './pages/collections/collection-by-band/collection-by-band-page.component';
-import { SongByGenrePageComponent } from './pages/songs/song-by-genre-page/song-by-genre-page.component';
-import { SongPageComponent } from './pages/songs/song-page/song-page.component';
-import { GenrePageComponent } from './pages/genre/genre-page/genre-page.component';
-import { BandPageComponent } from './pages/bands/band-page/band-page.component';
-import { VinylPageComponent } from './pages/vinyls/vinyl-page/vinyl-page.component';
-import { FormatPageComponent } from './pages/format/format-page/format-page.component';
-import { RecordCompanyPageComponent } from './pages/record-company/record-company-page/record-company-page.component';
-import { CollectionPageComponent } from './pages/collections/collection-page/collection-page.component';
+import { CollectionPageComponent }        from './pages/collections/collection-page/collection-page.component';
+import { FormatPageComponent }            from './pages/format/format-page/format-page.component';
+import { GenrePageComponent }             from './pages/genre/genre-page/genre-page.component';
+import { MusicLayoutPageComponent }       from './pages/layout/layout-page.component';
+import { RecordCompanyPageComponent }     from './pages/record-company/record-company-page/record-company-page.component';
+import { SongByBandPageComponent }        from './pages/songs/song-by-band/song-by-band-page.component';
+import { SongByGenrePageComponent }       from './pages/songs/song-by-genre-page/song-by-genre-page.component';
+import { SongByNamePageComponent }        from './pages/songs/song-by-name/song-by-name-page.component';
+import { SongPageComponent }              from './pages/songs/song-page/song-page.component';
+import { VinylByBandPageComponent }       from './pages/vinyls/vinyl-by-band/vinyl-by-band-page.component';
+import { VinylByGenrePageComponent }      from './pages/vinyls/vinyl-by-genre/vinyl-by-genre-page.component';
+import { VinylByNamePageComponent }       from './pages/vinyls/vinyl-by-name/vinyl-by-name-page.component';
+import { VinylPageComponent }             from './pages/vinyls/vinyl-page/vinyl-page.component';
 
 const routes: Routes = [
   {

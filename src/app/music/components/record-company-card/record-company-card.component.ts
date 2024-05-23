@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
-import { environments } from '../../../../environments/environments';
+import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+
+import { environments } from '../../../../environments/environments';
 import { RecordCompany } from '../../interfaces/record-companies.interface';
 
 @Component({
   selector:     'app-record-company-card',
-  standalone: true,
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule,
@@ -24,5 +25,4 @@ export class RecordCompanyCardComponent implements OnInit {
 
   @Input()
   public recordCompanies: RecordCompany[] = [];
-
- }
+}

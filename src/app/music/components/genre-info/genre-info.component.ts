@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }             from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule }             from '@angular/router';
 
-import { environments } from '../../../../environments/environments';
-import { RouterModule } from '@angular/router';
-import { Genre } from '../../interfaces/genre.interface';
+import { environments }             from '../../../../environments/environments';
+import { Genre }                    from '../../interfaces/genre.interface';
 
 @Component({
   selector:     'genre-info',
-  standalone: true,
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule,
@@ -15,8 +15,8 @@ import { Genre } from '../../interfaces/genre.interface';
   templateUrl:  './genre-info.component.html',
   styleUrl:     './genre-info.component.css',
 })
-export class GenreInfoComponent implements OnInit{
 
+export class GenreInfoComponent implements OnInit{
   ngOnInit(): void {
     this.tempRout = environments.tempRoutGenre;
   }

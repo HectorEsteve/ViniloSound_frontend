@@ -29,12 +29,10 @@ export class SongInfoComponent implements OnInit{
   ngOnInit(): void {
     this.tempRout = environments.tempRoutSong;
 
-    this.bandService.getBandById(this.song.band.id).
-    subscribe(
-      (band: Band) => {
-          this.bands.push(band);
-      }
-    );
+    this.bands.push(this.song.band)
+
+
+
 
     this.genreService.getGenreById(this.song.genre.id).
     subscribe(

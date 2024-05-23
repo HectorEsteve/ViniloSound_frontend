@@ -1,5 +1,3 @@
-
-
 export interface BandCacheStore{
   byName:Termbands;
   byGenre:Termbands;

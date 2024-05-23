@@ -1,4 +1,5 @@
 <div  class="row resoult mx-1">
+
   <div class="col-xl-6 p-0" *ngFor="let genre of genres">
     <div  class="card mb-2 card-border mx-1 animate__animated animate__fadeIn"
           [routerLink]="['/search/genre/by/',genre.id]"
@@ -13,5 +14,6 @@
       </div>
     </div>
   </div>
+
 </div>
 

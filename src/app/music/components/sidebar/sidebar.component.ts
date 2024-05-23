@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 interface MenuItem {
@@ -7,14 +7,15 @@ interface MenuItem {
   expanded: boolean;
   options:  Options[];
 }
+
 interface Options{
     title: string;
     route: string;
 }
 
 @Component({
-  selector:   'app-sidebar',
-  standalone: true,
+  selector:    'app-sidebar',
+  standalone:  true,
   imports: [
     CommonModule,
     RouterModule
@@ -22,6 +23,7 @@ interface Options{
   templateUrl: './sidebar.component.html',
   styleUrl:    './sidebar.component.css',
 })
+
 export class MusicSidebarComponent {
 
   public menu:MenuItem[]=([
@@ -54,7 +56,7 @@ export class MusicSidebarComponent {
       options: [
         { title: 'Por Nombre',  route: './songs/by-name' },
         { title: 'Por Grupo',   route: './songs/by-band' },
-        { title: 'Por Genero',   route: './songs/by-genre' },
+        { title: 'Por Genero',  route: './songs/by-genre' },
       ]
     }
   ]);
@@ -62,5 +64,4 @@ export class MusicSidebarComponent {
   toggleCollapse(item: MenuItem) {
     item.expanded = !item.expanded;
   }
-
 }

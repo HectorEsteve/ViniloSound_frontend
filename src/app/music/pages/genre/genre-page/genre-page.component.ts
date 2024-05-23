@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router }     from '@angular/router';
+import { Component, OnInit, inject }  from '@angular/core';
+import { switchMap }                  from 'rxjs';
+
+import { Genre }        from '../../../interfaces/genre.interface';
 import { GenreService } from '../../../services/genre.service';
-import { switchMap } from 'rxjs';
-import { Genre } from '../../../interfaces/genre.interface';
 
 @Component({
   selector:     'app-genre-page',
@@ -15,9 +16,9 @@ export class GenrePageComponent implements OnInit {
   public genre?:Genre;
   public isLoadin:boolean = false;
 
-  private activatedRoute = inject( ActivatedRoute );
-  private genreService = inject( GenreService );
-  private router = inject( Router );
+  private activatedRoute  = inject( ActivatedRoute );
+  private genreService    = inject( GenreService );
+  private router          = inject( Router );
 
 
   ngOnInit(): void {

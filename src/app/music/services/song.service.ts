@@ -1,9 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
+import { HttpClient, HttpParams }               from '@angular/common/http';
+import { Injectable, inject }                   from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
-import { Song } from '../interfaces/song.interface';
-import { SongCacheStore} from '../interfaces/song-cache-store.interface';
+
+import { environments }   from '../../../environments/environments';
+import { Song }           from '../interfaces/song.interface';
+import { SongCacheStore}  from '../interfaces/song-cache-store.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class SongService {
       localStorage.setItem('cacheStoreSongs', JSON.stringify(this.cacheStoreSongs));
   };
 
-  getSongs():Observable<Song[]> {
+  public getSongs():Observable<Song[]> {
     return this.http.get<{ message: string, songs: Song[] }>(`${this.baseUrl}/songs`)
     .pipe(
       map((response: { message: string, songs: Song[] })  => response.songs),
@@ -59,7 +60,7 @@ export class SongService {
     );
   }
 
-  getRandomSongs(limit: number): Observable<Song[]> {
+  public getRandomSongs(limit: number): Observable<Song[]> {
     let params = new HttpParams().set('limit', limit.toString());
     return this.http.get<{ message: string, songs: Song[] }>(`${this.baseUrl}/songs/random`, { params })
       .pipe(
@@ -68,14 +69,14 @@ export class SongService {
       );
   }
 
-  getSongById(id: number): Observable<Song> {
+  public getSongById(id: number): Observable<Song> {
     return this.http.get<{ message: string, song: Song }>(`${this.baseUrl}/songs/${id}`)
       .pipe(
         map((response: { message: string, song: Song }) => response.song)
       );
   }
 
-  searchSongsByName(term:string):Observable<Song[]>{
+  public searchSongsByName(term:string):Observable<Song[]>{
     return this.getSongs()
     .pipe(
       map((songs: Song[]) => {
@@ -86,7 +87,7 @@ export class SongService {
     )
   }
 
-  searchSongsByBand(term:string):Observable<Song[]>{
+  public searchSongsByBand(term:string):Observable<Song[]>{
     return this.getSongs()
     .pipe(
       map((songs: Song[]) => {
@@ -97,7 +98,7 @@ export class SongService {
     )
   }
 
-  searchSongsByGenre(term:string):Observable<Song[]>{
+  public searchSongsByGenre(term:string):Observable<Song[]>{
     return this.getSongs()
     .pipe(
       map((songs: Song[]) => {
@@ -107,6 +108,4 @@ export class SongService {
       tap (() => this.saveToLocalStorage()),
     )
   }
-
-
 }

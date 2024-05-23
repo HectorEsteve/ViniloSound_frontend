@@ -1,16 +1,16 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { VinylService } from '../../../services/vinyl.service';
-import { Vinyl } from '../../../interfaces/vinyl.interface';
+
 import { GenreService } from '../../../services/genre.service';
+import { Vinyl }        from '../../../interfaces/vinyl.interface';
+import { VinylService } from '../../../services/vinyl.service';
 
 @Component({
-  selector: 'app-vinyl-by-genre-page',
-  templateUrl: './vinyl-by-genre-page.component.html',
-  styleUrl: './vinyl-by-genre-page.component.css',
-
+  selector:     'app-vinyl-by-genre-page',
+  templateUrl:  './vinyl-by-genre-page.component.html',
+  styleUrl:     './vinyl-by-genre-page.component.css',
 })
-export class VinylByGenrePageComponent implements OnInit {
 
+export class VinylByGenrePageComponent implements OnInit {
   ngOnInit(): void {
     this.loadGenres();
     this.isLoading = true;
@@ -34,10 +34,10 @@ export class VinylByGenrePageComponent implements OnInit {
   private vinylService = inject( VinylService );
   private genreService = inject( GenreService );
 
-  public genres: string[] = [];
-  public vinyls: Vinyl[] = [];
+  public genres: string[]   = [];
+  public vinyls: Vinyl[]    = [];
+  public isLoading:boolean  = false;
   public initialValue='';
-  public isLoading:boolean = false;
 
   loadGenres(): void {
     this.genreService.getGenres()
@@ -62,6 +62,4 @@ export class VinylByGenrePageComponent implements OnInit {
         this.isLoading = false;
       });
   }
-
-
 }

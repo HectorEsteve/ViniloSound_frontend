@@ -1,10 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
-import { BandCacheStore } from '../interfaces/band-cache-store.interface';
-
+import { HttpClient, HttpParams }               from '@angular/common/http';
+import { Injectable, inject }                   from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
-import { Band } from '../interfaces/band.interface';
+
+import { Band }           from '../interfaces/band.interface';
+import { BandCacheStore } from '../interfaces/band-cache-store.interface';
+import { environments }   from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,7 @@ export class BandService {
       localStorage.setItem('cacheStoreBands', JSON.stringify(this.cacheStoreBand));
   };
 
-  getBands():Observable<Band[]> {
+  public getBands():Observable<Band[]> {
     return this.http.get<{ message: string, bands: Band[] }>(`${this.baseUrl}/bands`)
     .pipe(
       map((response: { message: string, bands: Band[] })  => response.bands),
@@ -53,7 +53,7 @@ export class BandService {
     );
   }
 
-  getRandomBands(limit: number): Observable<Band[]> {
+  public getRandomBands(limit: number): Observable<Band[]> {
     let params = new HttpParams().set('limit', limit.toString());
     return this.http.get<{ message: string, bands: Band[] }>(`${this.baseUrl}/bands/random`, { params })
       .pipe(
@@ -62,14 +62,14 @@ export class BandService {
       );
   }
 
-  getBandById(id: number): Observable<Band> {
+  public getBandById(id: number): Observable<Band> {
     return this.http.get<{ message: string, band: Band }>(`${this.baseUrl}/bands/${id}`)
       .pipe(
         map((response: { message: string, band: Band }) => response.band)
       );
   }
 
-  searchBandsByName(term:string):Observable<Band[]>{
+  public searchBandsByName(term:string):Observable<Band[]>{
     return this.getBands()
     .pipe(
       map((bands: Band[]) => {
@@ -80,7 +80,7 @@ export class BandService {
     )
   }
 
-  searchBandsByGenre(term: string): Observable<Band[]> {
+  public searchBandsByGenre(term: string): Observable<Band[]> {
     return this.getBands().pipe(
       map((bands: Band[]) => {
         return bands.filter(band => {
@@ -93,6 +93,5 @@ export class BandService {
       })
     );
   }
-
 
 }

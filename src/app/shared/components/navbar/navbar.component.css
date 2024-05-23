@@ -10,10 +10,12 @@ li{
   color: var(--light-color);
   font-weight: bolder;
 }
+
 li:hover {
   animation: neonsEffectBlue 2s ease-in-out infinite alternate;
   cursor: pointer;
 }
+
 .active {
   color: var(--primary-color-medium);
   text-shadow: 0 0 3px var(--light-color);

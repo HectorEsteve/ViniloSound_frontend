@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors, FormGroup, AbstractControl } from '@angular/forms';
+import { ValidationErrors, FormGroup, AbstractControl } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class ValidatorsService {
@@ -25,6 +25,4 @@ export class ValidatorsService {
       return null;
     }
   }
-
-
 }

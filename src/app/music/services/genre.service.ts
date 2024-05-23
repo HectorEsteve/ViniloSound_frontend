@@ -1,8 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject }               from '@angular/core';
+import { HttpClient }                       from '@angular/common/http';
+import { Observable, catchError, map, of }  from 'rxjs';
+
 import { environments } from '../../../environments/environments';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
-import { Genre } from '../interfaces/genre.interface';
+import { Genre }        from '../interfaces/genre.interface';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class GenreService {
 
   private baseUrl= environments.baseUrl;
 
-  getGenres():Observable<Genre[]> {
+  public getGenres():Observable<Genre[]> {
     return this.http.get<{ message: string, genres: Genre[] }>(`${this.baseUrl}/genres`)
     .pipe(
       map((response: { message: string, genres: Genre[] })  => response.genres),
@@ -22,11 +23,10 @@ export class GenreService {
     );
   }
 
-  getGenreById(id: number): Observable<Genre> {
+  public  getGenreById(id: number): Observable<Genre> {
     return this.http.get<{ message: string, genre: Genre }>(`${this.baseUrl}/genres/${id}`)
       .pipe(
         map((response: { message: string, genre: Genre }) => response.genre)
       );
   }
-
 }

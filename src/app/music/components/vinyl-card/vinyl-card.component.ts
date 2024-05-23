@@ -1,17 +1,18 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                     from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { Vinyl } from '../../interfaces/vinyl.interface';
-import { environments } from '../../../../environments/environments';
-import { MaxLengthStringPipe } from '../../pipe/max-length-string.pipe';
-import { User } from '../../../auth/interfaces/user.interface';
-import { UserService } from '../../../auth/service/user.service';
-import { Collection } from '../../interfaces/collection-interface';
+import { Router, RouterModule }             from '@angular/router';
+
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { environments }           from '../../../../environments/environments';
+import { User }                   from '../../../auth/interfaces/user.interface';
+import { UserService }            from '../../../auth/service/user.service';
+import { Vinyl }                  from '../../interfaces/vinyl.interface';
+
+import { MaxLengthStringPipe } from '../../pipe/max-length-string.pipe';
 
 @Component({
   selector:     'app-vinyl-card',
-  standalone: true,
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule,
@@ -22,9 +23,11 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
   templateUrl:  './vinyl-card.component.html',
   styleUrl:     './vinyl-card.component.css',
 })
+
 export class VinylCardComponent implements OnInit {
   ngOnInit(): void {
     environments.tempRoutVinyl=this.router.url;
+
     if(this.userService.currentUser){
       this.user = this.userService.currentUser;
       this.existsUser = true;
@@ -40,7 +43,6 @@ export class VinylCardComponent implements OnInit {
     }else{
       this.myCollection=false
     }
-
   }
 
   private router        = inject( Router );
@@ -87,6 +89,4 @@ export class VinylCardComponent implements OnInit {
     }
     this.isConfirmDialogOpen = false;
   }
-
-
- }
+}

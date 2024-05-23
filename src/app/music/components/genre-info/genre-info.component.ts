@@ -2,8 +2,8 @@ import { CommonModule }             from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule }             from '@angular/router';
 
-import { environments }             from '../../../../environments/environments';
-import { Genre }                    from '../../interfaces/genre.interface';
+import { environments }      from '../../../../environments/environments';
+import { Genre }             from '../../interfaces/genre.interface';
 
 @Component({
   selector:     'genre-info',

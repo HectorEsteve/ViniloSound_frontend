@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { VinylService } from '../../../services/vinyl.service';
-import { Vinyl } from '../../../interfaces/vinyl.interface';
+
+import { Vinyl }         from '../../../interfaces/vinyl.interface';
+import { VinylService }  from '../../../services/vinyl.service';
 
 @Component({
   selector:     'app-vinyl-by-name-page',
@@ -30,11 +31,9 @@ export class VinylByNamePageComponent implements OnInit {
 
   private vinylService = inject( VinylService );
 
-  public vinyls: Vinyl[] = [];
+  public vinyls: Vinyl[]    = [];
   public initialValue='';
-  public isLoading:boolean = false;
-
-
+  public isLoading:boolean  = false;
 
   public clearCache(): void {
     this.vinyls=[];

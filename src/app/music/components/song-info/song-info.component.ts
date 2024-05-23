@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input,  OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Song } from '../../interfaces/song.interface';
+import { CommonModule }               from '@angular/common';
+import { Component, Input,  OnInit }  from '@angular/core';
+import { RouterModule }               from '@angular/router';
+
+import { Band }                 from '../../interfaces/band.interface';
+import { BandCardComponent }    from '../band-card/band-card.component';
+import { environments }         from '../../../../environments/environments';
+import { Genre }                from '../../interfaces/genre.interface';
+import { GenreCardComponent }   from '../genre-card/genre-card.component';
+import { Song }                 from '../../interfaces/song.interface';
+
 import { MinuteFormatPipe } from '../../pipe/minute-format.pipe';
-import { environments } from '../../../../environments/environments';
-import { Band } from '../../interfaces/band.interface';
-import { BandService } from '../../services/band.service';
-import { BandCardComponent } from '../band-card/band-card.component';
-import { Genre } from '../../interfaces/genre.interface';
-import { GenreService } from '../../services/genre.service';
-import { GenreCardComponent } from '../genre-card/genre-card.component';
 
 @Component({
   selector:     'song-info',
-  standalone: true,
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule,
@@ -30,27 +30,15 @@ export class SongInfoComponent implements OnInit{
     this.tempRout = environments.tempRoutSong;
 
     this.bands.push(this.song.band)
-
-
-
-
-    this.genreService.getGenreById(this.song.genre.id).
-    subscribe(
-      (genre: Genre) => {
-          this.genres.push(genre);
-      }
-    );
+    this.genres.push(this.song.genre)
   }
 
   public tempRout:string='';
 
-  private bandService = inject( BandService );
-  private genreService = inject( GenreService );
-
   @Input()
   public song!: Song;
 
-  public genres: Genre[] = [];
-  public bands: Band[] = [];
+  public genres: Genre[]=[];
+  public bands: Band[]=[];
 
 }

@@ -4,8 +4,8 @@ import { Pipe, type PipeTransform } from '@angular/core';
   name: 'MaxLengthString',
   standalone: true,
 })
-export class MaxLengthStringPipe implements PipeTransform {
 
+export class MaxLengthStringPipe implements PipeTransform {
   transform(value: string): string {
     const maxLength = 30;
     if (value.length <= maxLength) {

@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CommonModule }               from '@angular/common';
+import { Component, Input, OnInit }   from '@angular/core';
+import { RouterModule }               from '@angular/router';
 
-import { environments } from '../../../../environments/environments';
-import { RecordCompany } from '../../interfaces/record-companies.interface';
+import { environments }     from '../../../../environments/environments';
+import { RecordCompany }    from '../../interfaces/record-companies.interface';
 
 @Component({
   selector:     'redord-company-info',

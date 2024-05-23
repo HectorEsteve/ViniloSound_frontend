@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Collection } from '../../../interfaces/collection-interface';
-import { CollectionService } from '../../../services/collection.service';
+
+import { Collection }         from '../../../interfaces/collection-interface';
+import { CollectionService }  from '../../../services/collection.service';
 
 @Component({
-  selector: 'app-collection-by-vinyl-page',
-  templateUrl: './collection-by-vinyl-page.component.html',
-  styleUrl: './collection-by-vinyl-page.component.css',
-
+  selector:     'app-collection-by-vinyl-page',
+  templateUrl:  './collection-by-vinyl-page.component.html',
+  styleUrl:     './collection-by-vinyl-page.component.css',
 })
+
 export class CollectionByVinylPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
@@ -30,9 +31,9 @@ export class CollectionByVinylPageComponent implements OnInit {
 
   private collectionService = inject( CollectionService );
 
-  public collections: Collection[] = [];
+  public collections: Collection[]  = [];
+  public isLoading:boolean          = false;
   public initialValue='';
-  public isLoading:boolean = false;
 
   public clearCache(): void {
     this.collections=[];

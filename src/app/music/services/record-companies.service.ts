@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
-import { Observable, catchError, map, of } from 'rxjs';
-import { RecordCompany } from '../interfaces/record-companies.interface';
+import { HttpClient }                       from '@angular/common/http';
+import { Injectable, inject }               from '@angular/core';
+import { Observable, catchError, map, of }  from 'rxjs';
+
+import { environments }   from '../../../environments/environments';
+import { RecordCompany }  from '../interfaces/record-companies.interface';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class RecordCompaniesService {
 
   private baseUrl= environments.baseUrl;
 
-  getRecordCompanies():Observable<RecordCompany[]> {
+  public getRecordCompanies():Observable<RecordCompany[]> {
     return this.http.get<{ message: string, recordCompanies: RecordCompany[] }>(`${this.baseUrl}/recor-companies`)
     .pipe(
       map((response: { message: string, recordCompanies: RecordCompany[] })  => response.recordCompanies),
@@ -22,11 +23,10 @@ export class RecordCompaniesService {
     );
   }
 
-  getRecordCompanyById(id: number): Observable<RecordCompany> {
+  public getRecordCompanyById(id: number): Observable<RecordCompany> {
     return this.http.get<{ message: string, recordCompany: RecordCompany }>(`${this.baseUrl}/record-companies/${id}`)
       .pipe(
         map((response: { message: string, recordCompany: RecordCompany }) => response.recordCompany)
       );
   }
-
 }

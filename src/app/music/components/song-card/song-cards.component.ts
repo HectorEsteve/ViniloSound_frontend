@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input,  OnInit,  inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { CommonModule }                         from '@angular/common';
+import { Component, Input,  OnInit,  inject }   from '@angular/core';
+import { Router, RouterModule }                 from '@angular/router';
 
-import { environments } from '../../../../environments/environments';
-import { Song } from '../../interfaces/song.interface';
+import { environments }   from '../../../../environments/environments';
+import { Song }           from '../../interfaces/song.interface';
 
 import { MaxLengthStringPipe } from "../../pipe/max-length-string.pipe";
 

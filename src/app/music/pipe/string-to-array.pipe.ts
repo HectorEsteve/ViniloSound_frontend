@@ -4,8 +4,8 @@ import { Pipe, type PipeTransform } from '@angular/core';
   name: 'StringToArray',
   standalone: true,
 })
-export class StringToArrayPipe implements PipeTransform {
 
+export class StringToArrayPipe implements PipeTransform {
   transform(value: string): string[] {
     if (!value) return [];
 

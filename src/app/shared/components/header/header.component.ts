@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { RouterModule } from '@angular/router';
-import { UserService } from '../../../auth/service/user.service';
-import { UserMenuComponent } from '../../../auth/components/user-menu/user-menu.component';
+import { CommonModule }       from '@angular/common';
+import { Component, inject }  from '@angular/core';
+import { RouterModule }       from '@angular/router';
+
+import { NavbarComponent }    from '../navbar/navbar.component';
+import { UserMenuComponent }  from '../../../auth/components/user-menu/user-menu.component';
+import { UserService }        from '../../../auth/service/user.service';
 
 @Component({
   selector:     'app-header',
@@ -20,6 +21,4 @@ import { UserMenuComponent } from '../../../auth/components/user-menu/user-menu.
 })
 export class HeaderComponent {
   public userService = inject( UserService );
-
-
  }

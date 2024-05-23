@@ -21,13 +21,13 @@
   background-color: var(--light-color)
 }
 
-
 .primary-button:hover {
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }
 .primary-button:active {
   transform: scale(0.9);
 }
+
 .danger-button:hover {
   animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
 }

@@ -1,10 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
-import { CollectionCacheStore } from '../interfaces/collection-cache-store.interface';
+import { HttpClient, HttpParams }               from '@angular/common/http';
+import { Injectable, inject }                   from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
-import { Collection } from '../interfaces/collection-interface';
-import { DataCollection } from '../../auth/interfaces/dataCollection.interface';
+
+import { Collection }           from '../interfaces/collection-interface';
+import { CollectionCacheStore } from '../interfaces/collection-cache-store.interface';
+import { DataCollection }       from '../../auth/interfaces/dataCollection.interface';
+import { environments }         from '../../../environments/environments';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ import { DataCollection } from '../../auth/interfaces/dataCollection.interface';
 export class CollectionService {
 
   private http = inject( HttpClient );
+
   private baseUrl= environments.baseUrl;
 
   public cacheStoreCollection: CollectionCacheStore = {
@@ -59,7 +61,7 @@ export class CollectionService {
       localStorage.setItem('cacheStoreCollections', JSON.stringify(this.cacheStoreCollection));
   };
 
-  getCollections():Observable<Collection[]> {
+  public getCollections():Observable<Collection[]> {
     return this.http.get<{ message: string, collections: Collection[] }>(`${this.baseUrl}/collections`)
     .pipe(
       map((response: { message: string, collections: Collection[] })  => response.collections),
@@ -67,7 +69,7 @@ export class CollectionService {
     );
   }
 
-  getRandomCollections(limit: number): Observable<Collection[]> {
+  public getRandomCollections(limit: number): Observable<Collection[]> {
     let params = new HttpParams().set('limit', limit.toString());
     return this.http.get<{ message: string, collections: Collection[] }>(`${this.baseUrl}/collections/random`, { params })
       .pipe(
@@ -76,14 +78,14 @@ export class CollectionService {
       );
   }
 
-  getCollectionById(id: number): Observable<Collection> {
+  public getCollectionById(id: number): Observable<Collection> {
     return this.http.get<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${id}`)
       .pipe(
         map((response: { message: string, collection: Collection }) => response.collection)
       );
   }
 
-  createCollection(collection: DataCollection): Observable<Collection | null> {
+  public createCollection(collection: DataCollection): Observable<Collection | null> {
     return this.http.post<{ message: string, collection: Collection }>(`${this.baseUrl}/collections`, collection)
       .pipe(
         map(response => response.collection),
@@ -91,7 +93,7 @@ export class CollectionService {
       );
   }
 
-  updateCollection(collection: DataCollection, id: number): Observable<Collection | null> {
+  public updateCollection(collection: DataCollection, id: number): Observable<Collection | null> {
     return this.http.put<{ message: string, collection: Collection }>(`${this.baseUrl}/collections/${id}`, collection)
       .pipe(
         map(response => response.collection),
@@ -99,14 +101,14 @@ export class CollectionService {
       );
   }
 
-  deleteCollection(id: number): Observable<{ message: string, collection: Collection | null }> {
+  public deleteCollection(id: number): Observable<{ message: string, collection: Collection | null }> {
     return this.http.delete<{ message: string, collection: Collection | null }>(`${this.baseUrl}/collections/${id}`)
       .pipe(
         catchError(() => of({ message: '', collection: null })),
       );
   }
 
-  searchCollectionsByName(term:string):Observable<Collection[]>{
+  public searchCollectionsByName(term:string):Observable<Collection[]>{
     return this.getCollections()
     .pipe(
       map((collections: Collection[]) => {
@@ -117,7 +119,7 @@ export class CollectionService {
     )
   }
 
-  searchCollectionByUser(term: string): Observable<Collection[]> {
+  public searchCollectionByUser(term: string): Observable<Collection[]> {
     return this.getCollections()
       .pipe(
         map((collections: Collection[]) => {
@@ -130,7 +132,7 @@ export class CollectionService {
       );
   }
 
-  searchCollectionByVinyl(term: string): Observable<Collection[]> {
+  public searchCollectionByVinyl(term: string): Observable<Collection[]> {
     return this.getCollections()
       .pipe(
         map((collections: Collection[]) => {
@@ -147,7 +149,7 @@ export class CollectionService {
     );
   }
 
-  searchCollectionsByBand(term: string): Observable<Collection[]> {
+  public searchCollectionsByBand(term: string): Observable<Collection[]> {
     return this.getCollections().pipe(
       map((collections: Collection[]) => {
         return collections.filter(collection =>

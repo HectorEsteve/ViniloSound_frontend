@@ -1,8 +1,9 @@
 import {  Component, OnInit, inject } from '@angular/core';
-import { Song } from '../../../interfaces/song.interface';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SongService } from '../../../services/song.service';
-import { switchMap } from 'rxjs';
+import { ActivatedRoute, Router }     from '@angular/router';
+import { switchMap }                  from 'rxjs';
+
+import { Song }         from '../../../interfaces/song.interface';
+import { SongService }  from '../../../services/song.service';
 
 @Component({
   selector:     'app-song-page',
@@ -15,9 +16,9 @@ export class SongPageComponent implements OnInit {
   public isLoadin:boolean = false;
 
 
-  private activatedRoute = inject( ActivatedRoute );
-  private songService = inject( SongService );
-  private router = inject( Router );
+  private activatedRoute  = inject( ActivatedRoute );
+  private songService     = inject( SongService );
+  private router          = inject( Router );
 
   ngOnInit(): void {
     this.isLoadin = true;
@@ -32,7 +33,5 @@ export class SongPageComponent implements OnInit {
       this.isLoadin = false;
       return this.song = song;
     });
-
   }
-
 }

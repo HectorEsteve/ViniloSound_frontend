@@ -4,8 +4,8 @@ import { Pipe, type PipeTransform } from '@angular/core';
   name: 'MinuteFormat',
   standalone: true,
 })
-export class MinuteFormatPipe implements PipeTransform {
 
+export class MinuteFormatPipe implements PipeTransform {
   transform(value: number): string {
     const minutes: number = Math.floor(value / 60);
     const seconds: number = value % 60;

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CollectionService } from '../../../services/collection.service';
-import { Collection } from '../../../interfaces/collection-interface';
+
+import { Collection }         from '../../../interfaces/collection-interface';
+import { CollectionService }  from '../../../services/collection.service';
 
 @Component({
   selector:     'app-collection-by-name-page',
@@ -30,9 +31,9 @@ export class CollectionByNamePageComponent implements OnInit {
 
   private collectionService = inject( CollectionService );
 
-  public collections: Collection[] = [];
+  public collections: Collection[]  = [];
+  public isLoading:boolean          = false;
   public initialValue='';
-  public isLoading:boolean = false;
 
   public clearCache(): void {
     this.collections=[];

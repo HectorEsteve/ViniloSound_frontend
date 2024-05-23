@@ -1,13 +1,14 @@
 import {  Component, OnInit, inject } from '@angular/core';
-import { SongService } from '../../../services/song.service';
-import { Song } from '../../../interfaces/song.interface';
+
+import { Song }         from '../../../interfaces/song.interface';
+import { SongService }  from '../../../services/song.service';
 
 @Component({
   selector:     'app-song-by-band-page',
   templateUrl:  './song-by-band-page.component.html',
   styleUrl:     './song-by-band-page.component.css',
-
 })
+
 export class SongByBandPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
@@ -30,10 +31,9 @@ export class SongByBandPageComponent implements OnInit {
 
   private songService = inject( SongService );
 
-  public songs: Song[] = [];
+  public songs: Song[]      = [];
+  public isLoading:boolean  = false;
   public initialValue='';
-  public isLoading:boolean = false;
-
 
   public clearCache(): void {
     this.songs=[];

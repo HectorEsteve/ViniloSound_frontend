@@ -8,6 +8,7 @@
   animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
   background-color: var(--light-color);
 }
+
 .title{
   position: relative;
   border-radius: 20px;
@@ -17,7 +18,8 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
-.title .overlay {
+
+.title .overlay{
   position: absolute;
   z-index: 0;
   top: 0;
@@ -28,19 +30,21 @@
   transition: background-color 0.3s;
   border-radius: 20px;
 }
+
 h2{
   position: relative;
   z-index: 1;
   font-weight: bolder;
 }
+
 h5{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  var(--primary-color), var(--primary-color-light), var(--light-color)) 1;
 }
+
 .lyric{
   font-style: italic;
 }
-
 
 .rout{
   cursor: pointer;
@@ -58,13 +62,13 @@ img{
   max-height: 85%;
 }
 
-.primary-button:hover {
+.primary-button:hover{
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }
-.primary-button:active {
+.primary-button:active{
   transform: scale(0.9);
 }
 
-.delete:hover {
+.delete:hover{
   animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
 }

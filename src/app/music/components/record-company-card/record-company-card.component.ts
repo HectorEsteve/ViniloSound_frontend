@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { CommonModule }           from '@angular/common';
+import { Router, RouterModule }   from '@angular/router';
 
-import { environments } from '../../../../environments/environments';
-import { RecordCompany } from '../../interfaces/record-companies.interface';
+import { environments }     from '../../../../environments/environments';
+import { RecordCompany }    from '../../interfaces/record-companies.interface';
 
 @Component({
   selector:     'app-record-company-card',

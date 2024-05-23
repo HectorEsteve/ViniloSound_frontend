@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient }                       from '@angular/common/http';
+import { Injectable, inject }               from '@angular/core';
+import { Observable, catchError, map, of }  from 'rxjs';
+
 import { environments } from '../../../environments/environments';
-import { Format } from '../interfaces/format.interface';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Format }       from '../interfaces/format.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class FormatService {
 
   private baseUrl= environments.baseUrl;
 
-  getFormats():Observable<Format[]> {
+  public getFormats():Observable<Format[]> {
     return this.http.get<{ message: string, formats: Format[] }>(`${this.baseUrl}/formats`)
     .pipe(
       map((response: { message: string, formats: Format[] })  => response.formats),
@@ -21,11 +22,10 @@ export class FormatService {
     );
   }
 
-  getFormatById(id: number): Observable<Format> {
+  public getFormatById(id: number): Observable<Format> {
     return this.http.get<{ message: string, format: Format }>(`${this.baseUrl}/formats/${id}`)
       .pipe(
         map((response: { message: string, format: Format }) => response.format)
       );
   }
-
 }

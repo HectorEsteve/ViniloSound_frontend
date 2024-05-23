@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }             from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Collection } from '../../interfaces/collection-interface';
-import { RouterModule } from '@angular/router';
-import { Vinyl } from '../../interfaces/vinyl.interface';
-import { environments } from '../../../../environments/environments';
-import { VinylCardComponent } from '../vinyl-card/vinyl-card.component';
+import { RouterModule }             from '@angular/router';
+
+import { Collection }               from '../../interfaces/collection-interface';
+import { Vinyl }                    from '../../interfaces/vinyl.interface';
+import { environments }             from '../../../../environments/environments';
+import { VinylCardComponent }       from '../vinyl-card/vinyl-card.component';
 
 @Component({
   selector:     'collection-info',
@@ -20,7 +21,6 @@ import { VinylCardComponent } from '../vinyl-card/vinyl-card.component';
 export class CollectionInfoComponent implements OnInit {
   ngOnInit(): void {
     this.tempRout = environments.tempRoutCollection;
-
     this.vinyls=this.collection.vinyls
   }
 
@@ -28,6 +28,5 @@ export class CollectionInfoComponent implements OnInit {
 
   @Input()
   public collection!: Collection;
-
   public vinyls: Vinyl[] = [];
  }

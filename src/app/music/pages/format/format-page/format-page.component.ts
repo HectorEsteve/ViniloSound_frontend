@@ -1,8 +1,9 @@
+import { ActivatedRoute, Router }     from '@angular/router';
 import {  Component, OnInit, inject } from '@angular/core';
-import { Format } from '../../../interfaces/format.interface';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormatService } from '../../../services/format.service';
-import { switchMap } from 'rxjs';
+import { switchMap }                  from 'rxjs';
+
+import { Format }         from '../../../interfaces/format.interface';
+import { FormatService }  from '../../../services/format.service';
 
 @Component({
   selector:     'app-format-page',
@@ -15,10 +16,9 @@ export class FormatPageComponent implements OnInit {
   public format?:Format;
   public isLoadin:boolean = false;
 
-  private activatedRoute = inject( ActivatedRoute );
-  private formatService = inject( FormatService );
-  private router = inject( Router );
-
+  private activatedRoute  = inject( ActivatedRoute );
+  private formatService   = inject( FormatService );
+  private router          = inject( Router );
 
   ngOnInit(): void {
     this.isLoadin = true;
@@ -34,5 +34,4 @@ export class FormatPageComponent implements OnInit {
       return this.format = format;
     });
   }
-
  }

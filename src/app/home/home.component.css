@@ -30,11 +30,13 @@ main {
   background-repeat: no-repeat;
   border-radius: 20px;
 }
+
 .card-size{
   height: 300px;
   width: 425px;
   cursor: pointer;
 }
+
 p, h5{
   font-style: italic;
   font-weight: bolder;
@@ -52,30 +54,37 @@ p, h5{
   transition: background-color 0.3s;
   border-radius: 20px;
 }
+
 .card:hover .card-overlay {
   background-color: rgba(255, 255, 255, 0.6);
 }
+
 .card:hover p, .card:hover h5 {
   color: black;
 }
+
 .card-body{
   z-index: 1;
 }
+
 .material{
   background-image: url('./../../assets/img/material.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .noticias{
   background-image: url('./../../assets/img/noticias.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .buscador{
   background-image: url('./../../assets/img/buscador.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .unete{
   background-image: url('./../../assets/img/unete.png');
   background-size: cover;

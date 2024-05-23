@@ -1,14 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { SongService } from '../../../services/song.service';
+
 import { GenreService } from '../../../services/genre.service';
-import { Song } from '../../../interfaces/song.interface';
+import { Song }         from '../../../interfaces/song.interface';
+import { SongService }  from '../../../services/song.service';
 
 @Component({
   selector:     'app-song-by-genre-page',
   templateUrl:  './song-by-genre-page.component.html',
   styleUrl:     './song-by-genre-page.component.css',
-
 })
+
 export class SongByGenrePageComponent implements OnInit{
   ngOnInit(): void {
     this.isLoading = true;
@@ -28,16 +29,15 @@ export class SongByGenrePageComponent implements OnInit{
           this.isLoading = false;
         });
     }
-
   }
 
-  private songService = inject( SongService );
-  private genreService = inject( GenreService );
+  private songService   = inject( SongService );
+  private genreService  = inject( GenreService );
 
-  public genres: string[] = [];
-  public songs: Song[] = [];
+  public genres: string[]   = [];
+  public songs: Song[]      = [];
+  public isLoading:boolean  = false;
   public initialValue='';
-  public isLoading:boolean = false;
 
   loadGenres(): void {
     this.genreService.getGenres()
@@ -63,6 +63,4 @@ export class SongByGenrePageComponent implements OnInit{
         this.isLoading = false;
       });
   }
-
-
 }

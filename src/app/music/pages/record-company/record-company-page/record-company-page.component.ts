@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RecordCompany } from '../../../interfaces/record-companies.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router }     from '@angular/router';
+import { Component, OnInit, inject }  from '@angular/core';
+import { switchMap }                  from 'rxjs';
+
+import { RecordCompany }          from '../../../interfaces/record-companies.interface';
 import { RecordCompaniesService } from '../../../services/record-companies.service';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector:     'app-record-company-page',
@@ -15,10 +16,9 @@ export class RecordCompanyPageComponent implements OnInit {
   public recordCompany?:RecordCompany;
   public isLoadin:boolean = false;
 
-  private activatedRoute = inject( ActivatedRoute );
-  private recordCompanyService = inject( RecordCompaniesService );
-  private router = inject( Router );
-
+  private activatedRoute        = inject( ActivatedRoute );
+  private recordCompanyService  = inject( RecordCompaniesService );
+  private router                = inject( Router );
 
   ngOnInit(): void {
     this.isLoadin = true;
@@ -34,5 +34,4 @@ export class RecordCompanyPageComponent implements OnInit {
       return this.recordCompany = recordCompany;
     });
   }
-
- }
+}

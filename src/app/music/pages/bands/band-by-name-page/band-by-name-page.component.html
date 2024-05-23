@@ -1,4 +1,5 @@
 <div>
+
   <div class="search-head p-2">
     <h5 class="primary-color text-center">Busqueda: Grupos por nombre</h5>
     <div class="d-flex justify-content-center align-items-center">
@@ -6,6 +7,7 @@
         placeholder="Buscar por nombre"
         [initialValue]="initialValue"
         (onValue)="searchByName($event)"
+        (onDebounce)="searchByName($event)"
       />
       <button
         class="btn primary-button mx-2"
@@ -33,4 +35,5 @@
     </ng-template>
 
   </div>
+
 </div>

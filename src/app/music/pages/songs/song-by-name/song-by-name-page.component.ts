@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { SongService } from '../../../services/song.service';
-import { Song } from '../../../interfaces/song.interface';
+
+import { Song }         from '../../../interfaces/song.interface';
+import { SongService }  from '../../../services/song.service';
 
 
 @Component({
@@ -31,9 +32,9 @@ export class SongByNamePageComponent implements OnInit {
 
   private songService = inject( SongService );
 
-  public songs: Song[] = [];
-  public initialValue='';
+  public songs: Song[]     = [];
   public isLoading:boolean = false;
+  public initialValue='';
 
 
 

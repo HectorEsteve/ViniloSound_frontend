@@ -1,14 +1,14 @@
-import { CommonModule } from '@angular/common';
-import {  Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule }                           from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'select-box',
-  standalone: true,
+  selector:     'select-box',
+  standalone:   true,
   imports: [
     CommonModule,
   ],
-  templateUrl: './selectBox.component.html',
-  styleUrl: './selectBox.component.css',
+  templateUrl:  './selectBox.component.html',
+  styleUrl:     './selectBox.component.css',
 })
 export class SelectBoxComponent {
 
@@ -21,7 +21,6 @@ export class SelectBoxComponent {
 
   @Output()
   public onValue = new EventEmitter <string> ();
-
 
   public emitValue (value: string):void{
     this.onValue.emit(value);

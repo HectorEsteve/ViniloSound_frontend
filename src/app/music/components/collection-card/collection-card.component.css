@@ -11,6 +11,7 @@
   background-position: center center;
   cursor: pointer;
 }
+
 .card-border:hover{
   transform: scale(1.015);
 }
@@ -29,14 +30,16 @@
   transition: background-color 0.3s;
   border-radius: 20px;
 }
+
 .card-body{
   z-index: 1;
   color:white;
 }
-.card-border:hover .card-overlay {
+
+.card-border:hover .card-overlay{
   background-color: rgba(255, 255, 255, 0.7);
 }
-.card-border:hover .card-body {
+.card-border:hover .card-body{
   color:black;
 }
 

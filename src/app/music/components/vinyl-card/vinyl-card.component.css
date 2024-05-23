@@ -11,12 +11,14 @@
   background-position: center center;
   cursor: pointer;
 }
+
 .card-border:hover{
   transform: scale(1.015);
 }
 .card-border:active{
   transform: scale(0.95);
 }
+
 .card-overlay {
   position: absolute;
   z-index: 0;
@@ -28,25 +30,30 @@
   transition: background-color 0.3s;
   border-radius: 20px;
 }
+
 .card-body{
   z-index: 1;
   color:white;
 }
-.card-border:hover .card-overlay {
+
+.card-border:hover .card-overlay{
   background-color: rgba(255, 255, 255, 0.7);
 }
-.card-border:hover .card-body {
+.card-border:hover .card-body{
   color:black;
 }
+
 .group{
   margin-right: 10px;
   display: inline-block;
   margin-bottom: 0;
 }
+
 img{
   width: 80px;
   height: 80px;
 }
+
 .top-card{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  black, var(--primary-color-light), black) 1;
@@ -55,6 +62,7 @@ img{
 .primary-button:hover {
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }
+
 .primary-button:active {
   transform: scale(0.9);
 }

@@ -1,10 +1,11 @@
 
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
-import { VinylCacheStore } from '../interfaces/vinyl-cache-store.interface';
+import { HttpClient, HttpParams }               from '@angular/common/http';
+import { Injectable, inject }                   from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
-import { Vinyl } from '../interfaces/vinyl.interface';
+
+import { environments }     from '../../../environments/environments';
+import { VinylCacheStore }  from '../interfaces/vinyl-cache-store.interface';
+import { Vinyl }            from '../interfaces/vinyl.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class VinylService {
       localStorage.setItem('cacheStoreVinyl', JSON.stringify(this.cacheStoreVinyl));
   };
 
-  getVinyls():Observable<Vinyl[]> {
+  public getVinyls():Observable<Vinyl[]> {
     return this.http.get<{ message: string, vinyls: Vinyl[] }>(`${this.baseUrl}/vinyls`)
     .pipe(
       map((response: { message: string, vinyls: Vinyl[] })  => response.vinyls),
@@ -60,7 +61,7 @@ export class VinylService {
     );
   }
 
-  getRandomVinyls(limit: number): Observable<Vinyl[]> {
+  public getRandomVinyls(limit: number): Observable<Vinyl[]> {
     let params = new HttpParams().set('limit', limit.toString());
     return this.http.get<{ message: string, vinyls: Vinyl[] }>(`${this.baseUrl}/vinyls/random`, { params })
       .pipe(
@@ -69,14 +70,14 @@ export class VinylService {
       );
   }
 
-  getVinylById(id: number): Observable<Vinyl> {
+  public getVinylById(id: number): Observable<Vinyl> {
     return this.http.get<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls/${id}`)
       .pipe(
         map((response: { message: string, vinyl: Vinyl }) => response.vinyl)
       );
   }
 
-  searchVinylsByName(term:string):Observable<Vinyl[]>{
+  public searchVinylsByName(term:string):Observable<Vinyl[]>{
     return this.getVinyls()
     .pipe(
       map((vinyls: Vinyl[]) => {
@@ -87,7 +88,7 @@ export class VinylService {
     )
   }
 
-  searchVinylsByBand(term: string): Observable<Vinyl[]> {
+  public searchVinylsByBand(term: string): Observable<Vinyl[]> {
     return this.getVinyls().pipe(
       map((vinyls: Vinyl[]) => {
         return vinyls.filter(vinyl =>
@@ -103,7 +104,7 @@ export class VinylService {
     );
   }
 
-  searchVinylsByGenre(term: string): Observable<Vinyl[]> {
+  public searchVinylsByGenre(term: string): Observable<Vinyl[]> {
     return this.getVinyls().pipe(
       map((vinyls: Vinyl[]) => {
         return vinyls.filter(vinyl =>
@@ -118,5 +119,4 @@ export class VinylService {
       })
     );
   }
-
 }

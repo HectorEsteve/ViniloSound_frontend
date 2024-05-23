@@ -1,26 +1,26 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                     from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { Vinyl } from '../../interfaces/vinyl.interface';
-import { BandService } from '../../services/band.service';
-import { Genre } from '../../interfaces/genre.interface';
-import { Song } from '../../interfaces/song.interface';
-import { Band } from '../../interfaces/band.interface';
-import { environments } from '../../../../environments/environments';
-import { SongCardsComponent } from '../song-card/song-cards.component';
-import { GenreCardComponent } from '../genre-card/genre-card.component';
-import { BandCardComponent } from '../band-card/band-card.component';
-import { Format } from '../../interfaces/format.interface';
-import { FormatCardComponent } from '../format-card/format-card.component';
-import { RecordCompany } from '../../interfaces/record-companies.interface';
+import { Router, RouterModule }             from '@angular/router';
+
+import { Band }                       from '../../interfaces/band.interface';
+import { BandCardComponent }          from '../band-card/band-card.component';
+import { ConfirmDialogComponent }     from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { environments }               from '../../../../environments/environments';
+import { Format }                     from '../../interfaces/format.interface';
+import { FormatCardComponent }        from '../format-card/format-card.component';
+import { Genre }                      from '../../interfaces/genre.interface';
+import { GenreCardComponent }         from '../genre-card/genre-card.component';
+import { RecordCompany }              from '../../interfaces/record-companies.interface';
 import { RecordCompanyCardComponent } from '../record-company-card/record-company-card.component';
-import { UserService } from '../../../auth/service/user.service';
-import { User } from '../../../auth/interfaces/user.interface';
-import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { Song }                       from '../../interfaces/song.interface';
+import { SongCardsComponent }         from '../song-card/song-cards.component';
+import { User }                       from '../../../auth/interfaces/user.interface';
+import { UserService }                from '../../../auth/service/user.service';
+import { Vinyl }                      from '../../interfaces/vinyl.interface';
 
 @Component({
   selector:     'vinyl-info',
-  standalone: true,
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule,
@@ -34,17 +34,12 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
   templateUrl:  './vinyl-info.component.html',
   styleUrl:     './vinyl-info.component.css',
 })
+
 export class VinylInfoComponent implements OnInit{
   ngOnInit(): void {
     this.tempRout = environments.tempRoutVinyl;
 
-    for(let band of this.vinyl.bands){
-      this.bandService.searchBandsByName(band.name).
-        subscribe(
-          (bands: Band[]) => {
-            this.bands.push(...bands);
-          });
-    }
+    this.bands=this.vinyl.bands;
 
     for (const song of this.vinyl.songs) {
       this.songs.push(song);
@@ -56,7 +51,6 @@ export class VinylInfoComponent implements OnInit{
 
     this.formats.push(this.vinyl.format);
     this.recordCompanies.push(this.vinyl.record_company);
-
 
     environments.tempRoutVinyl=this.router.url;
     if(this.userService.currentUser){
@@ -74,7 +68,6 @@ export class VinylInfoComponent implements OnInit{
 
   public tempRout:string='';
 
-  private bandService = inject( BandService );
   private router        = inject( Router );
   private userService   = inject( UserService );
 
@@ -110,6 +103,7 @@ export class VinylInfoComponent implements OnInit{
         this.vinylsCollection!.push(this.vinyl);
       });
   }
+
   public openConfirmDialog(vinylId: number): void {
     this.confirmDialogMessage = '¿Estás seguro de que quieres eliminar este vinilo de tu colección?';
     this.isConfirmDialogOpen = true;
@@ -125,5 +119,4 @@ export class VinylInfoComponent implements OnInit{
     }
     this.isConfirmDialogOpen = false;
   }
-
 }

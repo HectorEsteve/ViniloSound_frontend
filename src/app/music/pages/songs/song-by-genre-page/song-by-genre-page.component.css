@@ -9,9 +9,11 @@
   background-color: var(--light-color);
   width: 100%;
 }
+
 select-box{
   min-width: 200px;
 }
+
 .resoult{
   margin: 0 -4px;
 }
@@ -21,10 +23,10 @@ h5{
   border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color))1;
 }
 
-.primary-button:hover {
+.primary-button:hover{
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }
-.primary-button:active {
+.primary-button:active{
   transform: scale(0.9);
 }
 .primary-button{

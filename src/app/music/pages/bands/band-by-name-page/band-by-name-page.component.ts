@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { BandService } from '../../../services/band.service';
-import { Band } from '../../../interfaces/band.interface';
 
+import { Band }         from '../../../interfaces/band.interface';
+import { BandService }  from '../../../services/band.service';
 
 @Component({
   selector:    'app-band-by-name-page',
   templateUrl: './band-by-name-page.component.html',
   styleUrl:    './band-by-name-page.component.css',
-
 })
+
 export class BandByNamePageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
@@ -31,9 +31,9 @@ export class BandByNamePageComponent implements OnInit {
 
   private bandService = inject( BandService );
 
-  public bands: Band[] = [];
+  public bands: Band[]      = [];
+  public isLoading:boolean  = false;
   public initialValue='';
-  public isLoading:boolean = false;
 
   public clearCache(): void {
     this.bands=[];

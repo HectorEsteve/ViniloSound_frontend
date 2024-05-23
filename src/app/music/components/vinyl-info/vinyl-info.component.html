@@ -35,7 +35,7 @@
           </div>
             <div *ngIf="myCollection">
                   <button class="btn danger-button w-100 delete mb-3"
-                          (click)="openConfirmDialog(vinyl.id); $event.stopPropagation()">
+                          (click)="openConfirmDialog(vinyl.id); $event.stopPropagation()"
                   >
                     Quitar de la colección
                   </button>
@@ -95,13 +95,15 @@
         <app-song-cards [songs]="songs"/>
       </p>
   </div>
-      <div>
-        <span [routerLink]=[tempRout]
-              class="rout primary-color"
-        >
-          <<< Volver
-        </span>
-      </div>
+
+  <div>
+    <span [routerLink]=[tempRout]
+          class="rout primary-color"
+    >
+      <<< Volver
+    </span>
+  </div>
+
 </div>
 
 <app-confirm-dialog *ngIf="isConfirmDialogOpen"

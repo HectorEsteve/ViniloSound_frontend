@@ -1,24 +1,25 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Vinyl } from '../../../interfaces/vinyl.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router }     from '@angular/router';
+import { Component, OnInit, inject }  from '@angular/core';
+import { switchMap }                  from 'rxjs';
+
+import { Vinyl }        from '../../../interfaces/vinyl.interface';
 import { VinylService } from '../../../services/vinyl.service';
-import { switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-vinyl-page',
-  templateUrl: './vinyl-page.component.html',
-  styleUrl: './vinyl-page.component.css',
+  selector:     'app-vinyl-page',
+  templateUrl:  './vinyl-page.component.html',
+  styleUrl:     './vinyl-page.component.css',
 
 })
 export class VinylPageComponent implements OnInit {
   public vinyl?:Vinyl;
-  public isLoadin:boolean = false;
+  public isLoadin:boolean     = false;
   public myCollection:boolean = false;
 
 
-  private activatedRoute = inject( ActivatedRoute );
-  private vinylService = inject( VinylService );
-  private router = inject( Router );
+  private activatedRoute =  inject( ActivatedRoute );
+  private vinylService =    inject( VinylService );
+  private router =          inject( Router );
 
   ngOnInit(): void {
     this.isLoadin = true;
@@ -37,6 +38,5 @@ export class VinylPageComponent implements OnInit {
       return this.vinyl = vinyl;
     });
   }
-
 }
 

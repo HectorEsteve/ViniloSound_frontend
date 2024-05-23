@@ -1,15 +1,14 @@
-import { Injectable, inject } from '@angular/core';
-import { environments } from '../../../environments/environments';
-
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
+
+import { Collection } from '../../music/interfaces/collection-interface';
+import { CollectionService } from '../../music/services/collection.service';
+import { DataCollection } from '../interfaces/dataCollection.interface';
+import { DataUser } from '../interfaces/dataUser.interface';
+import { environments } from '../../../environments/environments';
 import { User } from '../interfaces/user.interface';
 import { UserCacheStore } from '../interfaces/user-cache-store.interface';
-import { DataUser } from '../interfaces/dataUser.interface';
-import { DataCollection } from '../interfaces/dataCollection.interface';
-import { CollectionService } from '../../music/services/collection.service';
-import { Collection } from '../../music/interfaces/collection-interface';
-
 
 @Injectable({
   providedIn: 'root'
@@ -18,38 +17,38 @@ export class UserService {
 
   private baseUrl = environments.baseUrl;
 
-  private http = inject( HttpClient );
-  private collectionService= inject ( CollectionService );
+  private http              = inject( HttpClient );
+  private collectionService = inject ( CollectionService );
 
   public cacheStoreUser: UserCacheStore = {
     user: null,
     token: ''
-
   }
 
-  getUsers(): Observable<{ message: string, users: User[] }> {
+  constructor() {this.loadFromLocalStorage()}
+
+  public getUsers(): Observable<{ message: string, users: User[] }> {
     return this.http.get<{ message: string, users: User[] }>(`${this.baseUrl}/users`)
    .pipe(
       catchError(() => of ({ message: '', users: [] })),
     );
   }
 
-  getUser(id: number): Observable<{ message: string, user: User | null}> {
+  public getUser(id: number): Observable<{ message: string, user: User | null}> {
   return this.http.get<{ message: string, user: User }>(`${this.baseUrl}/users/${id}?include=collection`)
    .pipe(
       catchError(() => of ({ message: '', user: null })),
     );
-}
+  }
 
-
-  createUser(user: DataUser): Observable<{ message: string, users: User[] }> {
+  public createUser(user: DataUser): Observable<{ message: string, users: User[] }> {
     return this.http.post<{ message: string, users: User[] }>(`${this.baseUrl}/users`, user)
       .pipe(
         catchError(() => of ({ message: '', users: [] })),
       );
   }
 
-  updateUser(user: DataUser, id: number): Observable<{ message: string, user: User | null }> {
+  public updateUser(user: DataUser, id: number): Observable<{ message: string, user: User | null }> {
     return this.http.put<{ message: string, user: User }>(`${this.baseUrl}/users/${id}`, user)
       .pipe(
         tap((response: { message: string, user: User | null }) => {
@@ -62,7 +61,7 @@ export class UserService {
       );
   }
 
-  deleteUser(id: number): Observable<{ message: string, user: User | null }> {
+  public deleteUser(id: number): Observable<{ message: string, user: User | null }> {
     return this.http.delete<{ message: string, user: User | null }>(`${this.baseUrl}/users/${id}`)
       .pipe(
         catchError(() => of({ message: '', user: null })),
@@ -108,7 +107,6 @@ export class UserService {
     );
   }
 
-
   public login(email: string, password: string): Observable<{ message: string, user: User | null }> {
     return this.http.post<{ message: string, user: User | null }>(`${this.baseUrl}/login`, { email, password })
       .pipe(
@@ -135,8 +133,6 @@ export class UserService {
     return this.http.post<boolean>(`${this.baseUrl}/check-email`, body);
   }
 
-  constructor() {this.loadFromLocalStorage()}
-
   public saveToLocalStorage(): void{
     localStorage.setItem('cacheStoreUser',JSON.stringify(this.cacheStoreUser));
   }
@@ -159,11 +155,11 @@ export class UserService {
     return this.cacheStoreUser.user;
   }
 
-  checkIfAdmin(userId: number): Observable<boolean> {
+  public checkIfAdmin(userId: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.baseUrl}/check-admin/${userId}`)
   }
 
-  checkIfRoot(userId: number): Observable<boolean> {
+  public checkIfRoot(userId: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.baseUrl}/check-root/${userId}`)
   }
 
@@ -181,7 +177,6 @@ export class UserService {
       );
   }
 
-
   public removeVinylFromUserCollection(collectionId: number, vinylId: number): Observable<Collection | null> {
     return this.collectionService.removeVinylFromCollection(collectionId, vinylId)
       .pipe(
@@ -195,6 +190,5 @@ export class UserService {
         catchError(() => of(null))
       );
   }
-
 
 }

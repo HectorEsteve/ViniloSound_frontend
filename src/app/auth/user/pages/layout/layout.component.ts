@@ -4,4 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-layout-user',
   templateUrl: './layout.component.html',
 })
+
 export class LayoutUserComponent { }

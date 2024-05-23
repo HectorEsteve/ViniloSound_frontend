@@ -54,12 +54,14 @@ input:focus{
 .primary-button:active {
   transform: scale(0.9);
 }
+
 .alert-button:hover {
   animation: buttonNeonsEffectYellow 0.5s ease-in-out forwards alternate;
 }
 .alert-button:active {
   transform: scale(0.9);
 }
+
 .danger-button:hover {
   animation: buttonNeonsEffectRed 0.5s ease-in-out forwards alternate;
 }

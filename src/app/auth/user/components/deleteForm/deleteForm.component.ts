@@ -1,26 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
-import { ValidatorsService } from '../../../../shared/services/validators.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../../../service/user.service';
-import { User } from '../../../interfaces/user.interface';
-import { AuthRoutingModule } from '../../../auth-routing.module';
-import { Router } from '@angular/router';
+import { CommonModule }                                             from '@angular/common';
+import { Component, EventEmitter, OnInit, Output, inject }          from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators }  from '@angular/forms';
+import { Router }                                                   from '@angular/router';
 
+import { ValidatorsService }  from '../../../../shared/services/validators.service';
+import { UserService }        from '../../../service/user.service';
+import { User }               from '../../../interfaces/user.interface';
+import { AuthRoutingModule }  from '../../../auth-routing.module';
 
 @Component({
-  selector: 'app-delete-form',
-  standalone: true,
+  selector:     'app-delete-form',
+  standalone:   true,
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule
   ],
-  templateUrl: './deleteForm.component.html',
-  styleUrl: './deleteForm.component.css',
+  templateUrl:  './deleteForm.component.html',
+  styleUrl:     './deleteForm.component.css',
 })
-export class DeleteFormComponent implements OnInit {
 
+export class DeleteFormComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userService.cacheStoreUser.user;
   }
@@ -39,11 +39,11 @@ export class DeleteFormComponent implements OnInit {
     password: ['', [ Validators.required, Validators.minLength(4) ] ],
   })
 
-  isValidField( field: string ): boolean | null {
+  public isValidField( field: string ): boolean | null {
     return this.validatorsService.isValidField( this.myForm, field );
   }
 
-  getFieldError( field: string ): string | null {
+  public getFieldError( field: string ): string | null {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -89,7 +89,7 @@ export class DeleteFormComponent implements OnInit {
   @Output()
   public cancel = new EventEmitter <void> ();
 
-  onCancelDelete() {
+  public onCancelDelete() {
     this.cancel.emit();
   }
 

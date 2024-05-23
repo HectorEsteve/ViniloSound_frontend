@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmailValidatorService } from '../../../shared/services/validators/email-validator.service';
-import { ValidatorsService } from '../../../shared/services/validators.service';
+import { Router }                             from '@angular/router';
 
-import { UserService } from '../../service/user.service';
-import { Router } from '@angular/router';
-import { DataUser } from '../../interfaces/dataUser.interface';
+import { DataUser }               from '../../interfaces/dataUser.interface';
+import { EmailValidatorService }  from '../../../shared/services/validators/email-validator.service';
+import { UserService }            from '../../service/user.service';
+import { ValidatorsService }      from '../../../shared/services/validators.service';
 
 @Component({
   selector:     'app-register-page',
@@ -14,7 +14,6 @@ import { DataUser } from '../../interfaces/dataUser.interface';
 
 })
 export class RegisterPageComponent {
-
 
   private validatorsService = inject(ValidatorsService);
   private fb                = inject(FormBuilder);
@@ -38,11 +37,11 @@ export class RegisterPageComponent {
     ]
   });
 
-  isValidField( field: string ) {
+  public isValidField( field: string ) {
     return this.validatorsService.isValidField( this.myForm, field );
   }
 
-  getFieldError( field: string ): string | null {
+  public getFieldError( field: string ): string | null {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -68,7 +67,7 @@ export class RegisterPageComponent {
     }
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.myForm.markAllAsTouched();
 
     if ( this.myForm.invalid || !this.emailValidator.emailValidation ) {
@@ -86,7 +85,7 @@ export class RegisterPageComponent {
       })
   }
 
-  loginUser(email: string, password: string): void {
+  public loginUser(email: string, password: string): void {
     this.userService.login(email, password)
       .subscribe();
   }

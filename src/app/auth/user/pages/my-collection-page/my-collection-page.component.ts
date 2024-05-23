@@ -1,15 +1,16 @@
 import { Component, OnInit,  inject } from '@angular/core';
-import { UserService } from '../../../service/user.service';
-import { User } from '../../../interfaces/user.interface';
-import { Vinyl } from '../../../../music/interfaces/vinyl.interface';
-import { CollectionService } from '../../../../music/services/collection.service';
+
+import { CollectionService }  from '../../../../music/services/collection.service';
+import { User }               from '../../../interfaces/user.interface';
+import { UserService }        from '../../../service/user.service';
+import { Vinyl }              from '../../../../music/interfaces/vinyl.interface';
 
 @Component({
-  selector: 'app-my-collection-page',
-  templateUrl: './my-collection-page.component.html',
-  styleUrl: './my-collection-page.component.css',
-
+  selector:     'app-my-collection-page',
+  templateUrl:  './my-collection-page.component.html',
+  styleUrl:     './my-collection-page.component.css',
 })
+
 export class MyCollectionPageComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.userService.currentUser;
@@ -24,8 +25,8 @@ export class MyCollectionPageComponent implements OnInit{
   }
 
   public existsCollection: boolean = false;
-  public user! : User |null;
   public vinyls :Vinyl[] = [];
+  public user! : User |null;
 
   private userService            = inject(UserService);
   private collectionService      = inject(CollectionService);

@@ -2,6 +2,7 @@ h3{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color)) 1;
 }
+
 .form-container{
   width: 40vw;
   max-width: 500px;
@@ -11,13 +12,16 @@ h3{
   animation: ShadowNeonsEffectBlue 1s ease-in-out infinite alternate;
   background-color: var(--light-color);
 }
+
 input, textarea{
   background-color: white;
   border:var(--primary-color) solid 1px;
 }
+
 input:focus, textarea:focus{
   transform: scale(1.03);
 }
+
 .primary-button:hover {
   animation: buttonNeonsEffect 0.5s ease-in-out forwards alternate;
 }

@@ -1,23 +1,24 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CommonModule }               from '@angular/common';
+import { Component, OnInit, inject }  from '@angular/core';
+import { RouterModule }               from '@angular/router';
+
 import { UserService } from '../../service/user.service';
 
 interface Options{
   title: string;
   route: string;
-  icon:string;
+  icon: string;
 }
 
 @Component({
-  selector: 'app-user-menu',
-  standalone: true,
+  selector:     'app-user-menu',
+  standalone:   true,
   imports: [
     CommonModule,
     RouterModule
   ],
-  templateUrl: './user-menu.component.html',
-  styleUrl: './user-menu.component.css',
+  templateUrl:  './user-menu.component.html',
+  styleUrl:     './user-menu.component.css',
 })
 
 export class UserMenuComponent implements OnInit{
@@ -42,8 +43,8 @@ export class UserMenuComponent implements OnInit{
 
   public userService = inject(UserService);
 
-  public isAdmin:boolean = false;
-  public isRoot:boolean = false;
+  public isAdmin:boolean  = false;
+  public isRoot:boolean   = false;
 
   public menu : Options[]=[
     { title: 'Mi colección',    route: '/user/my-collection',      icon:'fas fa-folder' },
@@ -56,6 +57,4 @@ export class UserMenuComponent implements OnInit{
   public logOut () : void {
     this.userService.logout();
   }
-
-
  }

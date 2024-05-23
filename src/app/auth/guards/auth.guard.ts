@@ -1,9 +1,7 @@
-import { Injectable, inject } from '@angular/core';
-
 import { ActivatedRouteSnapshot, CanActivate, CanMatch, Route, UrlSegment, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from '../service/user.service';
-
+import { Injectable, inject } from '@angular/core';
+import { Observable }         from 'rxjs';
+import { UserService }        from '../service/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanMatch, CanActivate {
@@ -11,7 +9,7 @@ export class AuthGuard implements CanMatch, CanActivate {
   private userService       = inject(UserService);
   private router            = inject(Router);
 
-  private checkAuthStatus(): boolean { //tendria que ser una consulta de autentificacion por token
+  private checkAuthStatus(): boolean {
     if(!this.userService.currentUser){
       this.router.navigate(['/auth/login'])
       return false

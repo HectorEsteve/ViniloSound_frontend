@@ -1,27 +1,24 @@
-import { Component, OnChanges, OnInit, SimpleChanges, inject} from '@angular/core';
-import { UserService } from '../../../service/user.service';
-import { User } from '../../../interfaces/user.interface';
+import { Component, OnInit, inject} from '@angular/core';
 
+import { User }         from '../../../interfaces/user.interface';
+import { UserService }  from '../../../service/user.service';
 
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.css',
+  selector:     'app-profile-page',
+  templateUrl:  './profile-page.component.html',
+  styleUrl:      './profile-page.component.css',
 })
 export class ProfilePageComponent implements OnInit {
-
   ngOnInit(): void {
     this.user = this.userService.cacheStoreUser.user;
   }
 
-  private userService       = inject(UserService);
+  private userService = inject(UserService);
 
-  //showSuccessMessage: boolean = false;
   public user! : User | null;
   public showForm: boolean = false;
   public showEditForm: boolean = false;
   public showDeleteForm: boolean = false;
-
 
   public changeView(): void {
     this.showForm =!this.showForm;
@@ -33,23 +30,18 @@ export class ProfilePageComponent implements OnInit {
     this.showDeleteForm =!this.showDeleteForm;
   }
 
-  onCancelUpdateForm() {
+  public onCancelUpdateForm() {
     this.showForm = false;
     this.showEditForm = false;
   }
 
-  onCancelDeleteForm() {
+  public onCancelDeleteForm() {
     this.showForm = false;
     this.showDeleteForm = false;
   }
 
-
-  onUserUpdated(user: User): void {
+  public onUserUpdated(user: User): void {
     this.user = user;
   }
-
-
-
-
 }
 

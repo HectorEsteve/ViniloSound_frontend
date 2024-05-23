@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
 import { CanMatch, CanActivate, Router, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable,} from 'rxjs';
-import { UserService } from '../service/user.service';
+import { Injectable, inject } from '@angular/core';
+import { Observable,}         from 'rxjs';
+import { UserService }        from '../service/user.service';
 
 
 @Injectable({providedIn: 'root'})
@@ -10,8 +10,7 @@ export class PublicGuard implements CanMatch, CanActivate {
   private userService       = inject(UserService);
   private router            = inject(Router);
 
-
-  private checkAuthStatus(): boolean { //deveria ser una consulta de autentificacion por token
+  private checkAuthStatus(): boolean {
     if(this.userService.currentUser){
       this.router.navigate(['./'])
       return false

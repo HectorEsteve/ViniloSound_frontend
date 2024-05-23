@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
-import { User } from '../../../interfaces/user.interface';
-import { UserService } from '../../../service/user.service';
-import { CollectionService } from '../../../../music/services/collection.service';
-import { ValidatorsService } from '../../../../shared/services/validators.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataCollection } from '../../../interfaces/dataCollection.interface';
-import { AuthRoutingModule } from '../../../auth-routing.module';
+import { CommonModule }                                             from '@angular/common';
+import { Component, EventEmitter, OnInit, Output, inject }          from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators }  from '@angular/forms';
+
+import { AuthRoutingModule }  from '../../../auth-routing.module';
+import { CollectionService }  from '../../../../music/services/collection.service';
+import { DataCollection }     from '../../../interfaces/dataCollection.interface';
+import { User }               from '../../../interfaces/user.interface';
+import { UserService }        from '../../../service/user.service';
+import { ValidatorsService }  from '../../../../shared/services/validators.service';
 
 @Component({
   selector: 'app-create-collection-form',
@@ -20,6 +21,7 @@ import { AuthRoutingModule } from '../../../auth-routing.module';
   templateUrl: './createCollectionForm.component.html',
   styleUrl: './createCollectionForm.component.css',
 })
+
 export class CreateCollectionFormComponent implements OnInit {
   ngOnInit(): void {
 
@@ -47,11 +49,11 @@ export class CreateCollectionFormComponent implements OnInit {
     description:      ['', []],
   });
 
-  isValidField( field: string ) {
+  public isValidField( field: string ) {
     return this.validatorsService.isValidField( this.myForm, field );
   }
 
-  getFieldError( field: string ): string | null {
+  public getFieldError( field: string ): string | null {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -74,7 +76,7 @@ export class CreateCollectionFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.myForm.markAllAsTouched();
     if (this.myForm.invalid) {
         return;
@@ -93,7 +95,7 @@ export class CreateCollectionFormComponent implements OnInit {
   @Output()
   public userUpdated = new EventEmitter<User>();
 
-  onExitEdit() {
+  public onExitEdit() {
     this.exit.emit();
   }
 }

@@ -1,25 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { User } from '../../../interfaces/user.interface';
-import { UserService } from '../../../service/user.service';
-import { CollectionService } from '../../../../music/services/collection.service';
-import { ValidatorsService } from '../../../../shared/services/validators.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataCollection } from '../../../interfaces/dataCollection.interface';
-import { AuthRoutingModule } from '../../../auth-routing.module';
-import { Router } from '@angular/router';
+import { CommonModule }                                             from '@angular/common';
+import { Component, OnInit, inject }                                from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators }  from '@angular/forms';
+import { Router }                                                   from '@angular/router';
+
+import { AuthRoutingModule }  from '../../../auth-routing.module';
+import { DataCollection }     from '../../../interfaces/dataCollection.interface';
+import { User }               from '../../../interfaces/user.interface';
+import { UserService }        from '../../../service/user.service';
+import { ValidatorsService }  from '../../../../shared/services/validators.service';
 
 @Component({
-  selector: 'app-update-collection-form',
-  standalone: true,
+  selector:     'app-update-collection-form',
+  standalone:   true,
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule
   ],
-  templateUrl: './updateCollectionForm.component.html',
-  styleUrl: './updateCollectionForm.component.css',
+  templateUrl:  './updateCollectionForm.component.html',
+  styleUrl:     './updateCollectionForm.component.css',
 })
+
 export class UpdateCollectionFormComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userService.cacheStoreUser.user;
@@ -38,7 +39,6 @@ export class UpdateCollectionFormComponent implements OnInit {
   public errorMessage: string = '';
 
   private userService       = inject(UserService);
-  private collectionService = inject(CollectionService);
   private validatorsService = inject(ValidatorsService);
   private fb                = inject(FormBuilder);
   private router            = inject(Router);
@@ -49,11 +49,11 @@ export class UpdateCollectionFormComponent implements OnInit {
     password:   ['', [ Validators.required, Validators.minLength(4) ]],
   });
 
-  isValidField( form:FormGroup , field: string ) {
+  public isValidField( form:FormGroup , field: string ) {
     return this.validatorsService.isValidField( form, field );
   }
 
-  getFieldError( form:FormGroup , field: string ): string | null {
+  public getFieldError( form:FormGroup , field: string ): string | null {
     if ( !form.controls[field] ) return null;
     const errors = form.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -104,13 +104,12 @@ export class UpdateCollectionFormComponent implements OnInit {
         }
       })
   }
-  onSubmit() {
+  public onSubmit() {
     this.myForm.markAllAsTouched();
     if (this.myForm.invalid) {
         return;
     }
     this.updateCollection();
   }
-
 
 }

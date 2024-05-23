@@ -36,6 +36,7 @@ li:hover{
   transform: scale(1.05);
   border:white solid 1px;
 }
+
 a{
   transition: .5s;
   color: var(--primary-color)
@@ -44,6 +45,7 @@ a:hover{
   color: var(--light-color)
 
 }
+
 .icon{
   width: 25px;
 }

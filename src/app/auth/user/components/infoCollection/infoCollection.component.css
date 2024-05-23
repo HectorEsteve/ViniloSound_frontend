@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
 .title .overlay {
   position: absolute;
   z-index: 0;
@@ -21,11 +22,13 @@
   transition: background-color 0.3s;
   border-radius: 20px;
 }
+
 h2{
   position: relative;
   z-index: 1;
   font-weight: bolder;
 }
+
 h5{
   border-bottom: 2px solid;
   border-image: linear-gradient(to right,  var(--primary-color), var(--primary-color-light), var(--light-color)) 1;
@@ -51,6 +54,7 @@ h5{
 .danger-button:active {
   transform: scale(0.9);
 }
+
 .cards{
   margin: 0 -18px;
 }

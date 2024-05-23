@@ -1,11 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { AuthRoutingModule } from '../../../auth-routing.module';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ValidatorsService } from '../../../../shared/services/validators.service';
-import { UserService } from '../../../service/user.service';
-import { Router } from '@angular/router';
-import { User } from '../../../interfaces/user.interface';
+import { CommonModule }                                             from '@angular/common';
+import { Component, OnInit, inject }                                from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators }  from '@angular/forms';
+import { Router }                                                   from '@angular/router';
+
+import { AuthRoutingModule }  from '../../../auth-routing.module';
+import { User }               from '../../../interfaces/user.interface';
+import { UserService }        from '../../../service/user.service';
+import { ValidatorsService }  from '../../../../shared/services/validators.service';
 
 @Component({
   selector: 'app-delete-collection-form',
@@ -18,8 +19,8 @@ import { User } from '../../../interfaces/user.interface';
   templateUrl: './deleteCollectionForm.component.html',
   styleUrl: './deleteCollectionForm.component.css',
 })
-export class DeleteCollectionFormComponent implements OnInit {
 
+export class DeleteCollectionFormComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userService.currentUser!;
   }
@@ -33,17 +34,16 @@ export class DeleteCollectionFormComponent implements OnInit {
   public formError: boolean = false;
   public errorMessage: string = '';
 
-
   public myForm: FormGroup = this.fb.group({
     email:    ['', [ Validators.required,Validators.pattern( this.validatorsService.emailPattern )] ],
     password: ['', [ Validators.required, Validators.minLength(4) ] ],
   })
 
-  isValidField( field: string ): boolean | null {
+  public isValidField( field: string ): boolean | null {
     return this.validatorsService.isValidField( this.myForm, field );
   }
 
-  getFieldError( field: string ): string | null {
+  public getFieldError( field: string ): string | null {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -84,6 +84,5 @@ export class DeleteCollectionFormComponent implements OnInit {
     }
     this.deleteCollection();
   }
-
 
 }

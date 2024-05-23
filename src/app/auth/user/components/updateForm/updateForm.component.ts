@@ -1,25 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
-import { User } from '../../../interfaces/user.interface';
-import { ValidatorsService } from '../../../../shared/services/validators.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EmailValidatorService } from '../../../../shared/services/validators/email-validator.service';
-import { UserService } from '../../../service/user.service';
-import { of } from 'rxjs';
-import { AuthRoutingModule } from '../../../auth-routing.module';
-import { DataUser } from '../../../interfaces/dataUser.interface';
+import { CommonModule }                                             from '@angular/common';
+import { Component, EventEmitter, OnInit, Output, inject }          from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators }  from '@angular/forms';
+import { of }                                                       from 'rxjs';
+
+import { AuthRoutingModule }      from '../../../auth-routing.module';
+import { DataUser }               from '../../../interfaces/dataUser.interface';
+import { EmailValidatorService }  from '../../../../shared/services/validators/email-validator.service';
+import { User }                   from '../../../interfaces/user.interface';
+import { UserService }            from '../../../service/user.service';
+import { ValidatorsService }      from '../../../../shared/services/validators.service';
 
 @Component({
-  selector: 'app-update-form',
-  standalone: true,
+  selector:     'app-update-form',
+  standalone:   true,
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule
   ],
-  templateUrl: './updateForm.component.html',
-  styleUrl: './updateForm.component.css',
+  templateUrl:  './updateForm.component.html',
+  styleUrl:     './updateForm.component.css',
 })
+
 export class UpdateFormComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.userService.cacheStoreUser.user;
@@ -70,11 +72,11 @@ export class UpdateFormComponent implements OnInit{
     ]
   })
 
-  isValidField( form:FormGroup , field: string ) {
+  public isValidField( form:FormGroup , field: string ) {
     return this.validatorsService.isValidField( form, field );
   }
 
-  getFieldError( form:FormGroup , field: string ): string | null {
+  public getFieldError( form:FormGroup , field: string ): string | null {
     if ( !form.controls[field] ) return null;
     const errors = form.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -162,7 +164,7 @@ export class UpdateFormComponent implements OnInit{
   @Output()
   public userUpdated = new EventEmitter<User>();
 
-  onCancelEdit() {
+  public onCancelEdit() {
     this.cancel.emit();
   }
 }

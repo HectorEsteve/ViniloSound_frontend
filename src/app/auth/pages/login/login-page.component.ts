@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ValidatorsService } from '../../../shared/services/validators.service';
-import { UserService } from '../../service/user.service';
-import { Router } from '@angular/router';
+import { Router }                             from '@angular/router';
+
+import { ValidatorsService }  from '../../../shared/services/validators.service';
+import { UserService }        from '../../service/user.service';
 
 @Component({
   selector:     'app-login',
@@ -25,11 +26,11 @@ export class LoginPageComponent {
     password: ['', [ Validators.required, Validators.minLength(4) ] ],
   })
 
-  isValidField( field: string ): boolean | null {
+  public isValidField( field: string ): boolean | null {
     return this.validatorsService.isValidField( this.myForm, field );
   }
 
-  getFieldError( field: string ): string | null {
+  public getFieldError( field: string ): string | null {
     if ( !this.myForm.controls[field] ) return null;
     const errors = this.myForm.controls[field].errors || {};
     for (const key of Object.keys(errors) ) {
@@ -45,7 +46,7 @@ export class LoginPageComponent {
     return null;
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       return;
@@ -68,6 +69,4 @@ export class LoginPageComponent {
         },
       );
   }
-
-
 }

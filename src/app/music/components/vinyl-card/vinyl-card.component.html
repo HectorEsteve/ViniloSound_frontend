@@ -80,7 +80,7 @@
               <div class="row mt-1">
                 <div class="col-md-6 offset-md-6">
                   <button class="btn danger-button w-100 delete"
-                          (click)="removeVinylFromCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()"
+                          (click)="openConfirmDialog(user!.collection!.id, vinyl.id); $event.stopPropagation()"
                   >
                     Quitar de la colección
                   </button>
@@ -89,10 +89,16 @@
             </div>
           </div>
 
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-confirm-dialog *ngIf="isConfirmDialogOpen"
+                    [message]="confirmDialogMessage"
+                    (confirm)="handleConfirm($event)">
+</app-confirm-dialog>
 
 

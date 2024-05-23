@@ -7,6 +7,7 @@ import { MaxLengthStringPipe } from '../../pipe/max-length-string.pipe';
 import { User } from '../../../auth/interfaces/user.interface';
 import { UserService } from '../../../auth/service/user.service';
 import { Collection } from '../../interfaces/collection-interface';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector:     'app-vinyl-card',
@@ -14,7 +15,9 @@ import { Collection } from '../../interfaces/collection-interface';
   imports: [
     CommonModule,
     RouterModule,
-    MaxLengthStringPipe
+    MaxLengthStringPipe,
+    ConfirmDialogComponent
+
   ],
   templateUrl:  './vinyl-card.component.html',
   styleUrl:     './vinyl-card.component.css',
@@ -49,6 +52,10 @@ export class VinylCardComponent implements OnInit {
   public vinylsCollection: Vinyl [] | null = null;
   public myCollection: boolean = false;
 
+  public isConfirmDialogOpen = false;
+  public confirmDialogMessage = '';
+  private currentVinylId!: number;
+
 
   @Input()
   public vinyls: Vinyl[] = [];
@@ -64,11 +71,22 @@ export class VinylCardComponent implements OnInit {
         this.vinylsCollection!.push(this.vinyls.find(vinyl => vinyl.id === vinylId)!);
       });
   }
-  public removeVinylFromCollection(userId: number, vinylId: number): void {
-    this.userService.removeVinylFromUserCollection(userId, vinylId)
-      .subscribe(() => {
-        this.vinylsCollection = this.vinylsCollection!.filter(vinyl => vinyl.id !== vinylId);
-      });
+  public openConfirmDialog(userId: number, vinylId: number): void {
+    this.confirmDialogMessage = '¿Estás seguro de que quieres eliminar este vinilo de tu colección?';
+    this.isConfirmDialogOpen = true;
+    this.currentVinylId = vinylId;
   }
+
+  public handleConfirm(confirmed: boolean): void {
+    if (confirmed) {
+      this.userService.removeVinylFromUserCollection(this.user!.collection!.id, this.currentVinylId)
+        .subscribe(() => {
+          this.vinylsCollection = this.vinylsCollection!.filter(vinyl => vinyl.id !== this.currentVinylId);
+          this.vinyls = this.vinyls.filter(vinyl => vinyl.id !== this.currentVinylId);
+        });
+    }
+    this.isConfirmDialogOpen = false;
+  }
+
 
  }

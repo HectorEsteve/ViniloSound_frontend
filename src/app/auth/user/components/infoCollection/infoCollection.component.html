@@ -63,13 +63,15 @@
   <h5 class="primary-color">Vinilos</h5>
 
   <div
-  *ngIf="user!.collection?.number_vinyls === 0 ; else vinylCard"
-  class="alert alert-warning text-center my-4 mx-2 custom-alert"
->
+    *ngIf="user!.collection?.number_vinyls === 0 ; else vinylCard"
+    class="alert alert-warning text-center my-4 mx-2 custom-alert"
+  >
   No hay vinilos que mostrar
-</div>
+  </div>
 
-<ng-template #vinylCard>
-  <app-vinyl-card [vinyls]="vinyls"/>
-</ng-template>
+  <ng-template #vinylCard>
+    <div  class="cards">
+      <app-vinyl-card [vinyls]="vinyls" />
+    </div>
+  </ng-template>
 </div>

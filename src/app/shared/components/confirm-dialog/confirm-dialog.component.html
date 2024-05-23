@@ -1,0 +1,18 @@
+
+<div class="overlay">
+  <div class="container p-3 text-center">
+    <h6>{{ message }}</h6>
+    <div class="mt-2 d-flex row justify-content-center">
+      <button (click)="onConfirm()"
+              class="btn danger-button mx-3 my-1"
+      >
+        Aceptar
+      </button>
+      <button (click)="onCancel()"
+              class="btn primary-button mx-3 my-1"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

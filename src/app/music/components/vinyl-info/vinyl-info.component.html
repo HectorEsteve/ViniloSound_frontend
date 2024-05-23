@@ -28,14 +28,14 @@
             </div>
             <ng-template #included>
               <span class="btn danger-button w-100 mb-3"
-                    (click)=" $event.stopPropagation()">
+                    (click)="openConfirmDialog(vinyl.id); $event.stopPropagation()">
                 Ya está en tu colección
               </span>
             </ng-template>
           </div>
             <div *ngIf="myCollection">
                   <button class="btn danger-button w-100 delete mb-3"
-                          (click)="removeVinylFromCollection(user!.collection!.id, vinyl.id); $event.stopPropagation()"
+                          (click)="openConfirmDialog(vinyl.id); $event.stopPropagation()">
                   >
                     Quitar de la colección
                   </button>
@@ -103,4 +103,9 @@
         </span>
       </div>
 </div>
+
+<app-confirm-dialog *ngIf="isConfirmDialogOpen"
+                    [message]="confirmDialogMessage"
+                    (confirm)="handleConfirm($event)">
+</app-confirm-dialog>
 

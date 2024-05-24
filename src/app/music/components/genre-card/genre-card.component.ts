@@ -25,4 +25,5 @@ export class GenreCardComponent implements OnInit {
 
   @Input()
   public genres: Genre[] = [];
+
 }

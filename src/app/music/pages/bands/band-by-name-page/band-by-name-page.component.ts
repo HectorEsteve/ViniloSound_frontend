@@ -51,4 +51,4 @@ export class BandByNamePageComponent implements OnInit {
         this.isLoading = false;
       });
   }
- }
+}

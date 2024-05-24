@@ -1,7 +1,26 @@
 <body>
+
+  <div  *ngIf="introMessage" class="welcome d-flex flex-column align-items-center justify-content-center animate__animated animate__fadeOut animate__delay-3s"
+        (click)= closeMessage()
+  >
+    <div class="row align-items-center">
+      <div class="col-md-5 text-md-start">
+        <img src="../assets/img/logo.png" class="animate__animated animate__bounceIn align-self-start">
+      </div>
+      <div class="col-md-7">
+        <div class=" animate__animated animate__backInLeft">
+          <h1 class="mb-0 neon-blue neon-font ">ViniloSound</h1>
+        </div>
+        <div class=" animate__animated animate__backInRight">
+          <h5 class="neon-red neon-font mt-2 text-end">Play with us !!!</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <app-header/>
-  <router-outlet />
-  <app-footer/>
+  <router-outlet *ngIf="!introMessage"/>
+  <app-footer *ngIf="!introMessage"/>
 </body>
 
 

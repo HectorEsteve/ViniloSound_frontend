@@ -28,5 +28,6 @@ export class SongCardsComponent implements OnInit{
 
   @Input()
   public songs: Song[] = [];
+
 }
 

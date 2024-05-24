@@ -1,46 +1,49 @@
-import { CommonModule }                                     from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output }   from '@angular/core';
-import { Subject, debounceTime }                            from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector:     'search-box',
-  standalone:   true,
-  imports: [
-    CommonModule,
-  ],
-  templateUrl:  './searchBox.component.html',
-  styleUrl:     './searchBox.component.css',
+  selector: 'search-box',
+  standalone: true,
+  templateUrl: './searchBox.component.html',
+  styleUrls: ['./searchBox.component.css'],
 })
+export class SearchBoxComponent implements OnDestroy {
+  private debouncer: Subject<string> = new Subject();
+  private destroy$: Subject<void> = new Subject<void>();
+  private skipNextDebounce: boolean = false;
 
-export class SearchBoxComponent implements OnInit{
+  @Input() initialValue: string = '';
+  @Input() placeholder: string = '';
+  @Output() onValue = new EventEmitter<string>();
+  @Output() onDebounce = new EventEmitter<string>();
 
-  ngOnInit(): void {
+  constructor() {
     this.debouncer
       .pipe(
-        debounceTime(1500)
+        debounceTime(1500),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
       )
-      .subscribe(value =>{
-        this.onDebounce.emit(value);
-      })
+      .subscribe(value => {
+        if (!this.skipNextDebounce) {
+          this.onDebounce.emit(value);
+        }
+        this.skipNextDebounce = false;
+      });
   }
 
-  private debouncer: Subject<string> = new Subject();
-
-  @Input()
-  public initialValue: String ='' ;
-  @Input()
-  public placeholder: String ='' ;
-
-  @Output()
-  public onValue = new EventEmitter <string> ();
-  @Output()
-  public onDebounce = new EventEmitter <string> ();
-
-  public emitValue (value:string):void{
+  emitValue(value: string): void {
     this.onValue.emit(value);
+    this.skipNextDebounce = true;
   }
 
-  public onKeyPress(searchTerm:string):void{
+  onKeyPress(searchTerm: string): void {
     this.debouncer.next(searchTerm);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

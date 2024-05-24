@@ -20,4 +20,5 @@ export class HomeComponent {
     public isHoveredSear: boolean = false;
     public isHoveredJoin: boolean = false;
 
+
 }

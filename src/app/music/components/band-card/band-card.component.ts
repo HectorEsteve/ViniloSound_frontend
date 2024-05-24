@@ -29,4 +29,5 @@ export class BandCardComponent implements OnInit {
 
   @Input()
   public bands: Band[] = [];
+
  }

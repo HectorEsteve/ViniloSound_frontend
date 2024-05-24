@@ -29,15 +29,15 @@ export class BandInfoComponent implements OnInit{
   ngOnInit(): void {
     this.tempRout = environments.tempRoutBand;
 
-    this.songs=this.band.songs;
-
     for (const song of this.band.songs){
+      this.songs.push(song);
       const existingGenre = this.genres.find(existingGenre => existingGenre.id === song.genre.id);
       if (!existingGenre) {
         this.genres.push(song.genre)
       }
     }
   }
+
   public tempRout:string='';
 
   @Input()

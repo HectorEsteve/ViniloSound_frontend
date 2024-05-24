@@ -16,7 +16,8 @@ import { RegisterPageComponent }    from './pages/register/register-page.compone
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
 })
 export class AuthModule {}

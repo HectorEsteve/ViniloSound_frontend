@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ComingSoonPageComponent } from '../../shared/pages/coming-soon-page/coming-soon-page.component';
+import { RootLayoutPageComponent } from './pages/root-layout-page/root-layout-page.component';
+import { RootUsersPageComponent } from './pages/root-users-page/root-users-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ComingSoonPageComponent,
+    component: RootLayoutPageComponent,
     children: [
-      { path: 'default', component: ComingSoonPageComponent},
-      { path: '', redirectTo: 'default', pathMatch: 'full' },
-      { path: '**', redirectTo: 'default' },
+      { path: 'users', component: RootUsersPageComponent},
+
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: '**', redirectTo: 'users' },
     ]
   }
 ];

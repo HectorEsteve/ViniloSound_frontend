@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient }                           from '@angular/common/http';
+import { Injectable, inject }                   from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 
-import { Collection } from '../../music/interfaces/collection-interface';
-import { CollectionService } from '../../music/services/collection.service';
-import { DataCollection } from '../interfaces/dataCollection.interface';
-import { DataUser } from '../interfaces/dataUser.interface';
-import { environments } from '../../../environments/environments';
-import { User } from '../interfaces/user.interface';
-import { UserCacheStore } from '../interfaces/user-cache-store.interface';
+import { Collection }         from '../../music/interfaces/collection-interface';
+import { CollectionService }  from '../../music/services/collection.service';
+import { DataCollection }     from '../interfaces/dataCollection.interface';
+import { DataUser }           from '../interfaces/dataUser.interface';
+import { environments }       from '../../../environments/environments';
+import { User }               from '../interfaces/user.interface';
+import { UserCacheStore }     from '../interfaces/user-cache-store.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +68,16 @@ export class UserService {
       );
   }
 
+  public searchUsersByName(term: string): Observable<User[]> {
+    return this.getUsers()
+      .pipe(
+        map((response: { message: string, users: User[] }) => {
+          return response.users.filter(user => user.name.toLowerCase().includes(term.toLowerCase()));
+        }),
+        catchError(() => of ([])),
+      );
+  }
+
   public addCollection(collection: DataCollection, user: User): Observable<User> {
     return this.collectionService.createCollection(collection)
         .pipe(
@@ -120,8 +130,14 @@ export class UserService {
       );
   }
 
-  public logout() {
-    this.resetFromLocalStorage();
+  public logout(userId: number): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseUrl}/logout/${userId}`, {})
+      .pipe(
+        tap(() => {
+          this.resetFromLocalStorage();
+        }),
+        catchError(() => of({ message: '' })),
+      );
   }
 
   public checkAuth(email: string, password: string): Observable<boolean> {
@@ -191,4 +207,13 @@ export class UserService {
       );
   }
 
+  public ascendToAdmin(userId: number): Observable<any> {
+    const url = `${this.baseUrl}/users/${userId}/ascend-to-admin`;
+    return this.http.post(url, null);
+  }
+
+  public degradeToUser(userId: number): Observable<any> {
+    const url = `${this.baseUrl}/users/${userId}/degrade-to-user`;
+    return this.http.put(url, null);
+  }
 }

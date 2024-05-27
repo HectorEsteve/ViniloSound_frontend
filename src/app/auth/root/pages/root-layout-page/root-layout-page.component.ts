@@ -4,4 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-root-layout-page',
   templateUrl: './root-layout-page.component.html',
 })
+
 export class RootLayoutPageComponent { }

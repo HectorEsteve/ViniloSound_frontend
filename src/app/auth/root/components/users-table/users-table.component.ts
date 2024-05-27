@@ -22,17 +22,24 @@ export class UsersTableComponent implements OnChanges, OnInit {
   public showConfirmDialog = false;
   public confirmMessage = '';
   private userIdToDelete: number | null = null;
+  public connectedUsersCount = 0;
 
   private userService = inject( UserService );
 
   ngOnInit(): void {
     this.filterUsers();
+    this.updateConnectedUsersCount();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['users'] && changes['users'].currentValue) {
       this.filterUsers();
+      this.updateConnectedUsersCount();
     }
+  }
+
+  private updateConnectedUsersCount(): void {
+    this.connectedUsersCount = this.filteredUsers.filter(user => user.connected).length;
   }
 
   private filterUsers(): void {

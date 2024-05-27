@@ -1,0 +1,95 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="toggleAddBandForm()">Añadir Banda</button>
+
+  <div *ngIf="showAddBandForm" class="mb-4">
+    <input [(ngModel)]="newBand.name" class="form-control mb-2" placeholder="Nombre de la banda" required [ngClass]="{'is-invalid': newBand.name.trim() === ''}" />
+    <input [(ngModel)]="newBand.members_count" class="form-control mb-2" placeholder="Número de miembros" required type="number" />
+    <textarea [(ngModel)]="newBand.members" class="form-control mb-2" placeholder="Miembros de la banda"></textarea>
+    <input [(ngModel)]="newBand.formation_year" class="form-control mb-2" placeholder="Año de formación" required type="number" />
+    <input [(ngModel)]="newBand.country" class="form-control mb-2" placeholder="País de origen" required />
+    <button class="btn btn-success btn-sm" (click)="addBand()" [disabled]="!newBand.name">Guardar</button>
+    <button class="btn btn-secondary btn-sm mx-2" (click)="showAddBandForm = false">Cancelar</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Año</th>
+          <th>País</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let band of filteredBands">
+          <tr>
+            <td>{{ band.id }}</td>
+            <td *ngIf="!band.editing">{{ band.name }}</td>
+            <td *ngIf="band.editing">
+              <input [(ngModel)]="band.name" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': band.name.trim() === ''}" />
+            </td>
+            <td *ngIf="!band.editing">{{ band.formation_year }}</td>
+            <td *ngIf="band.editing">
+              <input [(ngModel)]="band.formation_year" class="form-control form-control-sm mb-2" required type="number" />
+            </td>
+            <td *ngIf="!band.editing">{{ band.country }}</td>
+            <td>
+              <button *ngIf="!band.editing" class="btn btn-info btn-sm" (click)="toggleMoreInfo(band)">Ver Más</button>
+              <button *ngIf="!band.editing" class="btn btn-warning btn-sm mx-2" (click)="editBand(band)">Editar</button>
+              <button *ngIf="band.editing" class="btn btn-success btn-sm" (click)="updateBand(band)" [disabled]="!band.name">Guardar</button>
+              <button *ngIf="band.editing" class="btn btn-secondary btn-sm mx-2" (click)="cancelEdit(band)">Cancelar</button>
+              <button class="btn btn-danger btn-sm" (click)="confirmDelete(band.id)">Eliminar</button>
+            </td>
+          </tr>
+          <tr *ngIf="band.editing">
+            <td colspan="4">
+              <input [(ngModel)]="band.members_count" class="form-control mb-2" placeholder="Número de miembros" required type="number" />
+              <textarea [(ngModel)]="band.members" class="form-control mb-2" placeholder="Miembros de la banda"></textarea>
+              <input [(ngModel)]="band.country" class="form-control mb-2" placeholder="País de origen" required />
+            </td>
+          </tr>
+          <tr *ngIf="band.showMoreInfo">
+            <td colspan="4">
+              <p><strong>Número de Miembros:</strong> {{ band.members_count }}</p>
+              <p><strong>Miembros:</strong> {{ band.members }}</p>
+              <div *ngIf="band.songs && band.songs.length > 0">
+                <strong>Canciones:</strong>
+                <div class="table-responsive">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Duración (seg)</th>
+                        <th>Género</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let song of band.songs">
+                        <td>{{ song.id }}</td>
+                        <td>{{ song.name }}</td>
+                        <td>{{ song.duration }}</td>
+                        <td>{{ song.genre.name }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div *ngIf="band.songs && band.songs.length === 0">
+                <p>No hay canciones disponibles para esta banda.</p>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+  ></app-confirm-dialog>
+</div>

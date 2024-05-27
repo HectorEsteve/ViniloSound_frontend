@@ -29,4 +29,34 @@ export class GenreService {
         map((response: { message: string, genre: Genre }) => response.genre)
       );
   }
+
+  public createGenre(genre: Genre): Observable<Genre> {
+    return this.http.post<{ message: string, genre: Genre }>(`${this.baseUrl}/genres`, genre)
+      .pipe(
+        map((response: { message: string, genre: Genre }) => response.genre)
+      );
+  }
+
+  public updateGenre(id: number, genre: Genre): Observable<Genre> {
+    return this.http.put<{ message: string, genre: Genre }>(`${this.baseUrl}/genres/${id}`, genre)
+      .pipe(
+        map((response: { message: string, genre: Genre }) => response.genre)
+      );
+  }
+
+  public deleteGenre(id: number): Observable<Genre> {
+    return this.http.delete<{ message: string, genre: Genre }>(`${this.baseUrl}/genres/${id}`)
+      .pipe(
+        map((response: { message: string, genre: Genre }) => response.genre)
+      );
+  }
+
+  public searchGenreByName(term:string):Observable<Genre[]>{
+    return this.getGenres()
+    .pipe(
+      map((genres: Genre[]) => {
+        return genres.filter(genres => genres.name.toLowerCase().includes(term.toLowerCase()));
+      })
+    )
+  }
 }

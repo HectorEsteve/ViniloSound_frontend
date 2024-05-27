@@ -4,11 +4,13 @@ export interface SearchFormat {
 }
 
 export interface Format {
-  id:            number;
-  name:          string;
-  diameter:      number;
-  rpm:           string;
-  duration_side: number;
-  created_at:    Date;
-  updated_at:    Date;
+  id:             number;
+  name:           string;
+  diameter:       number;
+  rpm:            string;
+  duration_side:  number;
+  created_at?:    Date;
+  updated_at?:    Date;
+  editing?:       boolean;
+  showMoreInfo?:  boolean;
 }

@@ -2,7 +2,12 @@
   display: block;
 }
 
+a{
+  color: black;
+}
+
 li{
+  color: black;
   margin-right: 3%;
   padding-bottom: 5px;
   font-size: 1.3em;
@@ -23,3 +28,4 @@ li:active{
 .active {
   color: var(--primary-color);
 }
+

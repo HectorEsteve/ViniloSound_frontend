@@ -4,10 +4,12 @@ export interface SearchGenre {
 }
 
 export interface Genre {
-  id:          number;
-  name:        string;
-  history:     string;
-  description: string;
-  created_at:  Date;
-  updated_at:  Date;
+  id:             number;
+  name:           string;
+  history:        string;
+  description:    string;
+  created_at?:    Date;
+  updated_at?:    Date;
+  editing?:       boolean;
+  showMoreInfo?:  boolean;
 }

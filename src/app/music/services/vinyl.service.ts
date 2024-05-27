@@ -119,4 +119,37 @@ export class VinylService {
       })
     );
   }
+
+  public createVinyl(vinyl: Vinyl): Observable<Vinyl> {
+    return this.http.post<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls`, vinyl)
+      .pipe(
+        map(response => response.vinyl),
+        catchError(error => {
+          console.error('Error adding vinyl:', error);
+          return of({} as Vinyl);
+        })
+      );
+  }
+
+  public updateVinyl(id: number, vinyl: Vinyl): Observable<Vinyl> {
+    return this.http.put<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls/${id}`, vinyl)
+      .pipe(
+        map(response => response.vinyl),
+        catchError(error => {
+          console.error('Error updating vinyl:', error);
+          return of({} as Vinyl);
+        })
+      );
+  }
+
+  public deleteVinyl(id: number): Observable<Vinyl> {
+    return this.http.delete<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls/${id}`)
+      .pipe(
+        map(response => response.vinyl),
+        catchError(error => {
+          console.error('Error deleting vinyl:', error);
+          return of({} as Vinyl);
+        })
+      );
+  }
 }

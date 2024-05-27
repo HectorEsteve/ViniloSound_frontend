@@ -12,9 +12,11 @@ export interface Band {
   members:        string;
   formation_year: number;
   country:        string;
-  created_at:     Date;
-  updated_at:     Date;
+  created_at?:     Date;
+  updated_at?:     Date;
   songs:          Song[];
+  editing?:       boolean;
+  showMoreInfo?:  boolean;
 }
 
 

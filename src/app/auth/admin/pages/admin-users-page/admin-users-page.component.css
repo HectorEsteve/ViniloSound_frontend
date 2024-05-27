@@ -1,0 +1,23 @@
+.search-head{
+  border-radius: 20px;
+  border:var(--primary-color) solid 3px;
+  background-color: var(--light-color);
+  width: 100%;
+}
+
+search-box{
+  width: 60%;
+  min-width: 200px;
+}
+
+.search{
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to right,  var(--light-color), var(--primary-color), var(--light-color)) 1;
+}
+
+.alert{
+  background-color: var(--light-color);
+  animation: ShadowNeonsEffectYellow 2s ease-in-out infinite alternate;
+  border-radius: 20px;
+  border:rgb(136, 136, 1) solid 3px;
+}

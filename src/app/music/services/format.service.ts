@@ -14,16 +14,37 @@ export class FormatService {
 
   private baseUrl= environments.baseUrl;
 
-  public getFormats():Observable<Format[]> {
+  public getFormats(): Observable<Format[]> {
     return this.http.get<{ message: string, formats: Format[] }>(`${this.baseUrl}/formats`)
-    .pipe(
-      map((response: { message: string, formats: Format[] })  => response.formats),
-      catchError(() => of ([])),
-    );
+      .pipe(
+        map((response: { message: string, formats: Format[] }) => response.formats),
+        catchError(() => of([])),
+      );
   }
 
   public getFormatById(id: number): Observable<Format> {
     return this.http.get<{ message: string, format: Format }>(`${this.baseUrl}/formats/${id}`)
+      .pipe(
+        map((response: { message: string, format: Format }) => response.format)
+      );
+  }
+
+  public createFormat(format: Format): Observable<Format> {
+    return this.http.post<{ message: string, format: Format }>(`${this.baseUrl}/formats`, format)
+      .pipe(
+        map((response: { message: string, format: Format }) => response.format)
+      );
+  }
+
+  public updateFormat(id: number, format: Format): Observable<Format> {
+    return this.http.put<{ message: string, format: Format }>(`${this.baseUrl}/formats/${id}`, format)
+      .pipe(
+        map((response: { message: string, format: Format }) => response.format)
+      );
+  }
+
+  public deleteFormat(id: number): Observable<Format> {
+    return this.http.delete<{ message: string, format: Format }>(`${this.baseUrl}/formats/${id}`)
       .pipe(
         map((response: { message: string, format: Format }) => response.format)
       );

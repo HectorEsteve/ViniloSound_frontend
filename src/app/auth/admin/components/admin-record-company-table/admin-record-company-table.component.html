@@ -1,0 +1,69 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="toggleAddRecordCompanyForm()">Añadir Compañía Discográfica</button>
+
+  <div *ngIf="showAddRecordCompanyForm" class="mb-4">
+    <input [(ngModel)]="newRecordCompany.name" class="form-control mb-2" placeholder="Nombre de la compañía" required [ngClass]="{'is-invalid': newRecordCompany.name.trim() === ''}" />
+    <input [(ngModel)]="newRecordCompany.logo_url" class="form-control mb-2" placeholder="URL del logo" />
+    <input [(ngModel)]="newRecordCompany.website_url" class="form-control mb-2" placeholder="URL del sitio web" />
+    <div class="form-check mb-2">
+      <input [(ngModel)]="newRecordCompany.active" class="form-check-input" type="checkbox" id="newRecordCompanyActive" />
+      <label class="form-check-label" for="newRecordCompanyActive">
+        Activo
+      </label>
+    </div>
+    <button class="btn btn-success btn-sm" (click)="addRecordCompany()" [disabled]="!newRecordCompany.name">Guardar</button>
+    <button class="btn btn-secondary btn-sm mx-2" (click)="showAddRecordCompanyForm = false">Cancelar</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>En activo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let recordCompany of filteredRecordCompanies">
+          <tr>
+            <td>{{ recordCompany.id }}</td>
+            <td *ngIf="!recordCompany.editing">{{ recordCompany.name }}</td>
+            <td *ngIf="recordCompany.editing">
+              <input [(ngModel)]="recordCompany.name" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': recordCompany.name.trim() === ''}" />
+              <input [(ngModel)]="recordCompany.logo_url" class="form-control form-control-sm mb-2" placeholder="URL del logo" />
+              <input [(ngModel)]="recordCompany.website_url" class="form-control form-control-sm mb-2" placeholder="URL del sitio web" />
+              <div class="form-check mb-2">
+                <input [(ngModel)]="recordCompany.active" class="form-check-input" type="checkbox" id="recordCompanyActive{{ recordCompany.id }}" />
+                <label class="form-check-label" for="recordCompanyActive{{ recordCompany.id }}">
+                  Activo
+                </label>
+              </div>
+            </td>
+            <td *ngIf="!recordCompany.editing">{{ recordCompany.active ? 'Sí' : 'No' }}</td>
+            <td>
+              <button *ngIf="!recordCompany.editing" class="btn btn-info btn-sm" (click)="toggleMoreInfo(recordCompany)">Ver Más</button>
+              <button *ngIf="!recordCompany.editing" class="btn btn-warning btn-sm mx-2" (click)="editRecordCompany(recordCompany)">Editar</button>
+              <button *ngIf="recordCompany.editing" class="btn btn-success btn-sm" (click)="updateRecordCompany(recordCompany)" [disabled]="!recordCompany.name">Guardar</button>
+              <button *ngIf="recordCompany.editing" class="btn btn-secondary btn-sm mx-2" (click)="cancelEdit(recordCompany)">Cancelar</button>
+              <button class="btn btn-danger btn-sm" (click)="confirmDelete(recordCompany.id)">Eliminar</button>
+            </td>
+          </tr>
+          <tr *ngIf="recordCompany.showMoreInfo">
+            <td colspan="4">
+              <p><strong>URL del Logo:</strong> {{ recordCompany.logo_url }}</p>
+              <p><strong>Sitio Web:</strong> <a [href]="recordCompany.website_url" target="_blank">{{ recordCompany.website_url }}</a></p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+  ></app-confirm-dialog>
+</div>

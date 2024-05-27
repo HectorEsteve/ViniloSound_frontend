@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+li{
+  margin-right: 3%;
+  padding-bottom: 5px;
+  font-size: 1.3em;
+  font-weight: bolder;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  border: var(--primary-color) 2px solid;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+li:active{
+  transform: scale(0.9);
+}
+
+.active {
+  color: var(--primary-color);
+}
+
+a{
+  color: black;
+}

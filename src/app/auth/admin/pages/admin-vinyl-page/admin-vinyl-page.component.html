@@ -1,0 +1,36 @@
+<div class="search-head p-2">
+
+  <h5 class="primary-color text-center">Busqueda: Usuarios por nombre</h5>
+  <div class="d-flex justify-content-center align-items-center search pb-3">
+    <search-box
+      placeholder="Buscar por nombre"
+      [initialValue]="initialValue"
+      (onValue)="searchByName($event)"
+      (onDebounce)="searchByName($event)"
+    />
+    <button
+      class="btn primary-button mx-2"
+      (click)="clear();"
+    >
+      Limpiar
+    </button>
+  </div>
+
+  <h5 class="primary-color text-center mt-2">Resultados</h5><div class="row my-3">
+  <div class="col">
+    <div
+      *ngIf="vinyls.length === 0 && isLoading == false && initialValue !==''; else userTable"
+      class="alert alert-warning text-center mx-2 custom-alert"
+    >
+      No hay usuarios que mostrar
+    </div>
+
+    <ng-template #userTable>
+      <app-admin-vinyl-table [vinyls]="vinyls"/>
+    </ng-template>
+
+  </div>
+
+</div>
+
+<shared-loading-spinner *ngIf="isLoading"/>

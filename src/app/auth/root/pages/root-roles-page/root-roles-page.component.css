@@ -1,0 +1,6 @@
+.search-head{
+  border-radius: 20px;
+  border:var(--primary-color) solid 3px;
+  background-color: var(--light-color);
+  width: 100%;
+}

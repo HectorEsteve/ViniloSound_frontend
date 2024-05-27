@@ -1,0 +1,64 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="toggleAddFormatForm()">Añadir Formato</button>
+
+  <div *ngIf="showAddFormatForm" class="mb-4">
+    <input [(ngModel)]="newFormat.name" class="form-control mb-2" placeholder="Nombre del formato" required [ngClass]="{'is-invalid': newFormat.name.trim() === ''}" />
+    <input [(ngModel)]="newFormat.diameter" type="number" class="form-control mb-2" placeholder="Diámetro (en pulgadas)" required [ngClass]="{'is-invalid': newFormat.diameter === 0 || null}" />
+    <input [(ngModel)]="newFormat.rpm" class="form-control mb-2" placeholder="RPM" required [ngClass]="{'is-invalid': newFormat.rpm.trim() === ''}" />
+    <input [(ngModel)]="newFormat.duration_side" type="number" class="form-control mb-2" placeholder="Duración por lado (en minutos)" required [ngClass]="{'is-invalid': newFormat.duration_side === 0  || null}" />
+    <button class="btn btn-success btn-sm" (click)="addFormat()" [disabled]="!newFormat.name || (newFormat.diameter === 0 || null) || !newFormat.rpm || (newFormat.duration_side === 0 || null)">Guardar</button>
+    <button class="btn btn-secondary btn-sm mx-2" (click)="showAddFormatForm = false">Cancelar</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Diámetro (pulgadas)</th>
+          <th>RPM</th>
+          <th>Duración por lado (min)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let format of filteredFormats">
+          <td>{{ format.id }}</td>
+          <td *ngIf="!format.editing">{{ format.name }}</td>
+          <td *ngIf="format.editing">
+            <input [(ngModel)]="format.name" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': format.name.trim() === ''}" />
+          </td>
+          <td *ngIf="!format.editing">{{ format.diameter }}</td>
+          <td *ngIf="format.editing">
+            <input [(ngModel)]="format.diameter" type="number" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': format.diameter === 0 || null}" />
+          </td>
+          <td *ngIf="!format.editing">{{ format.rpm }}</td>
+          <td *ngIf="format.editing">
+            <input [(ngModel)]="format.rpm" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': format.rpm.trim() === ''}" />
+          </td>
+          <td *ngIf="!format.editing">{{ format.duration_side }}</td>
+          <td *ngIf="format.editing">
+            <input [(ngModel)]="format.duration_side" type="number" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': format.duration_side === 0 || null}" />
+          </td>
+          <td>
+            <ng-container *ngIf="!format.editing; else editFormatButtons">
+              <button class="btn btn-warning btn-sm mx-2" (click)="editFormat(format)">Editar</button>
+            </ng-container>
+            <ng-template #editFormatButtons>
+              <button class="btn btn-success btn-sm mb-1" (click)="updateFormat(format)" [disabled]="!format.name || (format.diameter === 0 || null) || !format.rpm || (format.duration_side === 0 || null)">Guardar</button>
+              <button class="btn btn-secondary btn-sm mx-2 mb-1" (click)="cancelEdit(format)">Cancelar</button>
+            </ng-template>
+            <button class="btn btn-danger btn-sm" (click)="confirmDelete(format.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+  ></app-confirm-dialog>
+</div>

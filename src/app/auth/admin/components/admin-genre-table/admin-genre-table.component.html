@@ -1,0 +1,55 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="toggleAddGenreForm()">Añadir Género</button>
+
+  <div *ngIf="showAddGenreForm" class="mb-4">
+    <input [(ngModel)]="newGenre.name" class="form-control mb-2" placeholder="Nombre del género" required [ngClass]="{'is-invalid': newGenre.name.trim() === ''}" />
+    <textarea [(ngModel)]="newGenre.history" class="form-control mb-2" placeholder="Historia del género"></textarea>
+    <textarea [(ngModel)]="newGenre.description" class="form-control mb-2" placeholder="Descripción del género"></textarea>
+    <button class="btn btn-success btn-sm" (click)="addGenre()" [disabled]="!newGenre.name">Guardar</button>
+    <button class="btn btn-secondary btn-sm mx-2" (click)="showAddGenreForm = false">Cancelar</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let genre of filteredGenres">
+          <tr>
+            <td>{{ genre.id }}</td>
+            <td *ngIf="!genre.editing">{{ genre.name }}</td>
+            <td *ngIf="genre.editing">
+              <input [(ngModel)]="genre.name" class="form-control form-control-sm mb-2" required [ngClass]="{'is-invalid': genre.name.trim() === ''}" />
+              <textarea [(ngModel)]="genre.history" class="form-control form-control-sm mb-2" placeholder="Historia del género"></textarea>
+              <textarea [(ngModel)]="genre.description" class="form-control form-control-sm mb-2" placeholder="Descripción del género"></textarea>
+            </td>
+            <td>
+              <button *ngIf="!genre.editing" class="btn btn-info btn-sm " (click)="toggleMoreInfo(genre)">Ver Más</button>
+              <button *ngIf="!genre.editing" class="btn btn-warning btn-sm mx-2" (click)="editGenre(genre)">Editar</button>
+              <button *ngIf="genre.editing" class="btn btn-success btn-sm " (click)="updateGenre(genre)" [disabled]="!genre.name">Guardar</button>
+              <button *ngIf="genre.editing" class="btn btn-secondary btn-sm mx-2" (click)="cancelEdit(genre)">Cancelar</button>
+              <button class="btn btn-danger btn-sm" (click)="confirmDelete(genre.id)">Eliminar</button>
+            </td>
+          </tr>
+          <tr *ngIf="genre.showMoreInfo">
+            <td colspan="3">
+              <p><strong>Historia:</strong> {{ genre.history }}</p>
+              <p><strong>Descripción:</strong> {{ genre.description }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+  ></app-confirm-dialog>
+</div>

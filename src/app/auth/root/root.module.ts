@@ -9,6 +9,8 @@ import { LoadingSpinnerComponent }  from '../../shared/components/loading-spinne
 import { UsersTableComponent }      from './components/users-table/users-table.component';
 import { RootSidebarComponent }     from './components/root-sidevar/root-sidebar.component';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { RootRolesPageComponent } from './pages/root-roles-page/root-roles-page.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,6 +18,7 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
   declarations: [
     RootLayoutPageComponent,
     RootUsersPageComponent,
+    RootRolesPageComponent
 
   ],
   imports: [
@@ -25,7 +28,8 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
     SearchBoxComponent,
     LoadingSpinnerComponent,
     UsersTableComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    FormsModule
 
 
   ]

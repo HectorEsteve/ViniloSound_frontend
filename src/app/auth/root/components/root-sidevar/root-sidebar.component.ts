@@ -13,5 +13,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './root-sidebar.component.css',
 })
 export class RootSidebarComponent {
-
+  public menu =[
+    { title: 'Usuarios',    route: '/root/users'  },
+    { title: 'Roles',       route: '/root/roles'  },
+  ]
 }

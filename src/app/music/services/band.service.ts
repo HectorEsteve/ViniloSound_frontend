@@ -5,6 +5,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Band }           from '../interfaces/band.interface';
 import { BandCacheStore } from '../interfaces/band-cache-store.interface';
 import { environments }   from '../../../environments/environments';
+import { DataBand } from '../../auth/interfaces/dataBand.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -94,4 +95,37 @@ export class BandService {
     );
   }
 
+  public createBand(band: Band): Observable<Band> {
+    return this.http.post<{ message: string, band: Band }>(`${this.baseUrl}/bands`, band)
+      .pipe(
+        map(response => response.band),
+        catchError(error => {
+          console.error('Error adding band:', error);
+          return of({} as Band);
+        })
+      );
+  }
+
+  public updateBand(id: number, band: DataBand): Observable<Band> {
+    console.log('Datos a enviar para la actualización:', band);
+    return this.http.put<{ message: string, band: Band }>(`${this.baseUrl}/bands/${id}`, band)
+      .pipe(
+        map(response => response.band),
+        catchError(error => {
+          console.error('Error updating band:', error);
+          return of({} as Band);
+        })
+      );
+  }
+
+  public deleteBand(id: number): Observable<void> {
+    return this.http.delete<{ message: string }>(`${this.baseUrl}/bands/${id}`)
+      .pipe(
+        map(() => {}),
+        catchError(error => {
+          console.error('Error deleting band:', error);
+          return of();
+        })
+      );
+  }
 }

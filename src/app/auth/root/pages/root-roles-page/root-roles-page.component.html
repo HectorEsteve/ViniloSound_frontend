@@ -1,0 +1,51 @@
+<div class="search-head p-2">
+  <h5 class="primary-color text-center mt-2">Resultados</h5><div class="row my-3">
+  <div class="col">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Creado en</th>
+          <th>Actualizado en</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles">
+          <td>{{ role.id }}</td>
+          <td *ngIf="!role.editing">{{ role.name }}</td>
+          <td *ngIf="role.editing">
+            <input [(ngModel)]="role.name" class="form-control form-control-sm" [ngClass]="{'is-invalid': role.name.trim() === ''}" />
+          </td>
+          <td>{{ role.created_at | date: 'short' }}</td>
+          <td>{{ role.updated_at | date: 'short' }}</td>
+          <td>
+            <button *ngIf="!role.editing" class="btn btn-warning " (click)="editRole(role)">Editar</button>
+            <button *ngIf="role.editing" class="btn btn-success " (click)="updateRole(role)">Guardar</button>
+            <button *ngIf="role.editing" class="btn btn-secondary mx-2" (click)="cancelEdit(role)">Cancelar</button>
+            <button class="btn btn-danger mx-2" (click)="confirmDelete(role.id)">Eliminar</button>
+          </td>
+        </tr>
+        <tr *ngIf="showAddRoleForm">
+          <td colspan="5">
+            <input [(ngModel)]="newRoleName" class="form-control form-control-sm" [ngClass]="{'is-invalid': newRoleName.trim() === ''}" placeholder="Nombre del rol" />
+            <button class="btn btn-success btn mt-2 " (click)="addRole()">Guardar</button>
+            <button class="btn btn-secondary btn mt-2 mx-2" (click)="showAddRoleForm = false">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary mt-3" *ngIf="!showAddRoleForm" (click)="showAddRoleForm = true">Añadir Rol</button>
+  </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+  ></app-confirm-dialog>
+
+</div>
+
+<shared-loading-spinner *ngIf="isLoading"/>

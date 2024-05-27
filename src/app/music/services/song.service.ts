@@ -5,6 +5,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { environments }   from '../../../environments/environments';
 import { Song }           from '../interfaces/song.interface';
 import { SongCacheStore}  from '../interfaces/song-cache-store.interface';
+import { dataSong } from '../../auth/interfaces/dataSong.intrface';
 
 @Injectable({
   providedIn: 'root'
@@ -108,4 +109,38 @@ export class SongService {
       tap (() => this.saveToLocalStorage()),
     )
   }
+
+  public createSong(song: dataSong): Observable<Song> {
+    return this.http.post<{ message: string, song: Song }>(`${this.baseUrl}/songs`, song)
+      .pipe(
+        map(response => response.song),
+        catchError(error => {
+          console.error('Error adding song:', error);
+          return of({} as Song);
+        })
+      );
+  }
+
+  public updateSong(id: number, song: dataSong): Observable<Song> {
+    return this.http.put<{ message: string, song: Song }>(`${this.baseUrl}/songs/${id}`, song)
+      .pipe(
+        map(response => response.song),
+        catchError(error => {
+          console.error('Error updating song:', error);
+          return of({} as Song);
+        })
+      );
+  }
+
+  public deleteSong(id: number): Observable<void> {
+    return this.http.delete<{ message: string }>(`${this.baseUrl}/songs/${id}`)
+      .pipe(
+        map(() => {}),
+        catchError(error => {
+          console.error('Error deleting song:', error);
+          return of();
+        })
+      );
+  }
 }
+

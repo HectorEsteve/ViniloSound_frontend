@@ -20,6 +20,8 @@ export interface Vinyl {
   record_company:   RecordCompany;
   bands:            Band[];
   songs:            Song[];
+  editing?:         boolean;
+  showMoreInfo?:    boolean;
 }
 
 export interface BandPivot {

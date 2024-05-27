@@ -1,0 +1,99 @@
+<div class="container">
+  <button class="btn btn-primary mb-3" (click)="toggleAddSongForm()">Agregar Nueva Canción</button>
+
+  <div *ngIf="showAddSongForm" class="mb-4">
+    <form (ngSubmit)="addSong()">
+      <input [(ngModel)]="newSong.name" name="name" class="form-control mb-2" placeholder="Nombre" required />
+      <input [(ngModel)]="newSong.duration" name="duration" class="form-control mb-2" placeholder="Duración" required type="number" />
+      <textarea [(ngModel)]="newSong.lyrics" name="lyrics" class="form-control mb-2" placeholder="Letras"></textarea>
+      <input [(ngModel)]="newSong.video_url" name="video_url" class="form-control mb-2" placeholder="URL del Video" type="url" />
+      <input [(ngModel)]="newSong.audio_url" name="audio_url" class="form-control mb-2" placeholder="URL del Audio" type="url" />
+
+      <select [(ngModel)]="newSong.genre_id" name="genre_id" class="form-control mb-2" required>
+        <option value="" disabled selected>Seleccione un género</option>
+        <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+      </select>
+
+      <select [(ngModel)]="newSong.band_id" name="band_id" class="form-control mb-2" required>
+        <option value="" disabled selected>Seleccione una banda</option>
+        <option *ngFor="let band of bands" [value]="band.id">{{ band.name }}</option>
+      </select>
+
+      <button class="btn btn-success btn-sm" type="submit">Guardar</button>
+      <button class="btn btn-secondary btn-sm mx-2" type="button" (click)="toggleAddSongForm()">Cancelar</button>
+    </form>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Género</th>
+          <th>Grupo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let song of filteredSongs">
+          <tr>
+            <td>{{ song.id }}</td>
+            <td *ngIf="!song.editing">{{ song.name }}</td>
+            <td *ngIf="song.editing">
+              <input [(ngModel)]="song.name" name="name" class="form-control form-control-sm mb-2" required />
+            </td>
+            <td *ngIf="!song.editing">{{ song.genre?.name }}</td>
+            <td *ngIf="song.editing">
+              <select [(ngModel)]="song.genre_id" name="genre_id" class="form-control mb-2" required>
+                <option value="" disabled selected>Seleccione un género</option>
+                <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+              </select>
+            </td>
+            <td *ngIf="!song.editing">{{ song.band?.name }}</td>
+            <td *ngIf="song.editing">
+              <select [(ngModel)]="song.band_id" name="band_id" class="form-control mb-2" required>
+                <option value="" disabled selected>Seleccione una banda</option>
+                <option *ngFor="let band of bands" [value]="band.id">{{ band.name }}</option>
+              </select>
+            </td>
+            <td>
+              <button *ngIf="!song.editing" class="btn btn-sm btn-info" (click)="toggleMoreInfo(song)">{{ song.showMoreInfo ? 'Ocultar' : 'Mostrar' }} Info</button>
+              <button *ngIf="!song.editing" class="btn btn-sm btn-warning" (click)="editSong(song)">Editar</button>
+              <button *ngIf="song.editing" class="btn btn-sm btn-success" (click)="updateSong(song)">Guardar</button>
+              <button *ngIf="song.editing" class="btn btn-sm btn-secondary" (click)="cancelEdit(song)">Cancelar</button>
+              <button class="btn btn-sm btn-danger" (click)="confirmDelete(song.id)">Eliminar</button>
+            </td>
+          </tr>
+          <tr *ngIf="song.showMoreInfo">
+            <td colspan="5">
+              <div *ngIf="song.editing">
+                <strong>Duración:</strong>
+                <input [(ngModel)]="song.duration" name="duration" class="form-control form-control-sm mb-2" required type="number" />
+                <strong>Letras:</strong>
+                <textarea [(ngModel)]="song.lyrics" name="lyrics" class="form-control form-control-sm mb-2" required></textarea>
+                <strong>URL del Video:</strong>
+                <input [(ngModel)]="song.video_url" name="video_url" class="form-control form-control-sm mb-2" required type="url" />
+                <strong>URL del Audio:</strong>
+                <input [(ngModel)]="song.audio_url" name="audio_url" class="form-control form-control-sm mb-2" required type="url" />
+              </div>
+              <div *ngIf="!song.editing">
+                <p><strong>Duración:</strong> {{ song.duration }}</p>
+                <p><strong>Letras:</strong> {{ song.lyrics }}</p>
+                <p><strong>URL del Video:</strong> <a [href]="song.video_url">{{ song.video_url }}</a></p>
+                <p><strong>URL del Audio:</strong> <a [href]="song.audio_url">{{ song.audio_url }}</a></p>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="confirmMessage"
+    (confirm)="handleConfirm($event)"
+></app-confirm-dialog>
+

@@ -17,6 +17,8 @@ export interface Song {
   updated_at: Date;
   genre:      Genre;
   band:       Band;
+  editing?:       boolean;
+  showMoreInfo?:  boolean;
 }
 
 

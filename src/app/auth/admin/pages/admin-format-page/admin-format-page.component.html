@@ -1,0 +1,20 @@
+<div class="search-head p-2">
+
+  <h5 class="primary-color text-center mt-2">Resultados</h5><div class="row my-3">
+  <div class="col">
+    <div
+      *ngIf="formats.length === 0 && isLoading == false; else formatsTable"
+      class="alert alert-warning text-center mx-2 custom-alert"
+    >
+      No hay usuarios que mostrar
+    </div>
+
+    <ng-template #formatsTable>
+      <app-admin-format-table [formats]="formats"/>
+    </ng-template>
+
+  </div>
+
+</div>
+
+<shared-loading-spinner *ngIf="isLoading"/>

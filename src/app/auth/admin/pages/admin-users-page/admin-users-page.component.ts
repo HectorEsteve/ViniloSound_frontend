@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { User } from '../../../interfaces/user.interface';
-import { UserService } from '../../../service/user.service';
+
+import { User }         from '../../../interfaces/user.interface';
+import { UserService }  from '../../../service/user.service';
 
 @Component({
   selector: 'app-admin-users-page',

@@ -1,14 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Song } from '../../../../music/interfaces/song.interface';
-import { SongService } from '../../../../music/services/song.service';
-import { Genre } from '../../../../music/interfaces/genre.interface';
-import { Band } from '../../../../music/interfaces/band.interface';
+import { CommonModule }                                               from '@angular/common';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
+import { FormsModule }                                                from '@angular/forms';
+
+import { Song }                   from '../../../../music/interfaces/song.interface';
+import { SongService }            from '../../../../music/services/song.service';
+import { Genre }                  from '../../../../music/interfaces/genre.interface';
+import { Band }                   from '../../../../music/interfaces/band.interface';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { FormsModule } from '@angular/forms';
-import { BandService } from '../../../../music/services/band.service';
-import { GenreService } from '../../../../music/services/genre.service';
-import { dataSong } from '../../../interfaces/dataSong.intrface';
+import { BandService }            from '../../../../music/services/band.service';
+import { GenreService }           from '../../../../music/services/genre.service';
+import { dataSong }               from '../../../interfaces/dataSong.intrface';
 
 export interface EditableSong extends dataSong {
   id: number;
@@ -30,7 +31,9 @@ export interface EditableSong extends dataSong {
   styleUrls: ['./admin-song-table.component.css'],
 })
 export class AdminSongTableComponent implements OnChanges, OnInit {
-  @Input() songs: Song[] = [];
+  @Input()
+    songs: Song[] = [];
+
   public bands: Band[] = [];
   public genres: Genre[] = [];
   public filteredSongs: EditableSong[] = [];
@@ -52,11 +55,9 @@ export class AdminSongTableComponent implements OnChanges, OnInit {
 
   public originalSongData: { [key: number]: EditableSong } = {};
 
-  constructor(
-    private songService: SongService,
-    private bandService: BandService,
-    private genreService: GenreService
-  ) {}
+  private songService = inject(SongService);
+  private bandService = inject(BandService);
+  private genreService = inject(GenreService);
 
   ngOnInit(): void {
     this.loadSongs();

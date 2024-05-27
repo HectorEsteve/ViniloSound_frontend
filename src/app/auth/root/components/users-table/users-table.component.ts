@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                                               from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
-import { Name, User } from '../../../interfaces/user.interface';
-import { UserService } from '../../../service/user.service';
+
+import { Name, User }             from '../../../interfaces/user.interface';
+import { UserService }            from '../../../service/user.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({

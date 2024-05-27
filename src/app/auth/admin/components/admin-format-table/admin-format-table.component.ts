@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                                               from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
-import { Format } from '../../../../music/interfaces/format.interface';
-import { FormatService } from '../../../../music/services/format.service';
+import { FormsModule }                                                from '@angular/forms';
+
+import { Format }                 from '../../../../music/interfaces/format.interface';
+import { FormatService }          from '../../../../music/services/format.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-format-table',
@@ -18,7 +19,9 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class AdminFormatTableComponent implements OnChanges, OnInit {
-  @Input() formats: Format[] = [];
+  @Input()
+    formats: Format[] = [];
+
   public filteredFormats: Format[] = [];
   public isLoading: boolean = false;
   public showAddFormatForm: boolean = false;
@@ -26,6 +29,7 @@ export class AdminFormatTableComponent implements OnChanges, OnInit {
   public showConfirmDialog: boolean = false;
   public confirmMessage: string = '';
   private formatIdToDelete: number | null = null;
+
   private formatService= inject (FormatService);
 
   ngOnInit(): void {

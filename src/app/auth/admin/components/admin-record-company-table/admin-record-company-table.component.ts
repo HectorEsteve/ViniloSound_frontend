@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                                               from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
-import { RecordCompany } from '../../../../music/interfaces/record-companies.interface';
+import { FormsModule }                                                from '@angular/forms';
+
+import { RecordCompany }          from '../../../../music/interfaces/record-companies.interface';
 import { RecordCompaniesService } from '../../../../music/services/record-companies.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-record-company-table',
@@ -16,8 +17,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './admin-record-company-table.component.html',
   styleUrl: './admin-record-company-table.component.css',
 })
+
 export class AdminRecordCompanyTableComponent implements OnChanges, OnInit {
-  @Input() recordCompanies: RecordCompany[] = [];
+  @Input()
+    recordCompanies: RecordCompany[] = [];
+
   public filteredRecordCompanies: RecordCompany[] = [];
   public isLoading: boolean = false;
   public showAddRecordCompanyForm: boolean = false;
@@ -25,6 +29,7 @@ export class AdminRecordCompanyTableComponent implements OnChanges, OnInit {
   public showConfirmDialog: boolean = false;
   public confirmMessage: string = '';
   private recordCompanyIdToDelete: number | null = null;
+
   private recordCompaniesService = inject(RecordCompaniesService);
 
   ngOnInit(): void {
@@ -62,7 +67,7 @@ export class AdminRecordCompanyTableComponent implements OnChanges, OnInit {
     );
   }
 
-  addRecordCompany(): void {
+  public addRecordCompany(): void {
     if (this.newRecordCompany.name.trim()) {
       this.recordCompaniesService.createRecordCompany(this.newRecordCompany).subscribe(
         (createdRecordCompany) => {
@@ -90,7 +95,7 @@ export class AdminRecordCompanyTableComponent implements OnChanges, OnInit {
     this.loadRecordCompanies();
   }
 
-  updateRecordCompany(recordCompany: RecordCompany): void {
+  public updateRecordCompany(recordCompany: RecordCompany): void {
     if (recordCompany.name.trim()) {
       this.recordCompaniesService.updateRecordCompany(recordCompany.id, recordCompany).subscribe(
         (updatedRecordCompany) => {

@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RootLayoutPageComponent } from './pages/root-layout-page/root-layout-page.component';
-import { RootUsersPageComponent } from './pages/root-users-page/root-users-page.component';
-import { RootRolesPageComponent } from './pages/root-roles-page/root-roles-page.component';
+import { NgModule }               from '@angular/core';
+import { RouterModule, Routes }   from '@angular/router';
+
+import { RootLayoutPageComponent }  from './pages/root-layout-page/root-layout-page.component';
+import { RootUsersPageComponent }   from './pages/root-users-page/root-users-page.component';
+import { RootRolesPageComponent }   from './pages/root-roles-page/root-roles-page.component';
 
 const routes: Routes = [
   {

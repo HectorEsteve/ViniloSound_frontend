@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { BandService } from '../../../../music/services/band.service';
-import { Band } from '../../../../music/interfaces/band.interface';
+
+import { BandService }  from '../../../../music/services/band.service';
+import { Band }         from '../../../../music/interfaces/band.interface';
 
 @Component({
   selector: 'app-admin-band-page',

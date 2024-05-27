@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
+
 import { RecordCompaniesService } from '../../../../music/services/record-companies.service';
-import { RecordCompany } from '../../../../music/interfaces/record-companies.interface';
+import { RecordCompany }          from '../../../../music/interfaces/record-companies.interface';
 
 @Component({
   selector: 'app-admin-record-companie-page',

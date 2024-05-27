@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                                               from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
-import { Band } from '../../../../music/interfaces/band.interface';
-import { BandService } from '../../../../music/services/band.service';
-import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { FormsModule } from '@angular/forms';
-import { DataBand } from '../../../interfaces/dataBand.interface';
+import { FormsModule }                                                from '@angular/forms';
 
-
+import { Band }                     from '../../../../music/interfaces/band.interface';
+import { BandService }              from '../../../../music/services/band.service';
+import { ConfirmDialogComponent }   from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { DataBand }                 from '../../../interfaces/dataBand.interface';
 
 @Component({
   selector: 'app-admin-band-table',
@@ -19,8 +18,11 @@ import { DataBand } from '../../../interfaces/dataBand.interface';
   templateUrl: './admin-band-table.component.html',
   styleUrl: './admin-band-table.component.css',
 })
+
 export class AdminBandTableComponent implements OnChanges, OnInit {
-  @Input() bands: Band[] = [];
+  @Input()
+    bands: Band[] = [];
+
   public filteredBands: Band[] = [];
   public isLoading: boolean = false;
   public showAddBandForm: boolean = false;
@@ -36,6 +38,7 @@ export class AdminBandTableComponent implements OnChanges, OnInit {
   public showConfirmDialog: boolean = false;
   public confirmMessage: string = '';
   private bandIdToDelete: number | null = null;
+
   private bandService = inject(BandService);
 
   ngOnInit(): void {
@@ -73,7 +76,7 @@ export class AdminBandTableComponent implements OnChanges, OnInit {
     );
   }
 
-  addBand(): void {
+  public addBand(): void {
     if (this.newBand.name.trim()) {
       this.bandService.createBand({
         name: this.newBand.name,

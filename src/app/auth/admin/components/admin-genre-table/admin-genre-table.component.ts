@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                                               from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
+import { FormsModule }                                                from '@angular/forms';
+
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { Genre } from '../../../../music/interfaces/genre.interface';
-import { GenreService } from '../../../../music/services/genre.service';
-import { FormsModule } from '@angular/forms';
+import { Genre }                  from '../../../../music/interfaces/genre.interface';
+import { GenreService }           from '../../../../music/services/genre.service';
 
 @Component({
   selector: 'app-admin-genre-table',
@@ -19,7 +20,9 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class AdminGenreTableComponent implements OnChanges, OnInit {
-  @Input() genres: Genre[] = [];
+  @Input()
+    genres: Genre[] = [];
+
   public filteredGenres: Genre[] = [];
   public isLoading: boolean = false;
   public showAddGenreForm: boolean = false;
@@ -27,6 +30,7 @@ export class AdminGenreTableComponent implements OnChanges, OnInit {
   public showConfirmDialog: boolean = false;
   public confirmMessage: string = '';
   private genreIdToDelete: number | null = null;
+
   private genreService = inject(GenreService);
 
   ngOnInit(): void {
@@ -61,7 +65,7 @@ export class AdminGenreTableComponent implements OnChanges, OnInit {
     );
   }
 
-  addGenre(): void {
+  public addGenre(): void {
     if (this.newGenre.name.trim()) {
       this.genreService.createGenre({
         name: this.newGenre.name,

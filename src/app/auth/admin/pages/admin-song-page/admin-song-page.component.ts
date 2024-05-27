@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { SongService } from '../../../../music/services/song.service';
-import { Song } from '../../../../music/interfaces/song.interface';
+import { Component, OnInit, inject }  from '@angular/core';
+
+import { SongService }                from '../../../../music/services/song.service';
+import { Song }                       from '../../../../music/interfaces/song.interface';
 
 @Component({
   selector: 'app-admin-song-page',

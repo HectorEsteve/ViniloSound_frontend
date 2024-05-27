@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component }    from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './root-sidebar.component.html',
   styleUrl: './root-sidebar.component.css',
 })
+
 export class RootSidebarComponent {
   public menu =[
     { title: 'Usuarios',    route: '/root/users'  },

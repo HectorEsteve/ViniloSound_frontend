@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormatService } from '../../../../music/services/format.service';
-import { Format } from '../../../../music/interfaces/format.interface';
+
+import { FormatService }  from '../../../../music/services/format.service';
+import { Format }         from '../../../../music/interfaces/format.interface';
 
 @Component({
   selector: 'app-admin-format-page',

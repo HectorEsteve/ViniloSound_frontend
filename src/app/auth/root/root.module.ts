@@ -8,9 +8,9 @@ import { SearchBoxComponent }       from '../../shared/components/searchBox/sear
 import { LoadingSpinnerComponent }  from '../../shared/components/loading-spinner/loading-spinner.component';
 import { UsersTableComponent }      from './components/users-table/users-table.component';
 import { RootSidebarComponent }     from './components/root-sidevar/root-sidebar.component';
-import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
-import { RootRolesPageComponent } from './pages/root-roles-page/root-roles-page.component';
-import { FormsModule } from '@angular/forms';
+import { ConfirmDialogComponent }   from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { RootRolesPageComponent }   from './pages/root-roles-page/root-roles-page.component';
+import { FormsModule }              from '@angular/forms';
 
 
 

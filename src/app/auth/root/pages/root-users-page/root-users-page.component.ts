@@ -1,12 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
+
 import { UserService } from '../../../service/user.service';
-import { User } from '../../../interfaces/user.interface';
+import { User }       from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-root-users-page',
   templateUrl: './root-users-page.component.html',
   styleUrl: './root-users-page.component.css',
 })
+
 export class RootUsersPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;

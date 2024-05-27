@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+
 import { RolService } from '../../../service/role.service';
 import { Name, Role } from '../../../interfaces/role.interface';
 
@@ -24,7 +25,7 @@ export class RootRolesPageComponent implements OnInit {
   public confirmMessage: string = '';
   private roleIdToDelete: number | null = null;
 
-  loadRoles(): void {
+  public loadRoles(): void {
     this.roleService.getRoles().subscribe((roles) => {
       this.roles = roles;
       this.roles.forEach(role => role.editing = false);
@@ -32,26 +33,26 @@ export class RootRolesPageComponent implements OnInit {
     });
   }
 
-  confirmDelete(id: number): void {
+  public confirmDelete(id: number): void {
     this.confirmMessage = '¿Estás seguro de que deseas eliminar este rol?';
     this.showConfirmDialog = true;
     this.roleIdToDelete = id;
   }
 
-  handleConfirm(confirmed: boolean): void {
+  public handleConfirm(confirmed: boolean): void {
     if (confirmed && this.roleIdToDelete !== null) {
       this.deleteRole(this.roleIdToDelete);
     }
     this.showConfirmDialog = false;
   }
 
-  deleteRole(id: number): void {
+  public deleteRole(id: number): void {
     this.roleService.deleteRole(id).subscribe(() => {
       this.roles = this.roles.filter((role) => role.id !== id);
     });
   }
 
-  addRole(): void {
+  public addRole(): void {
     if (this.newRoleName.trim()) {
       this.roleService.createRole({ name: this.newRoleName } as Role).subscribe((createdRole) => {
         this.roles.push(createdRole);
@@ -61,16 +62,16 @@ export class RootRolesPageComponent implements OnInit {
     }
   }
 
-  editRole(role: Role): void {
+  public editRole(role: Role): void {
     role.editing = true;
   }
 
-  cancelEdit(role: Role): void {
+  public cancelEdit(role: Role): void {
     role.editing = false;
     this.loadRoles();
   }
 
-  updateRole(role: Role): void {
+  public updateRole(role: Role): void {
     if (role.name.trim()) {
       this.roleService.updateRole(role.id, role).subscribe((updatedRole) => {
         Object.assign(role, updatedRole);
@@ -79,7 +80,7 @@ export class RootRolesPageComponent implements OnInit {
     }
   }
 
-  toggleAddRoleForm(): void {
+  public toggleAddRoleForm(): void {
     this.showAddRoleForm = !this.showAddRoleForm;
   }
 

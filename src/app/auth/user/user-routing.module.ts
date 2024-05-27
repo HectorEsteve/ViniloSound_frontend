@@ -1,11 +1,12 @@
-import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LayoutUserComponent } from './pages/layout/layout.component';
-import { MyCollectionPageComponent } from './pages/my-collection-page/my-collection-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
-import { ComingSoonPageComponent } from '../../shared/pages/coming-soon-page/coming-soon-page.component';
-import { UpdateCollectionFormComponent } from './components/updateCollectionForm/updateCollectionForm.component';
-import { DeleteCollectionFormComponent } from './components/deleteCollectionForm/deleteCollectionForm.component';
+import { NgModule,}                 from '@angular/core';
+import { RouterModule, Routes }     from '@angular/router';
+
+import { ComingSoonPageComponent }        from '../../shared/pages/coming-soon-page/coming-soon-page.component';
+import { DeleteCollectionFormComponent }  from './components/deleteCollectionForm/deleteCollectionForm.component';
+import { LayoutUserComponent }            from './pages/layout/layout.component';
+import { MyCollectionPageComponent }      from './pages/my-collection-page/my-collection-page.component';
+import { ProfilePageComponent }           from './pages/profile-page/profile-page.component';
+import { UpdateCollectionFormComponent }  from './components/updateCollectionForm/updateCollectionForm.component';
 
 const routes: Routes = [
   {

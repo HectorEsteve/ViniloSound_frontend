@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule }                               from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { User } from '../../../interfaces/user.interface';
 
 @Component({
@@ -13,7 +14,6 @@ import { User } from '../../../interfaces/user.interface';
 })
 
 export class AdminUsersTableComponent implements OnChanges {
-
   @Input() users: User[] = [];
 
   public filteredUsers: User[] = [];

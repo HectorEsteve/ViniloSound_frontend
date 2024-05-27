@@ -142,5 +142,13 @@ export class SongService {
         })
       );
   }
+
+  public getSongsByBandId(bandId: number): Observable<Song[]> {
+    return this.getSongs().pipe(
+      map((songs: Song[]) => {
+        return songs.filter(song => song.band.id === bandId);
+      })
+    );
+  }
 }
 

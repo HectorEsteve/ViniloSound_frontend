@@ -14,7 +14,7 @@ export interface Band {
   country:        string;
   created_at?:     Date;
   updated_at?:     Date;
-  songs:          Song[];
+  songs?:          Song[] | [] ;
   editing?:       boolean;
   showMoreInfo?:  boolean;
 }

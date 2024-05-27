@@ -59,9 +59,9 @@
             </td>
             <td>
               <button *ngIf="!song.editing" class="btn btn-sm btn-info" (click)="toggleMoreInfo(song)">{{ song.showMoreInfo ? 'Ocultar' : 'Mostrar' }} Info</button>
-              <button *ngIf="!song.editing" class="btn btn-sm btn-warning" (click)="editSong(song)">Editar</button>
-              <button *ngIf="song.editing" class="btn btn-sm btn-success" (click)="updateSong(song)">Guardar</button>
-              <button *ngIf="song.editing" class="btn btn-sm btn-secondary" (click)="cancelEdit(song)">Cancelar</button>
+              <button *ngIf="!song.editing" class="btn btn-sm btn-warning mx-2" (click)="editSong(song)">Editar</button>
+              <button *ngIf="song.editing" class="btn btn-sm btn-success mb-1" (click)="updateSong(song)">Guardar</button>
+              <button *ngIf="song.editing" class="btn btn-sm btn-secondary mx-2 mb-1" (click)="cancelEdit(song)">Cancelar</button>
               <button class="btn btn-sm btn-danger" (click)="confirmDelete(song.id)">Eliminar</button>
             </td>
           </tr>

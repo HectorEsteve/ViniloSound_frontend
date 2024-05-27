@@ -112,8 +112,8 @@ export class AdminSongTableComponent implements OnChanges, OnInit {
             ...createdSong,
             editing: false,
             showMoreInfo: false,
-            band_id: bandId ?? 0, 
-            genre_id: genreId ?? 0 
+            band_id: bandId ?? 0,
+            genre_id: genreId ?? 0
           });
           this.resetNewSong();
           this.showAddSongForm = false;
@@ -161,8 +161,8 @@ export class AdminSongTableComponent implements OnChanges, OnInit {
         (responseSong) => {
           Object.assign(song, responseSong);
           song.editing = false;
-          song.showMoreInfo = false; // Ocultar información adicional después de editar
-          delete this.originalSongData[song.id]; // Eliminar datos originales después de guardar
+          song.showMoreInfo = false;
+          delete this.originalSongData[song.id];
         },
         (error) => {
           console.error('Error updating song:', error);

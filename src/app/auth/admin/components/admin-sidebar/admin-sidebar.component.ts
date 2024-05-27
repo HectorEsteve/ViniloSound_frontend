@@ -22,7 +22,6 @@ export class AdminSidebarComponent {
     { title: 'Discográficas',       route: '/admin/record-companies'  },
     { title: 'Grupos',              route: '/admin/bands'  },
     { title: 'Canciones',           route: '/admin/songs'  },
-    { title: 'Vinilos',             route: '/admin/vinyls'  },
   ]
 
  }

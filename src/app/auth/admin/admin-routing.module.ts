@@ -7,7 +7,6 @@ import { AdminFormatPageComponent } from './pages/admin-format-page/admin-format
 import { AdminRecordCompaniePageComponent } from './pages/admin-record-companie-page/admin-record-company-page.component';
 import { AdminBandPageComponent } from './pages/admin-band-page/admin-band-page.component';
 import { AdminSongPageComponent } from './pages/admin-song-page/admin-song-page.component';
-import { AdminVinylPageComponent } from './pages/admin-vinyl-page/admin-vinyl-page.component';
 
 const routes: Routes = [
   {
@@ -20,7 +19,6 @@ const routes: Routes = [
       { path: 'record-companies', component: AdminRecordCompaniePageComponent},
       { path: 'bands', component: AdminBandPageComponent},
       { path: 'songs', component: AdminSongPageComponent},
-      { path: 'vinyls', component: AdminVinylPageComponent},
 
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: '**', redirectTo: 'users' },

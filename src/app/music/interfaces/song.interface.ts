@@ -13,8 +13,8 @@ export interface Song {
   lyrics:     string;
   video_url:  null | string;
   audio_url:  null | string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
   genre:      Genre;
   band:       Band;
   editing?:       boolean;

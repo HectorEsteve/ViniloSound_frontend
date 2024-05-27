@@ -19,8 +19,6 @@ import { AdminBandPageComponent } from './pages/admin-band-page/admin-band-page.
 import { AdminBandTableComponent } from './components/admin-band-table/admin-band-table.component';
 import { AdminSongPageComponent } from './pages/admin-song-page/admin-song-page.component';
 import { AdminSongTableComponent } from './components/admin-song-table/admin-song-table.component';
-import { AdminVinylPageComponent } from './pages/admin-vinyl-page/admin-vinyl-page.component';
-import { AdminVinylTableComponent } from './components/admin-vinyl-table/admin-vinyl-table.component';
 
 
 @NgModule({
@@ -32,7 +30,7 @@ import { AdminVinylTableComponent } from './components/admin-vinyl-table/admin-v
     AdminRecordCompaniePageComponent,
     AdminBandPageComponent,
     AdminSongPageComponent,
-    AdminVinylPageComponent,
+ 
 
   ],
   imports: [
@@ -48,7 +46,7 @@ import { AdminVinylTableComponent } from './components/admin-vinyl-table/admin-v
     AdminRecordCompanyTableComponent,
     AdminBandTableComponent,
     AdminSongTableComponent,
-    AdminVinylTableComponent
+    
   ]
 })
 export class AdminModule { }

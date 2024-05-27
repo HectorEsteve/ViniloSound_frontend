@@ -6,6 +6,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { environments }     from '../../../environments/environments';
 import { VinylCacheStore }  from '../interfaces/vinyl-cache-store.interface';
 import { Vinyl }            from '../interfaces/vinyl.interface';
+import { dataVinyl } from '../../auth/interfaces/dataVinyl.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -120,7 +121,7 @@ export class VinylService {
     );
   }
 
-  public createVinyl(vinyl: Vinyl): Observable<Vinyl> {
+  public createVinyl(vinyl: dataVinyl): Observable<Vinyl> {
     return this.http.post<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls`, vinyl)
       .pipe(
         map(response => response.vinyl),
@@ -131,7 +132,7 @@ export class VinylService {
       );
   }
 
-  public updateVinyl(id: number, vinyl: Vinyl): Observable<Vinyl> {
+  public updateVinyl(id: number, vinyl: dataVinyl): Observable<Vinyl> {
     return this.http.put<{ message: string, vinyl: Vinyl }>(`${this.baseUrl}/vinyls/${id}`, vinyl)
       .pipe(
         map(response => response.vinyl),

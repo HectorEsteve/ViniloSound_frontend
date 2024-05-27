@@ -85,7 +85,7 @@ export class BandService {
     return this.getBands().pipe(
       map((bands: Band[]) => {
         return bands.filter(band => {
-          return band.songs.some(song => song.genre.name.toLowerCase().includes(term.toLowerCase()));
+          return band.songs!.some(song => song.genre.name.toLowerCase().includes(term.toLowerCase()));
         });
       }),
       tap(bands => {

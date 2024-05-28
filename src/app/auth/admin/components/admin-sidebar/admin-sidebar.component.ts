@@ -17,7 +17,7 @@ export class AdminSidebarComponent {
 
   public menu =[
     { title: 'Usuarios',            route: '/admin/users'  },
-    { title: 'Genros',              route: '/admin/genres'  },
+    { title: 'Géneros',              route: '/admin/genres'  },
     { title: 'Formatos',            route: '/admin/formats'  },
     { title: 'Discográficas',       route: '/admin/record-companies'  },
     { title: 'Grupos',              route: '/admin/bands'  },

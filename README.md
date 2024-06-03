@@ -1,27 +1,37 @@
-# ViSo
+# Proyecto ViniloSound
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+Para el correcto funcionamiento de la web se debe desplegar tanto el frontend como el backend. A continuación está descrito el despliegue del backend en local, mientras que el frontend lo podéis encontrar en [ViniloSound_frontend](https://github.com/HectorEsteve/ViniloSound_backend).
 
-## Development server
+## Instalación de Docker
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para instalar Docker, podéis seguir el tutorial de instalación en el siguiente enlace: [Instalación de Docker](https://docs.docker.com/engine/install/).
 
-## Code scaffolding
+Para darle permisos y no tener que usar `sudo` en los comandos, ejecutad los siguientes comandos:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+sudo usermod -aG docker $USER
+newgrp docker
+```
 
-## Build
+## Clonar el Repositorio
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+El segundo paso es clonar este repositorio:
 
-## Running unit tests
+```sh
+git clone https://github.com/HectorEsteve/ViniloSound_frontend
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Una vez instalado, accedemos a la carpeta `ViniloSound_frontend`:
 
-## Running end-to-end tests
+```sh
+cd ViniloSound_frontend
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Montar el Contenedor
 
-## Further help
+Ya podemos montar el contenedor y levantarlo:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```sh
+docker-compose build
+docker-compose up -d
+```

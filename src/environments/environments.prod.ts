@@ -1,5 +1,5 @@
-export const environments = {
-  baseUrl: '',
+export const environments ={
+  baseUrl: 'http://localhost:8000/api',
   tempRoutSong: '',
   tempRoutGenre: '',
   tempRoutBand: '',

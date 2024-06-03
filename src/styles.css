@@ -6,7 +6,7 @@ body {
   background-color: black;
 }
 main {
-  background-image: linear-gradient(to bottom, black, #444,#dadada,#444, black);
+  background-image: linear-gradient(to bottom, black, #444,#d9d9d9,#444, black);
   min-height: 76vh;
 }
 
@@ -57,22 +57,22 @@ a{
 
 @keyframes buttonNeonsEffectYellow {
   0% {
-      color:rgb(105, 105, 35);
+      color:#696923;
       background-color: rgb(253, 253, 199);
       border:rgb(105, 105, 35) solid 1px;
   }
   100% {
       color: white;
-      background-color:rgb(201, 187, 0);
-      border:rgb(253, 253, 199) solid 1px;
+      background-color:#c9bb00;
+      border:#fdfdc7 solid 1px;
   }
 }
 
 @keyframes buttonNeonsEffectRed {
   0% {
-      color:rgb(165, 50, 50);
-      background-color: rgb(255, 219, 219);
-      border:rgb(80, 25, 25) solid 1px;
+      color:#a53232;
+      background-color: #ffdbdb;
+      border:#501919 solid 1px;
   }
   100% {
       color: white;
@@ -92,7 +92,7 @@ a{
   0% {
   }
   100% {
-    box-shadow: 0 0 10px rgb(136, 136, 1);
+    box-shadow: 0 0 10px #888801;
   }
 }
 @keyframes ShadowNeonsEffectRed {
@@ -114,7 +114,7 @@ a{
 }
 @keyframes pasiveButtonNeonsEffectYellow {
   0% {
-    background-color:rgb(253, 253, 199);
+    background-color:#fdfdc7;
   }
   100% {
     background-color:rgb(253, 253, 199,0.5);

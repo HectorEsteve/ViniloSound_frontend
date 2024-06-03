@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build: .
+    container_name: angular-app
+    ports:
+      - "80:80"
+    networks:
+      - vinilo-net
+
+networks:
+  vinilo-net:
+    driver: bridge

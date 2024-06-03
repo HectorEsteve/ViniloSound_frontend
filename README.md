@@ -35,3 +35,19 @@ Ya podemos montar el contenedor y levantarlo:
 docker-compose build
 docker-compose up -d
 ```
+
+## Configurar HOST
+
+deberas incluir la siguiente linea en el host de tu equipo
+
+127.0.0.1 ViniloSound.dev.com
+
+Con esa direccion podras acceder a la web desde tu navegador
+
+### Windows
+
+C:\Windows\System32\drivers\etc\hosts
+
+### Linux
+
+/etc/hosts

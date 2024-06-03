@@ -8,6 +8,7 @@ services:
       - "80:80"
     networks:
       - vinilo-net
+    restart: always
 
 networks:
   vinilo-net:

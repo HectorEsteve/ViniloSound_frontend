@@ -51,3 +51,15 @@ C:\Windows\System32\drivers\etc\hosts
 ### Linux
 
 /etc/hosts
+
+## Acceso como admin
+
+User: `admin@gmail.com`
+
+password: `admin`
+
+## Acceso como root
+
+User: `root@gmail.com`
+
+password: `root`
